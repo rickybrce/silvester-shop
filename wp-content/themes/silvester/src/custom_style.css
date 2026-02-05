@@ -1,0 +1,367 @@
+@import "tailwindcss";
+
+@theme {
+    --color-enduro-red-100: #de423d;
+    --color-enduro-red-200: #8d1f1a;
+    --color-enduro-grey-400: #d1d5db;
+    --color-enduro-grey-500: #6b7280;
+    --color-enduro-grey-600: #4b5563;
+    --color-enduro-grey-700: #374151;
+    --color-enduro-grey-800: rgb(34 34 34); 
+    --color-enduro-grey-900: rgb(17 17 17); 
+    
+    /* Custom breakpoints */
+    --breakpoint-xs: 420px;
+    --breakpoint-xs3: 340px;
+}
+
+html, body {
+    font-family: 'Roboto', sans-serif;
+}
+
+#menu-main-menu {
+    @apply w-full items-center h-full flex flex-wrap justify-end;  
+}
+@media (min-width: 1024px) {
+    #menu-main-menu {
+        @apply flex-nowrap;
+    }
+}
+#menu-main-menu li {
+    @apply text-center block px-4 xl:px-3; 
+}
+#menu-main-menu li:last-child {
+    @apply lg:pr-0; 
+}
+#menu-main-menu a {
+    @apply text-xs xl:text-base relative flex items-center justify-center h-[60px] lg:h-full uppercase font-medium transition-all ease-in-out delay-150 text-white; 
+}
+#menu-main-menu a:after {
+    content: '';
+    @apply absolute left-0 bottom-[-2px] w-0 h-[3px] transition-all ease-in-out delay-150 bg-enduro-red-100; 
+}
+#menu-main-menu a:hover:after {
+    @apply w-full; 
+}
+#menu-main-menu a:hover {
+    @apply text-enduro-red-100
+}
+
+#menu-main-menu .current-menu-item a:after, #menu-main-menu a:hover:after {
+    @apply opacity-100; 
+} 
+#menu-main-menu .menu-item {
+    @apply relative; 
+} 
+#menu-main-menu .menu-item:after {
+    content: "";
+    @apply w-1 h-1 absolute right-[-3px] top-[8px] xl:top-[10px] bg-enduro-grey-600 rounded-full; 
+} 
+#menu-main-menu .menu-item:last-child:after{
+    @apply hidden; 
+} 
+#menu-main-menu .current-menu-item a {
+    @apply text-enduro-red-100
+}
+#menu-main-menu .current-menu-item a:after {
+    @apply w-full; 
+}
+
+/** Top menu */
+#menu-top-menu {
+    @apply sm:pl-0 w-full flex items-center justify-end flex-wrap;
+}
+@media (min-width: 420px) {
+    #menu-top-menu {
+        @apply pl-[80px];
+    }
+}
+#menu-top-menu li {
+    @apply pl-2 sm:pl-4
+}
+#menu-top-menu li.button {
+    @apply sm:w-auto
+}
+@media (min-width: 420px) {
+    #menu-top-menu li.button {
+        @apply w-6/12;
+    }
+}
+#menu-top-menu li a {
+    @apply transition ease-in-out
+}
+#menu-top-menu li.button a {
+    @apply mb-2 w-full sm:w-auto lg:mb-0 inline-block bg-gradient-to-b from-enduro-red-100 to-enduro-red-200 py-1 lg:py-2 px-2 lg:px-4 rounded text-base transition ease-in-out
+}
+#menu-top-menu li.button a:hover {
+    @apply bg-gradient-to-b from-enduro-red-200 to-enduro-red-100 text-white
+}
+#menu-top-menu li.social a i {
+    @apply text-xl
+}
+#menu-top-menu li a:hover {
+    @apply text-enduro-red-100
+}
+
+.h1-intro span {
+    @apply text-enduro-red-100 block text-2xl sm:text-4xl;
+}
+
+.red-button {
+    @apply text-2xl inline-block bg-gradient-to-b from-enduro-red-100 to-enduro-red-200 py-2 px-6 rounded text-base transition ease-in-out hover:from-enduro-red-200 hover:to-enduro-red-100;
+}
+
+.box-head {
+    @apply text-3xl lg:text-5xl uppercase font-medium text-enduro-grey-900 relative;
+}
+.box-head:after {
+    content: "";
+    @apply w-16 h-1 lg:h-[6px] bg-enduro-red-100 absolute left-0 bottom-[-10px];
+}
+.box-head span{
+    @apply text-enduro-red-100;
+}
+.features-section .box-head {
+    @apply text-white;
+}
+.features-section .mx-auto {
+    @apply text-white;
+}
+.features-section h3 {
+    @apply text-white;
+}
+
+.box-head-gallery {
+    @apply text-xl lg:text-2xl uppercase font-medium text-enduro-grey-900 relative mb-10;
+}
+.box-head-gallery:after {
+    content: "";
+    @apply w-16 h-1 lg:h-[6px] bg-enduro-red-100 absolute left-0 bottom-[-10px];
+}
+.box-head-gallery span{
+    @apply text-enduro-red-100;
+}
+/* Logo */
+.logo-text {
+    @apply text-base hidden;
+}
+.logo-text span {
+    @apply text-enduro-red-100 text-3xl;
+}
+.mob-menu-logo-holder {
+    @apply text-enduro-red-100;
+}
+
+/* Footer menu */
+.footer-menu-cont li {
+    @apply mb-4;
+}
+.footer-menu-cont li a:hover {
+    @apply text-enduro-red-100;
+}
+.footer-menu-cont li i {
+    @apply mr-2 text-enduro-red-100;
+}
+.footer-menu-cont-2 li {
+    @apply mb-2;
+}
+.footer-menu-cont-2 li a {
+    @apply relative pl-4;
+}
+.footer-menu-cont-2 li a:hover {
+    @apply text-enduro-red-100;
+}
+.footer-menu-cont-2 li a:after {
+    content: '';
+    @apply w-1 h-1 absolute left-0 top-[6px] bg-enduro-red-100 rounded-full; 
+}
+.footer-menu-contact li a {
+@apply lg:text-lg;
+}
+
+/** Form */
+.default-form label {
+    @apply w-full mb-4 lg:mb-8 inline-block;
+}
+.default-form label input[type="text"], .default-form label input[type="email"] {
+    @apply w-full border border-enduro-grey-400 bg-white text-enduro-grey-900 px-4 py-2 focus:border-enduro-red-100 outline-none focus:outline-none;
+}
+.default-form label textarea {
+    @apply w-full border border-enduro-grey-400 bg-white text-enduro-grey-900 px-4 py-2 focus:border-enduro-red-100 outline-none focus:outline-none;
+}
+.default-form label select {
+    @apply w-full border border-enduro-grey-400 bg-white text-enduro-grey-900 px-4 py-2 focus:border-enduro-red-100 outline-none focus:outline-none;
+}
+.default-form input[type="submit"]{
+    @apply cursor-pointer inline-block bg-gradient-to-b from-enduro-red-100 to-enduro-red-200 py-2 px-4 rounded text-base transition ease-in-out
+}
+
+.default-form input[type="submit"]:hover {
+    @apply bg-gradient-to-b from-enduro-red-200 to-enduro-red-100 text-white
+}
+
+/* Mobile menu */
+.mobmenu-panel {
+    background: #000 !important;
+}
+#mobmenuright li a, #mobmenuright li a:visited, .show-nav-right .mob-menu-copyright, .show-nav-right .mob-expand-submenu i {
+    color: #ffffff !important;
+    position: relative !important;
+}
+.mobmenu-right-panel .mob-cancel-button {
+    color: #ffffff !important;
+}
+#mobmenuright li a:before {
+    content: "";
+    @apply w-1 h-1 absolute left-[-3px] top-[20px] bg-enduro-red-100 rounded-full; 
+}
+
+/* Sub page */
+.sub-page-default h2 {
+    @apply text-2xl lg:text-4xl mb-4 uppercase;
+}
+.sub-page-default h2 span{
+    @apply text-enduro-red-100;
+}
+.sub-page-default h3 {
+    @apply text-xl lg:text-3xl mb-4 mt-8;
+}
+.sub-page-default h3 span{
+    @apply text-enduro-red-100;
+}
+.sub-page-default h4 {
+    @apply text-lg lg:text-xl mb-4 mt-4 uppercase;
+}
+.sub-page-default h4 span{
+    @apply text-enduro-red-100;
+}
+.sub-page-default p {
+    @apply mb-4;
+}
+.sub-page-default ul {
+
+}
+.sub-page-default ul li {
+    @apply relative pl-6
+}
+.sub-page-default ul li:before {
+    content: "\f00c";
+    font: normal normal normal 14px/1 FontAwesome;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    display: var(--fa-display,inline-block);
+    font-style: normal;
+    font-variant: normal;
+    line-height: 1;
+    text-rendering: auto;
+    @apply absolute left-0 top-[6px] text-enduro-red-100
+}
+
+.wp-block-separator {
+    border-top: 1px solid #d1d5db;
+    border-bottom: 0px solid;
+    @apply my-8 lg:my-16 w-[30%] mx-auto;
+}
+.wp-block-image  {
+  @apply rounded; 
+  padding: 3px;
+  border: 1px solid #e5e7eb; 
+}
+.wp-block-column ul {
+    @apply pl-4;
+}
+.wp-block-column ul li {
+    @apply list-disc
+}
+.wp-block-column ul li::marker {
+    @apply text-enduro-red-100;
+}
+/* Gallery */
+.wp-block-gallery {
+    @apply mt-10 mb-4
+}
+
+/* Icons */
+.wp-block-columns.includes-blocks .wp-block-column {
+    @apply text-center mt-4 border border-enduro-red-100 pb-0 px-4 pt-4;
+}
+.wp-block-columns.includes-blocks i {
+    @apply text-4xl text-enduro-red-100 mb-4;
+}
+.wp-block-columns.includes-blocks i {
+    @apply text-4xl text-enduro-red-100 mb-4;
+}
+
+/* Features section */
+.features-section ul {
+    @apply pl-4 lg:text-lg;
+}
+.features-section ul li{
+    @apply list-disc mb-2 lg:mb-4;
+}
+.features-section ul li::marker {
+    @apply text-enduro-red-100;
+}
+
+@media (min-width: 1024px) { 
+    .logo-text {
+    @apply inline-block;
+}
+ }
+
+ @media (max-width: 781px) { 
+    .wp-block-columns.includes-blocks{
+        gap: 0;
+        margin-bottom: 0;
+    }
+ .wp-block-columns.includes-blocks:not(.is-not-stacked-on-mobile)>.wp-block-column {
+    flex-basis: 50% !important;
+    width: 50%;
+    flex-grow: unset;
+
+}
+
+}
+
+/* Featured Products Carousel */
+.carousel-container {
+    position: relative;
+    overflow: hidden;
+}
+.carousel-track {
+    display: flex;
+    will-change: transform;
+}
+.carousel-slide {
+    flex-shrink: 0;
+}
+.carousel-nav {
+    cursor: pointer;
+    opacity: 0.9;
+}
+.carousel-nav:hover {
+    opacity: 1;
+}
+.carousel-nav:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+/* WooCommerce Products Grid - 3 columns */
+.woocommerce ul.products,
+.woocommerce-page ul.products,
+ul.products {
+    display: grid;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    clear: both;
+}
+.woocommerce ul.products li.product,
+.woocommerce-page ul.products li.product,
+ul.products li.product {
+    width: 100%;
+    margin: 0;
+    float: none;
+    clear: none;
+}
