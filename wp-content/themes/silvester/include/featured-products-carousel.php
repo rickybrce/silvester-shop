@@ -32,7 +32,7 @@ if (!$featured_query->have_posts()) {
 }
 
 if ($featured_query->have_posts()) : ?>
-    <div class="w-full mt-[220px]">
+    <div class="w-full mt-[40px]">
         <div class="w-full mx-auto max-w-6xl px-4">
             <?php if (isset($homepage_products["title"]) && $homepage_products["title"]) : ?>
                 <h2 class="text-4xl mb-4"><?php echo esc_html($homepage_products["title"]); ?></h2>

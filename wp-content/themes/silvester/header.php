@@ -22,14 +22,14 @@
 </head>
 
 <body class="bg-white text-enduro-grey-900">
-    <header class="fixed top-[40px] lg:top-0 left-0 w-full z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200"> 
-        <div class="w-full px-4 py-2 border-b border-gray-200 bg-[rgba(0,0,0,0.9)]">
+    <header class="fixed top-[40px] lg:top-0 left-0 w-full z-50"> 
+        <div class="w-full px-4 py-2 bg-[rgba(0,0,0,0.8)]">
             <div class="w-full">
                 <div class="max-w-full mx-auto">
                     <div class="flex">
                         <a href="<?php echo home_url(); ?>" class="pr-8 flex items-center relative z-40"><img class="w-[70px] lg:w-[140px] shrink-0" src="<?php bloginfo('template_directory'); ?>/images/logo.png" width="200" height="283" />
                         </a>
-                        <div class="w-full flex items-center justify-end">
+                        <div class="w-full flex items-center justify-between">
                             <div class="w-full mb-2 hidden">
                                 <?php
                                 /*wp_nav_menu(array(
@@ -38,11 +38,11 @@
                                 ));*/
                                 ?>
                             </div>
-                            <div class="w-full flex items-center justify-end">
+                            <div class="w-full flex items-center justify-between">
                                 <?php
                                 wp_nav_menu(array(
                                     'theme_location' => 'main-menu',
-                                    'container_class' => 'text-sm py-2 w-full mobile-menu hidden lg:flex fixed lg:relative left-0 top-0 mt-[120px] lg:mt-0 px-[20px] lg:px-0 z-50 lg:items-center'
+                                    'container_class' => 'text-sm py-2 w-full mobile-menu hidden lg:flex fixed lg:relative left-0 top-0 mt-[120px] lg:mt-0 px-[20px] lg:px-0 z-50 lg:items-center !w-auto'
                                 ));
                                 ?>
                                  <!-- Cart icon -->

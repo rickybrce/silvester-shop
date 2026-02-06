@@ -1,5 +1,9 @@
 <?php get_header(); ?>
 
+<!-- Home hero -->
+<?php include get_template_directory() . "/include/home-hero.php"; ?>
+<!-- Home hero -->
+
 <!-- Featured products carousel -->
 <?php include get_template_directory() . "/include/featured-products-carousel.php"; ?>
 <!-- Featured products carousel -->
