@@ -77,3 +77,18 @@ add_filter('loop_shop_columns', 'silvester_loop_shop_columns', 20);
 function silvester_loop_shop_columns($columns) {
     return 3;
 }
+
+// Result count is output in archive-product.php above columns; remove from default position
+remove_action('woocommerce_before_shop_loop', 'woocommerce_result_count', 20);
+
+// Page title on cart
+function silvester_cart_page_title() {
+    echo '<h1 class="page-title">' . esc_html(get_the_title(wc_get_page_id('cart'))) . '</h1>';
+}
+add_action('woocommerce_before_cart', 'silvester_cart_page_title', 5);
+
+// Page title on checkout
+function silvester_checkout_page_title() {
+    echo '<h1 class="page-title">' . esc_html(get_the_title(wc_get_page_id('checkout'))) . '</h1>';
+}
+add_action('woocommerce_before_checkout_form', 'silvester_checkout_page_title', 5);

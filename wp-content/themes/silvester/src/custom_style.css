@@ -34,7 +34,7 @@ html, body {
     @apply lg:pr-0; 
 }
 #menu-main-menu a {
-    @apply text-xs xl:text-base relative flex items-center justify-center h-[60px] lg:h-full uppercase font-medium transition-all ease-in-out delay-150 text-white; 
+    @apply text-sm xl:text-base relative flex items-center justify-center h-[60px] lg:h-full uppercase font-medium transition-all ease-in-out delay-150 text-white; 
 }
 #menu-main-menu a:after {
     content: '';
@@ -198,7 +198,84 @@ html, body {
     @apply bg-gradient-to-b from-enduro-red-200 to-enduro-red-100 text-white
 }
 
-/* Mobile menu */
+/* WooCommerce – proceed to checkout button (red like shop buttons) */
+/* Classic cart */
+.woocommerce .wc-proceed-to-checkout a.checkout-button,
+.woocommerce a.checkout-button {
+    @apply inline-block bg-gradient-to-b from-enduro-red-100 to-enduro-red-200 hover:from-enduro-red-200 hover:to-enduro-red-100 text-white py-2 px-6 rounded text-base font-medium transition ease-in-out border-0 no-underline;
+}
+/* WooCommerce Blocks cart */
+.wc-block-cart__submit-container .wc-block-cart__submit-button,
+.wc-block-cart__submit-container a.wc-block-components-button.wc-block-cart__submit-button {
+    @apply !bg-gradient-to-b !from-enduro-red-100 !to-enduro-red-200 hover:!from-enduro-red-200 hover:!to-enduro-red-100 !text-white !py-2 !px-6 !rounded !text-base !font-medium !transition !ease-in-out !border-0 no-underline;
+}
+
+/* Mobile menu – toggle panel (hamburger) */
+@media (max-width: 1023px) {
+    .mobile-menu-panel {
+        position: fixed;
+        inset: 0;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 40;
+        background: rgba(0, 0, 0, 0.95);
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding-top: 5rem;
+    }
+    #menu-main-menu a {
+        @apply text-base; 
+    }
+    #menu-main-menu .menu-item:after {
+        @apply hidden;
+      }
+    .mobile-menu-panel.is-open {
+        display: flex !important;
+    }
+    .mobile-menu-panel .mobile-menu-close {
+        position: absolute;
+        top: 0.5rem;
+        right: 0.5rem;
+    }
+    .mobile-menu-panel .main-nav {
+        display: flex !important;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+    .mobile-menu-panel #menu-main-menu {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    .mobile-menu-panel #menu-main-menu li {
+        width: 100%;
+        text-align: center;
+        padding: 0.5rem 0;
+    }
+    .mobile-menu-panel #menu-main-menu a {
+        color: #fff;
+        height: auto;
+        justify-content: start;
+    }
+    #menu-main-menu .current-menu-item a {
+        @apply text-enduro-red-100;
+    }
+    .mobile-menu-panel #menu-main-menu a:after {
+        display: none;
+    }
+}
+@media (min-width: 1024px) {
+    .mobile-menu-panel .mobile-menu-close {
+        display: none !important;
+    }
+}
+
+/* Legacy mobile menu (plugin) */
 .mobmenu-panel {
     background: #000 !important;
 }
@@ -215,6 +292,16 @@ html, body {
 }
 
 /* Sub page */
+.sub-page-default {
+    padding-top: 80px;
+}
+@media (min-width: 1024px) {
+    .sub-page-default {
+        padding-top: 140px;
+    }
+}
+.sub-page-default .page-title,
+.sub-page-default h1.page-title,
 .sub-page-default h2 {
     @apply text-2xl lg:text-4xl mb-4 uppercase;
 }
@@ -239,10 +326,10 @@ html, body {
 .sub-page-default ul {
 
 }
-.sub-page-default ul li {
+.sub-page-default ul:not(.products) li {
     @apply relative pl-6
 }
-.sub-page-default ul li:before {
+.sub-page-default ul:not(.products) li:before {
     content: "\f00c";
     font: normal normal normal 14px/1 FontAwesome;
     -moz-osx-font-smoothing: grayscale;
@@ -254,7 +341,14 @@ html, body {
     text-rendering: auto;
     @apply absolute left-0 top-[6px] text-enduro-red-100
 }
-
+.sub-page-default .page-title {
+    border-bottom: 1px solid #d1d5db;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    @media (min-width: 1024px) {
+        margin-bottom: 40px !important;
+    }
+}
 .wp-block-separator {
     border-top: 1px solid #d1d5db;
     border-bottom: 0px solid;
@@ -304,7 +398,7 @@ html, body {
 @media (min-width: 1024px) { 
     .logo-text {
     @apply inline-block;
-}
+  }
  }
 
  @media (max-width: 781px) { 
@@ -362,4 +456,30 @@ ul.products li.product {
     margin: 0;
     float: none;
     clear: none;
+}
+
+/* WooCommerce ordering (sort dropdown) */
+.woocommerce-ordering {
+    margin-bottom: 20px;
+}
+
+/* WooCommerce pagination – centered, one line, no list icons */
+.woocommerce-pagination {
+    @apply text-center my-8 lg:my-12;
+}
+.woocommerce-pagination .page-numbers {
+    @apply flex flex-wrap justify-center items-center gap-2 list-none m-0 p-0;
+}
+.woocommerce-pagination .page-numbers li {
+    @apply list-none m-0 !p-0;
+}
+.woocommerce-pagination .page-numbers li:before {
+    @apply !hidden;
+}
+.woocommerce-pagination .page-numbers a,
+.woocommerce-pagination .page-numbers span {
+    @apply inline-flex items-center justify-center min-w-[2.25rem] h-9 px-3 rounded border border-gray-200 bg-white text-enduro-grey-800 no-underline transition hover:border-enduro-red-100 hover:text-enduro-red-100;
+}
+.woocommerce-pagination .page-numbers span.current {
+    @apply border-enduro-red-100 bg-enduro-red-100 text-white hover:border-enduro-red-100 hover:text-white;
 }

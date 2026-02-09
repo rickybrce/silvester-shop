@@ -17,7 +17,7 @@
             ?>
         </div>
         <div class="w-full sm:w-4/12 mb-2 text-right">
-        <div class="flex justify-items-end flex-wrap"><a class="w-full flex justify-items-center" href="<?php echo home_url(); ?>"><img class="w-[80px] mx-auto mb-4" src="<?php bloginfo('template_directory'); ?>/images/logo.png" width="168" height="205" /></a>
+        <div class="flex justify-items-end flex-wrap"><a class="w-full flex justify-items-center" href="<?php echo home_url(); ?>"><img class="w-[80px] mb-4 ml-4 lg:ml-auto" src="<?php bloginfo('template_directory'); ?>/images/logo.png" width="168" height="205" /></a>
         <div class="w-full text-center"><?php the_field('footer_text', 'option'); ?></a>
     </div>
         </div>
@@ -32,6 +32,31 @@
 
 <?php wp_footer(); ?>
 <script>
+(function() {
+    var panel = document.getElementById('mobile-menu-panel');
+    var toggle = document.querySelector('.mobile-menu-toggle');
+    var closeBtn = document.querySelector('.mobile-menu-close');
+    function openMenu() {
+        if (panel) { panel.classList.add('is-open'); panel.setAttribute('aria-hidden', 'false'); }
+        if (toggle) { toggle.setAttribute('aria-expanded', 'true'); }
+        document.body.style.overflow = 'hidden';
+    }
+    function closeMenu() {
+        if (panel) { panel.classList.remove('is-open'); panel.setAttribute('aria-hidden', 'true'); }
+        if (toggle) { toggle.setAttribute('aria-expanded', 'false'); }
+        document.body.style.overflow = '';
+    }
+    if (toggle) toggle.addEventListener('click', function() { panel && panel.classList.contains('is-open') ? closeMenu() : openMenu(); });
+    if (closeBtn) closeBtn.addEventListener('click', closeMenu);
+    if (panel) {
+        panel.addEventListener('click', function(e) { if (e.target === panel) closeMenu(); });
+        panel.querySelectorAll('#menu-main-menu a').forEach(function(a) { a.addEventListener('click', closeMenu); });
+    }
+    document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && panel && panel.classList.contains('is-open')) closeMenu(); });
+})();
+</script>
+<script>
+    jQuery(document).ready(function($) {
     $("a[data-imagelightbox]").imageLightbox({
         selector: 'a[data-imagelightbox]', // string;
         id: 'imagelightbox', // string;
@@ -53,6 +78,7 @@
         quitOnImgClick: false, // bool;            quit when the viewed image is clicked
         quitOnDocClick: true, // bool;            quit when anything but the viewed image is clicked
         quitOnEscKey: true // bool;            quit when Esc key is pressed
+    });
     });
 </script>
 </body>

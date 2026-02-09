@@ -22,31 +22,17 @@
 </head>
 
 <body class="bg-white text-enduro-grey-900">
-    <header class="fixed top-[40px] lg:top-0 left-0 w-full z-50"> 
-        <div class="w-full px-4 py-2 bg-[rgba(0,0,0,0.8)]">
+    <header class="fixed top-0 left-0 w-full z-50">
+        <div class="w-full pl-4 pr-2 lg:px-4 py-2 bg-[rgba(0,0,0,0.8)]">
             <div class="w-full">
                 <div class="max-w-full mx-auto">
                     <div class="flex">
                         <a href="<?php echo home_url(); ?>" class="pr-8 flex items-center relative z-40"><img class="w-[70px] lg:w-[140px] shrink-0" src="<?php bloginfo('template_directory'); ?>/images/logo.png" width="200" height="283" />
                         </a>
                         <div class="w-full flex items-center justify-between">
-                            <div class="w-full mb-2 hidden">
-                                <?php
-                                /*wp_nav_menu(array(
-                                    'theme_location' => 'top-menu',
-                                    'container_class' => 'w-full text-sm py-2 w-full mobile-menu lg:flex fixed lg:relative left-0 top-0 mt-[50px] lg:mt-0 px-4 lg:pl-[20px] lg:pr-0 z-30 lg:items-center'
-                                ));*/
-                                ?>
-                            </div>
-                            <div class="w-full flex items-center justify-between">
-                                <?php
-                                wp_nav_menu(array(
-                                    'theme_location' => 'main-menu',
-                                    'container_class' => 'text-sm py-2 w-full mobile-menu hidden lg:flex fixed lg:relative left-0 top-0 mt-[120px] lg:mt-0 px-[20px] lg:px-0 z-50 lg:items-center !w-auto'
-                                ));
-                                ?>
-                                 <!-- Cart icon -->
-                                 <div class="ml-8 text-right">
+                            <div class="w-full flex items-center justify-end lg:justify-between gap-4 lg:flex-row-reverse">
+                                <!-- Cart icon -->
+                                <div class="text-right">
                                     <a href="<?php echo esc_url(wc_get_cart_url()); ?>" class="relative inline-flex items-center gap-2 text-sm text-white hover:text-enduro-red-100 transition">
                                         <span class="relative inline-block">
                                             <i class="fa-solid fa-cart-shopping text-xl"></i>
@@ -55,11 +41,41 @@
                                             <?php endif; ?>
                                         </span>
                                         <?php if (function_exists('WC') && WC()->cart) : ?>
-                                            <span class="cart-total hidden sm:inline ml-4"><?php echo WC()->cart->get_cart_total(); ?></span>
+                                            <span class="cart-total inline text-sm ml-2 lg:ml-4"><?php echo WC()->cart->get_cart_total(); ?></span>
                                         <?php endif; ?>
                                     </a>
                                 </div>
                                 <!-- Cart icon -->
+                                <!-- Mobile menu panel (overlay on mobile, normal on desktop) -->
+                                <div id="mobile-menu-panel" class="mobile-menu-panel hidden lg:!flex lg:flex-1" aria-hidden="true">
+                                    <a href="<?php echo home_url(); ?>" class="mobile-menu-logo lg:hidden absolute top-2 left-4 z-50"><img class="w-[70px] shrink-0" src="<?php bloginfo('template_directory'); ?>/images/logo.png" width="200" height="283" alt="<?php echo esc_attr(get_bloginfo('name')); ?>" /></a>
+                                    <a href="<?php echo esc_url(function_exists('wc_get_cart_url') ? wc_get_cart_url() : home_url('/cart')); ?>" class="mobile-menu-cart lg:hidden absolute top-4.5 right-16 z-50 inline-flex items-center gap-2 text-sm text-white hover:text-enduro-red-100 transition">
+                                        <span class="relative inline-block">
+                                            <i class="fa-solid fa-cart-shopping text-xl"></i>
+                                            <?php if (function_exists('WC') && WC()->cart && WC()->cart->get_cart_contents_count() > 0) : ?>
+                                                <span class="cart-count-badge absolute -top-2 -right-2 min-w-[18px] h-[18px] flex items-center justify-center rounded-full bg-enduro-red-100 text-white text-xs font-medium px-1"><?php echo esc_html(WC()->cart->get_cart_contents_count()); ?></span>
+                                            <?php endif; ?>
+                                        </span>
+                                        <?php if (function_exists('WC') && WC()->cart) : ?>
+                                            <span class="cart-total inline text-sm ml-2"><?php echo WC()->cart->get_cart_total(); ?></span>
+                                        <?php endif; ?>
+                                    </a>
+                                    <button type="button" class="mobile-menu-close lg:hidden absolute top-2 right-2 w-10 h-10 flex items-center justify-center text-white text-3xl hover:text-enduro-red-100 z-50" aria-label="<?php echo esc_attr__('Zatvori izbornik', 'silvester'); ?>">&times;</button>
+                                    <?php
+                                    wp_nav_menu(array(
+                                        'theme_location' => 'main-menu',
+                                        'container'      => 'nav',
+                                        'container_id'   => 'main-nav',
+                                        'container_class' => 'main-nav text-sm py-2 w-full lg:w-auto lg:flex lg:items-center lg:relative lg:!block px-4 pt-16 lg:pt-0 lg:px-0',
+                                        'menu_id'        => 'menu-main-menu',
+                                        'menu_class'     => 'mobile-menu-list flex flex-col lg:flex-row gap-4 lg:gap-0 lg:items-center lg:w-full'
+                                    ));
+                                    ?>
+                                </div>
+                                <!-- Hamburger: visible only on mobile -->
+                                <button type="button" class="mobile-menu-toggle lg:hidden flex items-center justify-center w-10 h-10 text-white hover:text-enduro-red-100 transition" aria-label="<?php echo esc_attr__('Otvori izbornik', 'silvester'); ?>" aria-expanded="false" aria-controls="mobile-menu-panel">
+                                    <i class="fa-solid fa-bars text-2xl"></i>
+                                </button>
                             </div>
                         </div>
                     </div>

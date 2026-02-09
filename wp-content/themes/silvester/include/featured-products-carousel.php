@@ -59,13 +59,25 @@ if ($featured_query->have_posts()) : ?>
                                                 <span class="text-enduro-grey-600"><?php echo esc_html__('No image', 'silvester'); ?></span>
                                             </div>
                                         <?php endif; ?>
-                                        <div class="p-4">
-                                            <h3 class="text-xl mb-2 text-enduro-grey-900 hover:text-enduro-red-100 transition"><?php echo esc_html(get_the_title()); ?></h3>
-                                            <div class="text-enduro-red-100 text-lg font-medium">
-                                                <?php echo $product->get_price_html(); ?>
-                                            </div>
-                                        </div>
                                     </a>
+                                    <div class="p-4">
+                                        <a href="<?php echo esc_url(get_permalink()); ?>">
+                                            <h3 class="text-xl mb-2 text-enduro-grey-900 hover:text-enduro-red-100 transition"><?php echo esc_html(get_the_title()); ?></h3>
+                                        </a>
+                                        <div class="text-enduro-red-100 text-lg font-medium mb-4">
+                                            <?php echo $product->get_price_html(); ?>
+                                        </div>
+                                        <div class="flex flex-wrap gap-2">
+                                            <a href="<?php echo esc_url(get_permalink()); ?>" class="inline-block border border-enduro-red-100 text-enduro-red-100 hover:bg-enduro-red-100 hover:text-white py-2 px-4 rounded text-sm font-medium transition">
+                                                <?php echo esc_html__('Pogledaj više', 'silvester'); ?>
+                                            </a>
+                                            <?php if ($product->is_purchasable() && $product->is_in_stock()) : ?>
+                                                <a href="<?php echo esc_url($product->add_to_cart_url()); ?>" class="inline-block bg-gradient-to-b from-enduro-red-100 to-enduro-red-200 hover:from-enduro-red-200 hover:to-enduro-red-100 text-white py-2 px-4 rounded text-sm font-medium transition">
+                                                    <?php echo esc_html__('Kupi odmah', 'silvester'); ?>
+                                                </a>
+                                            <?php endif; ?>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         <?php endwhile; ?>

@@ -2,7 +2,8 @@
 
 <?php get_header(); ?>
 
-<div class="w-full mx-auto max-w-6xl px-4 py-8">
+<div class="sub-page-default w-full mx-auto max-w-6xl px-4 py-8">
+    <h1 class="page-title"><?php the_title(); ?></h1>
     <div class="lg:flex lg:-mx-4">
         <div class="default-form w-full lg:8/12 lg:px-4">
             <?php echo do_shortcode('[contact-form-7 id="119" title="Contact form"]'); ?>
