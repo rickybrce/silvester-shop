@@ -152,31 +152,29 @@ html, body {
     @apply text-enduro-red-100;
 }
 
-/* Footer menu */
-.footer-menu-cont li {
+/* Footer menu – same bullet design for both */
+.footer-menu-cont li,
+.footer-menu-cont-2 li {
     @apply mb-4;
 }
-.footer-menu-cont li a:hover {
+.footer-menu-cont li a,
+.footer-menu-cont-2 li a {
+    @apply relative pl-4;
+}
+.footer-menu-cont li a:hover,
+.footer-menu-cont-2 li a:hover {
     @apply text-enduro-red-100;
+}
+.footer-menu-cont li a:after,
+.footer-menu-cont-2 li a:after {
+    content: '';
+    @apply w-1 h-1 absolute left-0 top-[6px] bg-enduro-red-100 rounded-full;
 }
 .footer-menu-cont li i {
     @apply mr-2 text-enduro-red-100;
 }
-.footer-menu-cont-2 li {
-    @apply mb-2;
-}
-.footer-menu-cont-2 li a {
-    @apply relative pl-4;
-}
-.footer-menu-cont-2 li a:hover {
-    @apply text-enduro-red-100;
-}
-.footer-menu-cont-2 li a:after {
-    content: '';
-    @apply w-1 h-1 absolute left-0 top-[6px] bg-enduro-red-100 rounded-full; 
-}
 .footer-menu-contact li a {
-@apply lg:text-lg;
+    @apply lg:text-lg;
 }
 
 /** Form */

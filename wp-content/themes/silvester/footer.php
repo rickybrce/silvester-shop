@@ -4,7 +4,7 @@
             <?php
             wp_nav_menu(array(
                 'theme_location' => 'footer-menu',
-                'container_class' => 'footer-menu-cont w-full text-sm py-2 w-full lg:flex lg:relative left-0 top-0 mt-0 px-[20px] lg:px-0 z-10 lg:items-center'
+                'container_class' => 'footer-menu-cont-2 w-full text-sm py-2 w-full lg:flex lg:relative left-0 top-0 mt-0 px-[20px] lg:px-0 z-10 lg:items-center'
             ));
             ?>
         </div>
@@ -17,7 +17,7 @@
             ?>
         </div>
         <div class="w-full sm:w-4/12 mb-2 text-right">
-        <div class="flex justify-items-end flex-wrap"><a class="inline-block w-full flex justify-items-center" href="<?php echo home_url(); ?>"><img class="w-[80px] mx-auto mb-4" src="<?php bloginfo('template_directory'); ?>/images/logo.png" width="168" height="205" /></a>
+        <div class="flex justify-items-end flex-wrap"><a class="w-full flex justify-items-center" href="<?php echo home_url(); ?>"><img class="w-[80px] mx-auto mb-4" src="<?php bloginfo('template_directory'); ?>/images/logo.png" width="168" height="205" /></a>
         <div class="w-full text-center"><?php the_field('footer_text', 'option'); ?></a>
     </div>
         </div>
