@@ -22,6 +22,9 @@ html, body {
 #menu-main-menu {
     @apply w-full items-center h-full flex flex-wrap justify-end;  
 }
+.wp-block-woocommerce-checkout-order-summary-block .wc-block-components-product-name {
+    @apply text-xl; 
+}
 @media (min-width: 1024px) {
     #menu-main-menu {
         @apply flex-nowrap;
@@ -100,7 +103,7 @@ html, body {
     @apply text-xl
 }
 #menu-top-menu li a:hover {
-    @apply text-enduro-red-100
+    @apply text-enduro-red-100 
 }
 
 .h1-intro span {
@@ -108,7 +111,7 @@ html, body {
 }
 
 .red-button {
-    @apply text-2xl inline-block bg-gradient-to-b from-enduro-red-100 to-enduro-red-200 py-2 px-6 rounded text-base transition ease-in-out hover:from-enduro-red-200 hover:to-enduro-red-100;
+    @apply text-white text-2xl inline-block bg-gradient-to-b from-enduro-red-100 to-enduro-red-200 py-2 px-6 rounded text-base transition ease-in-out hover:from-enduro-red-200 hover:to-enduro-red-100;
 }
 
 .box-head {
@@ -117,6 +120,10 @@ html, body {
 .box-head:after {
     content: "";
     @apply w-16 h-1 lg:h-[6px] bg-enduro-red-100 absolute left-0 bottom-[-10px];
+}
+.text-center .box-head:after {
+    left: 50%;
+    transform: translateX(-50%);
 }
 .box-head span{
     @apply text-enduro-red-100;
@@ -482,4 +489,192 @@ ul.products li.product {
 }
 .woocommerce-pagination .page-numbers span.current {
     @apply border-enduro-red-100 bg-enduro-red-100 text-white hover:border-enduro-red-100 hover:text-white;
+}
+
+/* My Account – sidebar navigation */
+.woocommerce-MyAccount-navigation ul {
+    @apply list-none m-0 p-0;
+}
+.woocommerce-MyAccount-navigation ul li {
+    @apply border-b border-gray-200 last:border-0;
+    padding-left: 0 !important;
+}
+.woocommerce-MyAccount-navigation ul li:before {
+    display: none !important;
+}
+.woocommerce-MyAccount-navigation ul li a {
+    @apply block py-3 px-4 text-enduro-grey-800 text-sm font-medium transition hover:text-enduro-red-100 hover:bg-gray-50 no-underline;
+}
+.woocommerce-MyAccount-navigation ul li.is-active a,
+.woocommerce-MyAccount-navigation ul li.woocommerce-MyAccount-navigation-link--active a {
+    @apply text-enduro-red-100 bg-gray-50 border-l-2 border-enduro-red-100;
+}
+.woocommerce-MyAccount-sidebar {
+    @apply border border-gray-200 rounded h-fit;
+}
+
+/* WooCommerce default buttons – override with site style */
+.woocommerce:where(body:not(.woocommerce-block-theme-has-button-styles)) #respond input#submit,
+.woocommerce:where(body:not(.woocommerce-block-theme-has-button-styles)) a.button,
+.woocommerce:where(body:not(.woocommerce-block-theme-has-button-styles)) button.button,
+.woocommerce:where(body:not(.woocommerce-block-theme-has-button-styles)) input.button,
+:where(body:not(.woocommerce-block-theme-has-button-styles)):where(:not(.edit-post-visual-editor)) .woocommerce #respond input#submit,
+:where(body:not(.woocommerce-block-theme-has-button-styles)):where(:not(.edit-post-visual-editor)) .woocommerce a.button,
+:where(body:not(.woocommerce-block-theme-has-button-styles)):where(:not(.edit-post-visual-editor)) .woocommerce button.button,
+:where(body:not(.woocommerce-block-theme-has-button-styles)):where(:not(.edit-post-visual-editor)) .woocommerce input.button {
+    @apply inline-flex items-center justify-center rounded-md px-5 py-2.5 text-sm font-semibold text-white transition;
+    background: linear-gradient(to bottom, var(--color-enduro-red-100), var(--color-enduro-red-200));
+    border: 0;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+    text-shadow: none;
+    cursor: pointer;
+}
+.woocommerce:where(body:not(.woocommerce-block-theme-has-button-styles)) #respond input#submit:hover,
+.woocommerce:where(body:not(.woocommerce-block-theme-has-button-styles)) a.button:hover,
+.woocommerce:where(body:not(.woocommerce-block-theme-has-button-styles)) button.button:hover,
+.woocommerce:where(body:not(.woocommerce-block-theme-has-button-styles)) input.button:hover,
+:where(body:not(.woocommerce-block-theme-has-button-styles)):where(:not(.edit-post-visual-editor)) .woocommerce #respond input#submit:hover,
+:where(body:not(.woocommerce-block-theme-has-button-styles)):where(:not(.edit-post-visual-editor)) .woocommerce a.button:hover,
+:where(body:not(.woocommerce-block-theme-has-button-styles)):where(:not(.edit-post-visual-editor)) .woocommerce button.button:hover,
+:where(body:not(.woocommerce-block-theme-has-button-styles)):where(:not(.edit-post-visual-editor)) .woocommerce input.button:hover {
+    background: linear-gradient(to bottom, var(--color-enduro-red-200), var(--color-enduro-red-100));
+    color: #fff;
+}
+
+/* Modern input styling – global WooCommerce + default forms */
+.woocommerce form .form-row .input-text,
+.woocommerce form .form-row select {
+    @apply w-full rounded-md border border-gray-300 bg-white px-4 py-2.5 text-sm text-enduro-grey-900 shadow-sm outline-none transition;
+    @apply focus:border-enduro-red-100;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+.woocommerce form .form-row .input-text:hover,
+.woocommerce form .form-row select:hover {
+    @apply border-gray-400;
+}
+.woocommerce form .form-row .input-text:focus,
+.woocommerce form .form-row select:focus {
+    border-color: var(--color-enduro-red-100);
+    box-shadow: 0 0 0 3px rgba(222,66,61,0.12);
+    outline: none;
+}
+
+.woocommerce-MyAccount-content input[type="text"],
+.woocommerce-MyAccount-content input[type="email"],
+.woocommerce-MyAccount-content input[type="password"],
+.woocommerce-MyAccount-content input[type="tel"],
+.woocommerce-MyAccount-content input[type="number"],
+.woocommerce-MyAccount-content input[type="url"],
+.woocommerce-MyAccount-content select,
+.woocommerce-MyAccount-content textarea,
+.woocommerce-form input[type="text"],
+.woocommerce-form input[type="email"],
+.woocommerce-form input[type="password"],
+.woocommerce-form input[type="tel"],
+.woocommerce-form select,
+.woocommerce-form textarea,
+.woocommerce-address-fields input[type="text"],
+.woocommerce-address-fields input[type="email"],
+.woocommerce-address-fields input[type="tel"],
+.woocommerce-address-fields select,
+.woocommerce-address-fields textarea {
+    @apply w-full rounded-md border border-gray-300 bg-white px-4 py-3.5 text-sm text-enduro-grey-900 shadow-sm outline-none transition;
+    @apply focus:border-enduro-red-100 focus:ring-2 focus:ring-enduro-red-100/20;
+}
+.woocommerce-MyAccount-content input[type="text"]:hover,
+.woocommerce-MyAccount-content input[type="email"]:hover,
+.woocommerce-MyAccount-content input[type="password"]:hover,
+.woocommerce-MyAccount-content input[type="tel"]:hover,
+.woocommerce-MyAccount-content input[type="number"]:hover,
+.woocommerce-MyAccount-content input[type="url"]:hover,
+.woocommerce-MyAccount-content select:hover,
+.woocommerce-MyAccount-content textarea:hover,
+.woocommerce-form input:hover,
+.woocommerce-form select:hover,
+.woocommerce-form textarea:hover,
+.woocommerce-address-fields input:hover,
+.woocommerce-address-fields select:hover,
+.woocommerce-address-fields textarea:hover {
+    @apply border-gray-400;
+}
+.woocommerce-MyAccount-content label,
+.woocommerce-form label,
+.woocommerce-address-fields label {
+    @apply block text-sm font-medium text-enduro-grey-700 mb-1;
+}
+.woocommerce-MyAccount-content .woocommerce-form-row,
+.woocommerce-address-fields .form-row {
+    @apply mb-5;
+}
+
+/* Single product tabs */
+.woocommerce-tabs.wc-tabs-wrapper {
+    @apply mt-8;
+}
+.woocommerce-tabs .wc-tabs {
+    @apply flex flex-wrap gap-0 border-b border-gray-200 list-none m-0 p-0;
+}
+.woocommerce-tabs .wc-tabs li {
+    @apply m-0 p-0;
+}
+.woocommerce-tabs .wc-tabs li:before {
+    display: none !important;
+}
+.woocommerce-tabs .wc-tabs li a {
+    @apply block px-5 py-3 text-base font-medium text-enduro-grey-600 border-b-2 border-transparent transition no-underline -mb-px;
+}
+.woocommerce-tabs .wc-tabs li a:hover {
+    @apply text-enduro-red-100;
+}
+.woocommerce-tabs .wc-tabs li.active a {
+    @apply text-enduro-red-100 border-b-2 border-enduro-red-100;
+}
+.woocommerce-tabs .woocommerce-Tabs-panel {
+    @apply py-6 px-1 text-base text-enduro-grey-700 leading-relaxed;
+}
+.woocommerce-tabs .woocommerce-Tabs-panel:not(.active) {
+    display: none;
+}
+
+/* Single product gallery */
+.silvester-product-gallery__main img {
+    transition: opacity 0.2s ease;
+}
+.silvester-product-gallery__main:hover img {
+    opacity: 0.9;
+}
+.silvester-gallery-thumb {
+    cursor: pointer;
+}
+.imagelightbox-overlay {
+    background: rgba(0,0,0,0.92) !important;
+}
+.imagelightbox-close {
+    top: 1rem !important;
+    right: 1rem !important;
+    width: 28px !important;
+    height: 28px !important;
+    font-size: 14px !important;
+}
+.imagelightbox-arrow {
+    width: 32px !important;
+    height: 32px !important;
+}
+.imagelightbox-arrow:before {
+    border-width: 6px !important;
+    top: 30% !important;
+}
+.imagelightbox-arrow-left:before {
+    margin-left: -10px !important;
+}
+.imagelightbox-arrow-right:before {
+    margin-left: -2px !important;
+}
+#imagelightbox {
+    border-radius: 4px;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.5), 0 10px 20px rgba(0,0,0,0.3) !important;
+    transition: opacity 0.3s ease, transform 0.3s ease !important;
+}
+.imagelightbox-wrapper {
+    background: transparent !important;
 }

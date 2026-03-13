@@ -48,6 +48,9 @@ function wpb_custom_new_menu()
 }
 add_action('init', 'wpb_custom_new_menu');
 
+// Remove WooCommerce sidebar
+remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
+
 // WooCommerce Support
 function silvester_woocommerce_setup() {
     add_theme_support( 'woocommerce' );

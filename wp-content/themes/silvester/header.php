@@ -31,8 +31,8 @@
                         </a>
                         <div class="w-full flex items-center justify-between">
                             <div class="w-full flex items-center justify-end lg:justify-between gap-4 lg:flex-row-reverse">
-                                <!-- Cart icon -->
-                                <div class="text-right">
+                                <!-- Cart icon + Login/Logout -->
+                                <div class="flex items-center gap-4">
                                     <a href="<?php echo esc_url(wc_get_cart_url()); ?>" class="relative inline-flex items-center gap-2 text-sm text-white hover:text-enduro-red-100 transition">
                                         <span class="relative inline-block">
                                             <i class="fa-solid fa-cart-shopping text-xl"></i>
@@ -44,8 +44,26 @@
                                             <span class="cart-total inline text-sm ml-2 lg:ml-4"><?php echo WC()->cart->get_cart_total(); ?></span>
                                         <?php endif; ?>
                                     </a>
+                                    <?php if (is_user_logged_in()) :
+                                        $current_user = wp_get_current_user();
+                                        $display_name = $current_user->display_name ?: $current_user->user_login;
+                                    ?>
+                                        <a href="<?php echo esc_url(wc_get_account_endpoint_url('dashboard')); ?>" class="inline-flex items-center gap-1.5 text-sm text-white hover:text-enduro-red-100 transition" title="<?php echo esc_attr($display_name); ?>">
+                                            <i class="fa-solid fa-user text-base"></i>
+                                            <span class="hidden lg:inline"><?php echo esc_html($display_name); ?></span>
+                                        </a>
+                                        <a href="<?php echo esc_url(wp_logout_url(home_url())); ?>" class="inline-flex items-center gap-1.5 text-sm text-white hover:text-enduro-red-100 transition">
+                                            <i class="fa-solid fa-arrow-right-from-bracket text-base"></i>
+                                            <span class="hidden lg:inline"><?php esc_html_e('Odjava', 'silvester'); ?></span>
+                                        </a>
+                                    <?php else : ?>
+                                        <a href="<?php echo esc_url(wc_get_account_endpoint_url('dashboard')); ?>" class="inline-flex items-center gap-1.5 text-sm text-white hover:text-enduro-red-100 transition">
+                                            <i class="fa-solid fa-user text-base"></i>
+                                            <span class="hidden lg:inline"><?php esc_html_e('Prijava', 'silvester'); ?></span>
+                                        </a>
+                                    <?php endif; ?>
                                 </div>
-                                <!-- Cart icon -->
+                                <!-- Cart icon + Login/Logout -->
                                 <!-- Mobile menu panel (overlay on mobile, normal on desktop) -->
                                 <div id="mobile-menu-panel" class="mobile-menu-panel hidden lg:!flex lg:flex-1" aria-hidden="true">
                                     <a href="<?php echo home_url(); ?>" class="mobile-menu-logo lg:hidden absolute top-2 left-4 z-50"><img class="w-[70px] shrink-0" src="<?php bloginfo('template_directory'); ?>/images/logo.png" width="200" height="283" alt="<?php echo esc_attr(get_bloginfo('name')); ?>" /></a>

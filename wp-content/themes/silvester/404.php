@@ -1,17 +1,18 @@
 <?php /* Template Name: 404 */ ?>
 
 <?php get_header(); ?>
-<div class="w-full lg:w-auto bg-cover bg-no-repeat bg-top-center h-[400px] lg:h-[600px] flex items-end lg:items-center justify-center">
-    <h1 class="w-full lg:w-auto relative text-white uppercase text-6xl px-4 lg:px-20 py-10">
-        <div class="relative z-10 box-head">Error 404</div>
-        <div class="absolute w-full h-full left-0 top-0 bg-black opacity-80 z-0"></div>
+<div class="w-auto bg-cover bg-no-repeat bg-top-center h-[250px] lg:h-[400px] flex items-center justify-center">
+    <h1 class="w-full lg:w-auto relative text-black uppercase text-6xl px-4 lg:px-20 py-10 text-center">
+        <div class="relative z-10 box-head">Greška 404</div>
+        <div class="absolute w-full h-full left-0 top-0 opacity-80 z-0"></div>
     </h1>
 </div>
 
+<div class="text-center text-lg">Stranica ne postoji</div>
 
 
-<div class="sub-page-default w-full mx-auto max-w-6xl px-4 xl:px-0 py-8 text-center my-10">
-    <a class="red-button mb-4" href="<?php echo home_url(); ?>"><i class="fa-solid fa-book"></i> Back to home</a>
+<div class="sub-page-default w-full mx-auto max-w-6xl px-4 xl:px-0 py-8 text-center my-4">
+    <a class="red-button mb-4" href="<?php echo home_url(); ?>"><i class="fa-solid fa-home mr-2"></i> Povratak</a>
 </div>
 
 <?php get_footer(); ?>
