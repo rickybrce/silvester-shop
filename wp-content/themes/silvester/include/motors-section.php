@@ -49,7 +49,7 @@ if ($motors_category) :
                                     <div class="text-enduro-red-100 text-lg font-medium mb-4">
                                         <?php echo $product->get_price_html(); ?>
                                     </div>
-                                    <div class="flex flex-wrap">
+                                    <div class="flex flex-wrap gap-2 pl-0">
                                         <a href="<?php echo esc_url(get_permalink()); ?>" class="inline-block border border-enduro-red-100 text-enduro-red-100 hover:bg-enduro-red-100 hover:text-white py-2 px-4 rounded text-sm font-medium transition">
                                             <?php echo esc_html__('Pogledaj više', 'silvester'); ?>
                                         </a>

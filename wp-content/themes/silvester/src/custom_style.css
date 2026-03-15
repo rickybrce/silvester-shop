@@ -333,10 +333,10 @@ html, body {
 .sub-page-default ul {
 
 }
-.sub-page-default ul:not(.products) li {
+.sub-page-default ul:not(.products):not(.categories-nav) li {
     @apply relative pl-6
 }
-.sub-page-default ul:not(.products) li:before {
+.sub-page-default ul:not(.products):not(.categories-nav) li:before {
     content: "\f00c";
     font: normal normal normal 14px/1 FontAwesome;
     -moz-osx-font-smoothing: grayscale;

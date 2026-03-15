@@ -1,32 +1,73 @@
-<div class="w-full mt-0 border-t border-gray-200 pt-10 bg-white lg:px-4 text-enduro-grey-800">
-    <div class="w-full max-w-7xl mx-auto flex flex-wrap">
-        <div class="w-full sm:w-4/12 mb-2">
-            <?php
-            wp_nav_menu(array(
+<div class="w-full mt-0 border-t border-black pt-10 pb-6 bg-[rgba(0,0,0,0.85)] text-gray-300">
+    <div class="w-full max-w-7xl mx-auto flex flex-wrap gap-y-8 px-5 lg:px-4">
+
+        <!-- Menu 1 -->
+        <div class="w-1/2 lg:w-3/12">
+            <?php $footer_menu_1_title = get_field('footer_menu_1_title', 'option'); ?>
+            <?php if ($footer_menu_1_title) : ?>
+                <h4 class="text-white font-semibold text-sm uppercase tracking-widest mb-4"><?php echo esc_html($footer_menu_1_title); ?></h4>
+            <?php endif; ?>
+            <?php wp_nav_menu([
                 'theme_location' => 'footer-menu',
-                'container_class' => 'footer-menu-cont-2 w-full text-sm py-2 w-full lg:flex lg:relative left-0 top-0 mt-0 px-[20px] lg:px-0 z-10 lg:items-center'
-            ));
-            ?>
+                'container_class' => 'footer-menu-cont-2 w-full text-sm',
+            ]); ?>
         </div>
-        <div class="w-full sm:w-4/12 mb-2">
-        <?php
-            wp_nav_menu(array(
+
+        <!-- Menu 2 -->
+        <div class="w-1/2 lg:w-3/12">
+            <?php $footer_menu_2_title = get_field('footer_menu_2_title', 'option'); ?>
+            <?php if ($footer_menu_2_title) : ?>
+                <h4 class="text-white font-semibold text-sm uppercase tracking-widest mb-4"><?php echo esc_html($footer_menu_2_title); ?></h4>
+            <?php endif; ?>
+            <?php wp_nav_menu([
                 'theme_location' => 'main-menu',
-                'container_class' => 'footer-menu-cont-2 w-full text-sm py-2 w-full lg:flex lg:relative left-0 top-0 mt-0 px-[20px] lg:px-0 z-10 lg:items-center'
-            ));
-            ?>
+                'container_class' => 'footer-menu-cont-2 w-full text-sm',
+            ]); ?>
         </div>
-        <div class="w-full sm:w-4/12 mb-2 text-right">
-        <div class="flex justify-items-end flex-wrap"><a class="w-full flex justify-items-center" href="<?php echo home_url(); ?>"><img class="w-[80px] mb-4 ml-4 lg:ml-auto" src="<?php bloginfo('template_directory'); ?>/images/logo.png" width="168" height="205" /></a>
-        <div class="w-full text-center"><?php the_field('footer_text', 'option'); ?></a>
-    </div>
+
+        <!-- Contact -->
+        <div class="w-full sm:w-1/2 lg:w-3/12">
+            <?php $footer_contact_title = get_field('footer_contact_title', 'option'); ?>
+            <?php if ($footer_contact_title) : ?>
+                <h4 class="text-white font-semibold text-sm uppercase tracking-widest mb-4"><?php echo esc_html($footer_contact_title); ?></h4>
+            <?php endif; ?>
+            <ul class="text-sm space-y-3">
+                <?php $footer_address = get_field('footer_address', 'option'); ?>
+                <?php if ($footer_address) : ?>
+                    <li class="flex gap-2">
+                        <i class="fa-solid fa-location-dot mt-1 text-enduro-red-100 shrink-0"></i>
+                        <span><?php echo nl2br(esc_html($footer_address)); ?></span>
+                    </li>
+                <?php endif; ?>
+                <?php $footer_email = get_field('footer_email', 'option'); ?>
+                <?php if ($footer_email) : ?>
+                    <li class="flex gap-2 items-center">
+                        <i class="fa-solid fa-envelope text-enduro-red-100 shrink-0"></i>
+                        <a href="mailto:<?php echo esc_attr($footer_email); ?>" class="hover:text-white transition"><?php echo esc_html($footer_email); ?></a>
+                    </li>
+                <?php endif; ?>
+                <?php $footer_phone = get_field('footer_phone', 'option'); ?>
+                <?php if ($footer_phone) : ?>
+                    <li class="flex gap-2 items-center">
+                        <i class="fa-solid fa-phone text-enduro-red-100 shrink-0"></i>
+                        <a href="tel:<?php echo esc_attr(preg_replace('/\s+/', '', $footer_phone)); ?>" class="hover:text-white transition"><?php echo esc_html($footer_phone); ?></a>
+                    </li>
+                <?php endif; ?>
+            </ul>
         </div>
+
+        <!-- Logo + text -->
+        <div class="w-full sm:w-1/2 lg:w-3/12 flex flex-col items-center lg:items-end">
+            <a href="<?php echo home_url(); ?>"><img class="w-20 mb-4 lg:w-36" src="<?php bloginfo('template_directory'); ?>/images/logo.png" width="168" height="205" /></a>
+            <div class="text-center lg:text-right text-sm"><?php the_field('footer_text', 'option'); ?></div>
+        </div>
+
     </div>
 </div>
 
-<div class="w-full border-t border-gray-200 py-10 bg-gray-50 text-enduro-grey-700">
+<div class="w-full py-10 bg-black text-gray-400">
     <div class="w-full max-w-7xl mx-auto text-xs text-center">
-    Copyright <?php echo date("Y"); ?> Croatia Enduro | Design by <a target="_blank" href="https://sapa-design.com" class="text-enduro-grey-800 hover:text-enduro-red-100">SAPA DESIGN</a>
+    Copyright <?php echo date("Y"); ?> Croatia Enduro | Design by <a target="_blank" href="https://sapa-design.com" class="text-gray-300 hover:text-enduro-red-100">SAPA DESIGN</a>
     </div>
 </div>
 

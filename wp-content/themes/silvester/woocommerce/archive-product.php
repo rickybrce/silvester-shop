@@ -51,7 +51,7 @@ do_action( 'woocommerce_shop_loop_header' );
 </header>
 
 <?php if ( woocommerce_product_loop() ) : ?>
-	<div class="w-full mb-8 text-left">
+	<div class="w-full mb-4 lg:mb-8 text-left">
 		<?php woocommerce_result_count(); ?>
 	</div>
 <?php endif; ?>
@@ -59,40 +59,72 @@ do_action( 'woocommerce_shop_loop_header' );
 <div class="flex flex-col lg:flex-row gap-4 w-full">
 	<!-- Categories Sidebar -->
 	<aside class="w-full lg:w-1/4 flex-shrink-0">
-		<div class="sticky top-[120px]">
-			<h3 class="text-2xl mb-4 text-enduro-grey-900 border-b border-gray-200 pb-2 !mt-0"><?php echo esc_html__( 'Kategorije', 'silvester' ); ?></h3> 
+		<div class="lg:sticky lg:top-30">
+
 			<?php
-			$product_categories = get_terms( array(
+			$product_categories = get_terms( [
 				'taxonomy'   => 'product_cat',
 				'hide_empty' => true,
 				'parent'     => 0,
 				'orderby'    => 'menu_order',
 				'order'      => 'ASC',
-			) );
-
+			] );
+			// Pin "motocikli" first
+			if ( ! empty( $product_categories ) && ! is_wp_error( $product_categories ) ) {
+				usort( $product_categories, fn( $a, $b ) => $a->slug === 'motocikli' ? -1 : ( $b->slug === 'motocikli' ? 1 : 0 ) );
+			}
 			if ( ! empty( $product_categories ) && ! is_wp_error( $product_categories ) ) :
+			?>
+
+			<!-- Mobile accordion toggle -->
+			<button type="button" id="categories-accordion-toggle"
+				class="lg:hidden w-full flex items-center justify-between py-2 px-4 bg-gray-100 rounded text-enduro-grey-900 font-semibold text-lg border border-gray-200"
+				aria-expanded="false" aria-controls="categories-list">
+				<?php echo esc_html__( 'Kategorije', 'silvester' ); ?>
+				<svg id="categories-accordion-icon" class="w-5 h-5 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+				</svg>
+			</button>
+
+			<!-- Desktop heading -->
+			<h3 class="hidden lg:block text-2xl !mb-2 text-enduro-grey-900 border-b border-gray-200 pb-2 mt-0!"><?php echo esc_html__( 'Kategorije', 'silvester' ); ?></h3>
+
+			<!-- List: hidden on mobile until toggled, always visible on desktop -->
+			<ul id="categories-list" class="categories-nav hidden lg:block mt-2 lg:mt-0">
+				<li class="border-b border-gray-200">
+					<a href="<?php echo esc_url( get_permalink( wc_get_page_id( 'shop' ) ) ); ?>" class="block py-2 px-3 text-enduro-grey-800 hover:text-enduro-red-100 hover:bg-gray-100 rounded transition <?php echo is_shop() ? 'text-enduro-red-100 bg-gray-100' : ''; ?>">
+						<?php echo esc_html__( 'Svi proizvodi', 'silvester' ); ?>
+					</a>
+				</li>
+				<?php foreach ( $product_categories as $category ) :
+					$category_link = get_term_link( $category );
+					$is_current    = is_product_category( $category->slug );
 				?>
-				<ul class="space-y-2">
-					<li>
-						<a href="<?php echo esc_url( get_permalink( wc_get_page_id( 'shop' ) ) ); ?>" class="block py-2 px-3 text-enduro-grey-800 hover:text-enduro-red-100 hover:bg-gray-100 rounded transition <?php echo is_shop() ? 'text-enduro-red-100 bg-gray-100' : ''; ?>">
-							<?php echo esc_html__( 'Svi proizvodi', 'silvester' ); ?>
+					<li class="border-b border-gray-200">
+						<a href="<?php echo esc_url( $category_link ); ?>" class="block py-2 px-3 text-enduro-grey-800 hover:text-enduro-red-100 hover:bg-gray-100 rounded transition <?php echo $is_current ? 'text-enduro-red-100 bg-gray-100' : ''; ?>">
+							<?php echo esc_html( $category->name ); ?>
+							<?php if ( $category->count > 0 ) : ?>
+								<span class="text-enduro-grey-500 text-sm ml-2">(<?php echo esc_html( $category->count ); ?>)</span>
+							<?php endif; ?>
 						</a>
 					</li>
-					<?php
-					foreach ( $product_categories as $category ) :
-						$category_link = get_term_link( $category );
-						$is_current    = is_product_category( $category->slug );
-						?>
-						<li>
-							<a href="<?php echo esc_url( $category_link ); ?>" class="block py-2 px-3 text-enduro-grey-800 hover:text-enduro-red-100 hover:bg-gray-100 rounded transition <?php echo $is_current ? 'text-enduro-red-100 bg-gray-100' : ''; ?>">
-								<?php echo esc_html( $category->name ); ?>
-								<?php if ( $category->count > 0 ) : ?>
-									<span class="text-enduro-grey-500 text-sm ml-2">(<?php echo esc_html( $category->count ); ?>)</span>
-								<?php endif; ?>
-							</a>
-						</li>
-					<?php endforeach; ?>
-				</ul>
+				<?php endforeach; ?>
+			</ul>
+
+			<script>
+			(function() {
+				var btn  = document.getElementById('categories-accordion-toggle');
+				var list = document.getElementById('categories-list');
+				var icon = document.getElementById('categories-accordion-icon');
+				if (!btn || !list) return;
+				btn.addEventListener('click', function() {
+					var open = list.classList.toggle('hidden');
+					btn.setAttribute('aria-expanded', open ? 'false' : 'true');
+					icon.style.transform = open ? '' : 'rotate(180deg)';
+				});
+			})();
+			</script>
+
 			<?php endif; ?>
 		</div>
 	</aside>

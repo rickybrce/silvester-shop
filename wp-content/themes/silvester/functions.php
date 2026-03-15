@@ -11,14 +11,72 @@ add_action( 'wp_enqueue_scripts', 'custom_styles' );
 //ACF Options
 if (function_exists('acf_add_options_page')) {
 
-    acf_add_options_page(array(
-        'page_title'     => 'Theme General Settings',
-        'menu_title'    => 'Theme Settings',
-        'menu_slug'     => 'theme-general-settings',
-        'capability'    => 'edit_posts',
-        'redirect'        => false
-    ));
+    acf_add_options_page([
+        'page_title' => 'Theme General Settings',
+        'menu_title' => 'Theme Settings',
+        'menu_slug'  => 'theme-general-settings',
+        'capability' => 'edit_posts',
+        'redirect'   => false
+    ]);
 }
+
+// ACF Footer menu title fields
+add_action('acf/init', function() {
+    if (!function_exists('acf_add_local_field_group')) return;
+
+    acf_add_local_field_group([
+        'key'    => 'group_footer_menus',
+        'title'  => 'Footer Settings',
+        'fields' => [
+            [
+                'key'   => 'field_footer_menu_1_title',
+                'label' => 'Footer Menu 1 Title',
+                'name'  => 'footer_menu_1_title',
+                'type'  => 'text',
+            ],
+            [
+                'key'   => 'field_footer_menu_2_title',
+                'label' => 'Footer Menu 2 Title',
+                'name'  => 'footer_menu_2_title',
+                'type'  => 'text',
+            ],
+            [
+                'key'   => 'field_footer_contact_title',
+                'label' => 'Footer Contact Title',
+                'name'  => 'footer_contact_title',
+                'type'  => 'text',
+            ],
+            [
+                'key'   => 'field_footer_address',
+                'label' => 'Footer Address',
+                'name'  => 'footer_address',
+                'type'  => 'textarea',
+                'rows'  => 3,
+            ],
+            [
+                'key'   => 'field_footer_email',
+                'label' => 'Footer Email',
+                'name'  => 'footer_email',
+                'type'  => 'text',
+            ],
+            [
+                'key'   => 'field_footer_phone',
+                'label' => 'Footer Phone',
+                'name'  => 'footer_phone',
+                'type'  => 'text',
+            ],
+        ],
+        'location' => [
+            [
+                [
+                    'param'    => 'options_page',
+                    'operator' => '==',
+                    'value'    => 'theme-general-settings',
+                ],
+            ],
+        ],
+    ]);
+});
 
 
 //Custom image size
