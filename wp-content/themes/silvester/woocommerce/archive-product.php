@@ -60,7 +60,7 @@ do_action( 'woocommerce_shop_loop_header' );
 	<!-- Categories Sidebar -->
 	<aside class="w-full lg:w-1/4 flex-shrink-0">
 		<div class="sticky top-[120px]">
-			<h3 class="text-2xl mb-4 text-enduro-grey-900 border-b border-gray-200 pb-2 !mt-0"><?php echo esc_html__( 'Categories', 'silvester' ); ?></h3>
+			<h3 class="text-2xl mb-4 text-enduro-grey-900 border-b border-gray-200 pb-2 !mt-0"><?php echo esc_html__( 'Kategorije', 'silvester' ); ?></h3> 
 			<?php
 			$product_categories = get_terms( array(
 				'taxonomy'   => 'product_cat',
@@ -75,7 +75,7 @@ do_action( 'woocommerce_shop_loop_header' );
 				<ul class="space-y-2">
 					<li>
 						<a href="<?php echo esc_url( get_permalink( wc_get_page_id( 'shop' ) ) ); ?>" class="block py-2 px-3 text-enduro-grey-800 hover:text-enduro-red-100 hover:bg-gray-100 rounded transition <?php echo is_shop() ? 'text-enduro-red-100 bg-gray-100' : ''; ?>">
-							<?php echo esc_html__( 'All Products', 'silvester' ); ?>
+							<?php echo esc_html__( 'Svi proizvodi', 'silvester' ); ?>
 						</a>
 					</li>
 					<?php

@@ -1,5 +1,5 @@
 <div class="w-full mt-0 border-t border-gray-200 pt-10 bg-white lg:px-4 text-enduro-grey-800">
-    <div class="w-full max-w-6xl mx-auto flex flex-wrap">
+    <div class="w-full max-w-7xl mx-auto flex flex-wrap">
         <div class="w-full sm:w-4/12 mb-2">
             <?php
             wp_nav_menu(array(
@@ -25,7 +25,7 @@
 </div>
 
 <div class="w-full border-t border-gray-200 py-10 bg-gray-50 text-enduro-grey-700">
-    <div class="w-full max-w-6xl mx-auto text-xs text-center">
+    <div class="w-full max-w-7xl mx-auto text-xs text-center">
     Copyright <?php echo date("Y"); ?> Croatia Enduro | Design by <a target="_blank" href="https://sapa-design.com" class="text-enduro-grey-800 hover:text-enduro-red-100">SAPA DESIGN</a>
     </div>
 </div>
@@ -57,7 +57,7 @@
 </script>
 <script>
     jQuery(document).ready(function($) {
-    $("a[data-imagelightbox]").imageLightbox({
+    $("a[data-imagelightbox]:not([data-imagelightbox='product'])").imageLightbox({
         selector: 'a[data-imagelightbox]', // string;
         id: 'imagelightbox', // string;
         allowedTypes: 'png|jpg|jpeg|gif', // string;          use empty string to allow any file type

@@ -8,10 +8,10 @@
     </h1>
 </div>
 
-<div class="text-center text-lg">Stranica ne postoji</div>
+<div class="text-center text-lg">Stranica ne postoji</div> 
 
 
-<div class="sub-page-default w-full mx-auto max-w-6xl px-4 xl:px-0 py-8 text-center my-4">
+<div class="sub-page-default w-full mx-auto max-w-7xl px-4 xl:px-0 py-8 text-center my-4">
     <a class="red-button mb-4" href="<?php echo home_url(); ?>"><i class="fa-solid fa-home mr-2"></i> Povratak</a>
 </div>
 

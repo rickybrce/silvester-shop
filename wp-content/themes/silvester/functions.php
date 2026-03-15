@@ -66,7 +66,7 @@ remove_action( 'woocommerce_after_main_content', 'woocommerce_output_content_wra
 
 // Add custom WooCommerce wrappers
 function silvester_woocommerce_wrapper_start() {
-    echo '<div class="sub-page-default w-full mx-auto max-w-6xl px-4 xl:px-0 py-8">';
+    echo '<div class="sub-page-default w-full mx-auto max-w-7xl px-4 xl:px-0 py-8">';
 }
 add_action( 'woocommerce_before_main_content', 'silvester_woocommerce_wrapper_start', 10 );
 

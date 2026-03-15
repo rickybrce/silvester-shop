@@ -32,25 +32,32 @@ if (!$featured_query->have_posts()) {
 }
 
 if ($featured_query->have_posts()) : ?>
-    <div class="w-full mt-[40px]">
-        <div class="w-full mx-auto max-w-6xl px-4">
+    <div class="w-full mt-[40px] lg:mt-[70px]">
+        <div class="w-full mx-auto max-w-7xl px-4">
             <?php if (isset($homepage_products["title"]) && $homepage_products["title"]) : ?>
-                <h2 class="text-4xl mb-4"><?php echo esc_html($homepage_products["title"]); ?></h2>
+                <h2 class="text-3xl md:text-4xl mb-2"><?php echo esc_html($homepage_products["title"]); ?></h2>
             <?php endif; ?>
             <?php if (isset($homepage_products["sub_title"]) && $homepage_products["sub_title"]) : ?>
-                <h3 class="text-2xl mb-8 text-enduro-red-100"><?php echo esc_html($homepage_products["sub_title"]); ?></h3>
+                <h3 class="text-xl md:text-2xl mb-8 text-enduro-red-100"><?php echo esc_html($homepage_products["sub_title"]); ?></h3>
             <?php endif; ?>
             
+            <style>
+            .carousel-slide { flex-shrink: 0; width: 100%; }
+            @media (min-width: 640px)  { .carousel-slide { width: calc(50% - 8px); } }
+            @media (min-width: 1024px) { .carousel-slide { width: calc(33.333% - 10.667px); } }
+            @media (min-width: 1280px) { .carousel-slide { width: calc(25% - 12px); } }
+            </style>
+
             <!-- Carousel Container -->
             <div class="relative">
                 <div class="carousel-container overflow-hidden">
-                    <div class="carousel-track flex gap-4 transition-transform duration-300 ease-in-out" id="featured-carousel-track">
-                        <?php while ($featured_query->have_posts()) : $featured_query->the_post(); 
+                    <div class="carousel-track flex gap-4 transition-transform duration-300 ease-in-out items-stretch" id="featured-carousel-track">
+                        <?php while ($featured_query->have_posts()) : $featured_query->the_post();
                             global $product;
                             if (!$product) continue;
                         ?>
-                            <div class="carousel-slide flex-shrink-0 w-full sm:w-1/2 lg:w-1/3 xl:w-1/4">
-                                <div class="w-full border border-gray-200 rounded overflow-hidden hover:border-enduro-red-100 transition">
+                            <div class="carousel-slide flex flex-col">
+                                <div class="flex flex-col h-full border border-gray-200 rounded overflow-hidden hover:border-enduro-red-100 transition">
                                     <a href="<?php echo esc_url(get_permalink()); ?>" class="block">
                                         <?php if (has_post_thumbnail()) : ?>
                                             <div class="w-full h-[300px] bg-cover bg-center bg-no-repeat" style="background-image: url(<?php echo esc_url(get_the_post_thumbnail_url(get_the_ID(), 'large')); ?>);"></div>
@@ -60,14 +67,14 @@ if ($featured_query->have_posts()) : ?>
                                             </div>
                                         <?php endif; ?>
                                     </a>
-                                    <div class="p-4">
+                                    <div class="p-4 flex flex-col flex-1">
                                         <a href="<?php echo esc_url(get_permalink()); ?>">
                                             <h3 class="text-xl mb-2 text-enduro-grey-900 hover:text-enduro-red-100 transition"><?php echo esc_html(get_the_title()); ?></h3>
                                         </a>
                                         <div class="text-enduro-red-100 text-lg font-medium mb-4">
                                             <?php echo $product->get_price_html(); ?>
                                         </div>
-                                        <div class="flex flex-wrap gap-2">
+                                        <div class="flex flex-wrap gap-2 mt-auto">
                                             <a href="<?php echo esc_url(get_permalink()); ?>" class="inline-block border border-enduro-red-100 text-enduro-red-100 hover:bg-enduro-red-100 hover:text-white py-2 px-4 rounded text-sm font-medium transition">
                                                 <?php echo esc_html__('Pogledaj više', 'silvester'); ?>
                                             </a>

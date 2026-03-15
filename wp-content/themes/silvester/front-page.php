@@ -4,6 +4,10 @@
 <?php include get_template_directory() . "/include/home-hero.php"; ?>
 <!-- Home hero -->
 
+<!-- Motors section -->
+<?php include get_template_directory() . "/include/motors-section.php"; ?>
+<!-- Motors section -->
+
 <!-- Featured products carousel -->
 <?php include get_template_directory() . "/include/featured-products-carousel.php"; ?>
 <!-- Featured products carousel -->
