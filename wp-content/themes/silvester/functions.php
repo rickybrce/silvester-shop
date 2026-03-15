@@ -41,6 +41,12 @@ add_action('acf/init', function() {
                 'type'  => 'text',
             ],
             [
+                'key'   => 'field_footer_legal_menu_title',
+                'label' => 'Footer Legal Menu Title',
+                'name'  => 'footer_legal_menu_title',
+                'type'  => 'text',
+            ],
+            [
                 'key'   => 'field_footer_contact_title',
                 'label' => 'Footer Contact Title',
                 'name'  => 'footer_contact_title',
@@ -98,9 +104,10 @@ function wpb_custom_new_menu()
 {
     register_nav_menus(
         array(
-            'main-menu' => __('Main Menu'),
-            'top-menu' => __('Top Menu'),
-            'footer-menu' => __('Footer Menu')
+            'main-menu'   => __('Main Menu'),
+            'top-menu'    => __('Top Menu'),
+            'footer-menu' => __('Footer Menu'),
+            'legal-menu'  => __('Legal Menu'),
         )
     );
 }

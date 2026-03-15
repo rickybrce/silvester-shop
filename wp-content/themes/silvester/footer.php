@@ -2,7 +2,7 @@
     <div class="w-full max-w-7xl mx-auto flex flex-wrap gap-y-8 px-5 lg:px-4">
 
         <!-- Menu 1 -->
-        <div class="w-1/2 lg:w-3/12">
+        <div class="w-1/2 lg:w-1/5">
             <?php $footer_menu_1_title = get_field('footer_menu_1_title', 'option'); ?>
             <?php if ($footer_menu_1_title) : ?>
                 <h4 class="text-white font-semibold text-sm uppercase tracking-widest mb-4"><?php echo esc_html($footer_menu_1_title); ?></h4>
@@ -14,7 +14,7 @@
         </div>
 
         <!-- Menu 2 -->
-        <div class="w-1/2 lg:w-3/12">
+        <div class="w-1/2 lg:w-1/5">
             <?php $footer_menu_2_title = get_field('footer_menu_2_title', 'option'); ?>
             <?php if ($footer_menu_2_title) : ?>
                 <h4 class="text-white font-semibold text-sm uppercase tracking-widest mb-4"><?php echo esc_html($footer_menu_2_title); ?></h4>
@@ -25,8 +25,22 @@
             ]); ?>
         </div>
 
+        <!-- Legal menu -->
+        <div class="w-1/2 lg:w-1/5">
+            <?php $footer_legal_menu_title = get_field('footer_legal_menu_title', 'option'); ?>
+            <?php if ($footer_legal_menu_title) : ?>
+                <h4 class="text-white font-semibold text-sm uppercase tracking-widest mb-4"><?php echo esc_html($footer_legal_menu_title); ?></h4>
+            <?php endif; ?>
+            <?php wp_nav_menu([
+                'theme_location' => 'legal-menu',
+                'container_class' => 'footer-menu-cont-2 w-full text-sm',
+                'depth'          => 1,
+                'fallback_cb'    => false,
+            ]); ?>
+        </div>
+
         <!-- Contact -->
-        <div class="w-full sm:w-1/2 lg:w-3/12">
+        <div class="w-1/2 lg:w-1/5">
             <?php $footer_contact_title = get_field('footer_contact_title', 'option'); ?>
             <?php if ($footer_contact_title) : ?>
                 <h4 class="text-white font-semibold text-sm uppercase tracking-widest mb-4"><?php echo esc_html($footer_contact_title); ?></h4>
@@ -57,13 +71,14 @@
         </div>
 
         <!-- Logo + text -->
-        <div class="w-full sm:w-1/2 lg:w-3/12 flex flex-col items-center lg:items-end">
+        <div class="w-full sm:w-1/2 lg:w-1/5 flex flex-col items-center lg:items-end">
             <a href="<?php echo home_url(); ?>"><img class="w-20 mb-4 lg:w-36" src="<?php bloginfo('template_directory'); ?>/images/logo.png" width="168" height="205" /></a>
             <div class="text-center lg:text-right text-sm"><?php the_field('footer_text', 'option'); ?></div>
         </div>
 
     </div>
 </div>
+
 
 <div class="w-full py-10 bg-black text-gray-400">
     <div class="w-full max-w-7xl mx-auto text-xs text-center">
@@ -72,6 +87,35 @@
 </div>
 
 <?php wp_footer(); ?>
+<script>
+(function() {
+    var header   = document.getElementById('site-header');
+    var lastY    = 0;
+    var ticking  = false;
+
+    window.addEventListener('scroll', function() {
+        if (!ticking) {
+            window.requestAnimationFrame(function() {
+                var y = window.scrollY;
+                if (y > 100) {
+                    if (y > lastY) {
+                        // scrolling down — hide
+                        header.style.transform = 'translateY(-100%)';
+                    } else {
+                        // scrolling up — show
+                        header.style.transform = 'translateY(0)';
+                    }
+                } else {
+                    header.style.transform = 'translateY(0)';
+                }
+                lastY   = y;
+                ticking = false;
+            });
+            ticking = true;
+        }
+    }, { passive: true });
+})();
+</script>
 <script>
 (function() {
     var panel = document.getElementById('mobile-menu-panel');

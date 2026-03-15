@@ -22,7 +22,7 @@
 </head>
 
 <body class="bg-white text-enduro-grey-900">
-    <header class="fixed top-0 left-0 w-full z-50">
+    <header class="fixed top-0 left-0 w-full z-50 transition-transform duration-300" id="site-header">
         <div class="w-full pl-4 pr-2 lg:px-4 py-2 bg-[rgba(0,0,0,0.8)]">
             <div class="w-full">
                 <div class="max-w-full mx-auto">

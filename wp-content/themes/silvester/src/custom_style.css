@@ -331,7 +331,7 @@ html, body {
     @apply mb-4;
 }
 .sub-page-default ul {
-
+    @apply mb-6;
 }
 .sub-page-default ul:not(.products):not(.categories-nav) li {
     @apply relative pl-6
