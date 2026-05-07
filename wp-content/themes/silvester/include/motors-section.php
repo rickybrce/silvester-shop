@@ -6,7 +6,7 @@ $motors_category = get_term_by('slug', 'motocikli', 'product_cat');
 if ($motors_category) :
     $args = array(
         'post_type'      => 'product',
-        'posts_per_page' => 3,
+        'posts_per_page' => -1,
         'orderby'        => 'date',
         'order'          => 'DESC',
         'status'         => 'publish',
@@ -15,6 +15,11 @@ if ($motors_category) :
                 'taxonomy' => 'product_cat',
                 'field'    => 'slug',
                 'terms'    => 'motocikli',
+            ),
+            array(
+                'taxonomy' => 'product_visibility',
+                'field'    => 'name',
+                'terms'    => 'featured',
             ),
         ),
     );

@@ -3,18 +3,26 @@ $homepage_products = get_field('home_page_products');
 
 // Query for featured products (or latest if no featured products field)
 $args = array(
-    'post_type' => 'product',
-    'posts_per_page' => 8,
-    'orderby' => 'date',
-    'order' => 'DESC',
-    'status' => 'publish',
-    'meta_query' => array(
+    'post_type'      => 'product',
+    'posts_per_page' => -1,
+    'orderby'        => 'date',
+    'order'          => 'DESC',
+    'status'         => 'publish',
+    'tax_query'      => array(
+        'relation' => 'AND',
         array(
-            'key' => '_featured',
-            'value' => 'yes',
-            'compare' => '='
-        )
-    )
+            'taxonomy' => 'product_visibility',
+            'field'    => 'name',
+            'terms'    => 'featured',
+        ),
+        array(
+            'taxonomy'         => 'product_cat',
+            'field'            => 'slug',
+            'terms'            => 'motocikli',
+            'operator'         => 'NOT IN',
+            'include_children' => true,
+        ),
+    ),
 );
 
 $featured_query = new WP_Query($args);

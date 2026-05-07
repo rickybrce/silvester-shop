@@ -1,10 +1,10 @@
 <?php
 $args = array(
-    'post_type' => 'product',
+    'post_type'      => 'product',
     'posts_per_page' => 6,
-    'orderby' => 'date',
-    'order' => 'DESC',
-    'status' => 'publish'
+    'orderby'        => 'date',
+    'order'          => 'DESC',
+    'status'         => 'publish',
 );
 
 $products_query = new WP_Query($args);
