@@ -39,8 +39,11 @@ if ( ! is_a( $product, WC_Product::class ) || ! $product->is_visible() ) {
 		</a>
 		<div class="p-4 flex-grow flex flex-col">
 			<a href="<?php echo esc_url( get_permalink() ); ?>">
-				<h23 class="woocommerce-loop-product__title text-lg mb-2 text-enduro-grey-900 hover:text-enduro-red-100 transition"><?php echo esc_html( get_the_title() ); ?></h3>
+				<h23 class="woocommerce-loop-product__title text-lg mb-1 text-enduro-grey-900 hover:text-enduro-red-100 transition"><?php echo esc_html( get_the_title() ); ?></h3>
 			</a>
+			<?php $sku = $product->get_sku(); if ( $sku ) : ?>
+				<p class="text-xs text-enduro-grey-500 mb-2">SKU: <?php echo esc_html( $sku ); ?></p>
+			<?php endif; ?>
 			<div class="text-enduro-red-100 text-lg font-medium mb-4">
 				<?php echo $product->get_price_html(); ?>
 			</div>

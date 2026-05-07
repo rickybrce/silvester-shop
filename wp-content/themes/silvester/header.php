@@ -86,7 +86,8 @@
                                         'container_id'   => 'main-nav',
                                         'container_class' => 'main-nav text-sm py-2 w-full lg:w-auto lg:flex lg:items-center lg:relative lg:!block px-4 pt-16 lg:pt-0 lg:px-0',
                                         'menu_id'        => 'menu-main-menu',
-                                        'menu_class'     => 'mobile-menu-list flex flex-col lg:flex-row gap-4 lg:gap-0 lg:items-center lg:w-full'
+                                        'menu_class'     => 'mobile-menu-list flex flex-col lg:flex-row gap-4 lg:gap-0 lg:items-center lg:w-full',
+                                        'walker'         => new Silvester_Nav_Walker(),
                                     ));
                                     ?>
                                 </div>
@@ -102,6 +103,48 @@
 
             </div>
     </header>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('#main-nav .submenu-toggle').forEach(function(btn) {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                var li  = btn.closest('.menu-item-has-children');
+                var sub = li && li.querySelector(':scope > .sub-menu');
+                if (!sub) return;
+                // Close all other open submenus at same level
+                var parentMenu = li.parentElement;
+                parentMenu.querySelectorAll(':scope > .menu-item-has-children > .sub-menu.open').forEach(function(s) {
+                    if (s !== sub) {
+                        s.classList.remove('open');
+                        var otherBtn = s.previousElementSibling;
+                        if (otherBtn && otherBtn.classList.contains('submenu-toggle')) {
+                            otherBtn.setAttribute('aria-expanded', 'false');
+                            otherBtn.querySelector('.submenu-chevron').style.transform = '';
+                        }
+                    }
+                });
+                var open = sub.classList.toggle('open');
+                btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+                btn.querySelector('.submenu-chevron').style.transform = open ? 'rotate(180deg)' : '';
+            });
+        });
+        // Close on outside click
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('#main-nav')) {
+                document.querySelectorAll('#main-nav .sub-menu.open').forEach(function(s) {
+                    s.classList.remove('open');
+                    var b = s.previousElementSibling;
+                    if (b && b.classList.contains('submenu-toggle')) {
+                        b.setAttribute('aria-expanded', 'false');
+                        b.querySelector('.submenu-chevron').style.transform = '';
+                    }
+                });
+            }
+        });
+    });
+    </script>
 
     <?php /*if (!is_home() && !is_front_page()) : ?>
         <?php $header_page = get_field('sub_page_header');

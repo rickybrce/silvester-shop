@@ -99,14 +99,43 @@ do_action( 'woocommerce_shop_loop_header' );
 				<?php foreach ( $product_categories as $category ) :
 					$category_link = get_term_link( $category );
 					$is_current    = is_product_category( $category->slug );
+					$subcategories = get_terms( [
+						'taxonomy'   => 'product_cat',
+						'hide_empty' => true,
+						'parent'     => $category->term_id,
+						'orderby'    => 'name',
+						'order'      => 'ASC',
+					] );
+					$has_subs = ! empty( $subcategories ) && ! is_wp_error( $subcategories );
+					// Is any subcategory currently active?
+					$sub_active = false;
+					if ( $has_subs ) {
+						foreach ( $subcategories as $sub ) {
+							if ( is_product_category( $sub->slug ) ) { $sub_active = true; break; }
+						}
+					}
 				?>
 					<li class="border-b border-gray-200">
-						<a href="<?php echo esc_url( $category_link ); ?>" class="block py-2 px-3 text-enduro-grey-800 hover:text-enduro-red-100 hover:bg-gray-100 rounded transition <?php echo $is_current ? 'text-enduro-red-100 bg-gray-100' : ''; ?>">
+						<a href="<?php echo esc_url( $category_link ); ?>" class="block py-2 px-3 text-enduro-grey-800 hover:text-enduro-red-100 hover:bg-gray-100 rounded transition <?php echo ( $is_current || $sub_active ) ? 'text-enduro-red-100 bg-gray-100' : ''; ?>">
 							<?php echo esc_html( $category->name ); ?>
 							<?php if ( $category->count > 0 ) : ?>
 								<span class="text-enduro-grey-500 text-sm ml-2">(<?php echo esc_html( $category->count ); ?>)</span>
 							<?php endif; ?>
 						</a>
+						<?php if ( $has_subs && ( $is_current || $sub_active ) ) : ?>
+						<ul class="ml-3 mb-1">
+							<?php foreach ( $subcategories as $sub ) :
+								$sub_current = is_product_category( $sub->slug );
+							?>
+							<li class="border-t border-gray-100">
+								<a href="<?php echo esc_url( get_term_link( $sub ) ); ?>" class="block py-1.5 px-3 text-sm text-enduro-grey-700 hover:text-enduro-red-100 hover:bg-gray-100 rounded transition <?php echo $sub_current ? 'text-enduro-red-100' : ''; ?>">
+									<?php echo esc_html( $sub->name ); ?>
+									<span class="text-enduro-grey-500 text-xs ml-1">(<?php echo esc_html( $sub->count ); ?>)</span>
+								</a>
+							</li>
+							<?php endforeach; ?>
+						</ul>
+						<?php endif; ?>
 					</li>
 				<?php endforeach; ?>
 			</ul>
@@ -116,6 +145,61 @@ do_action( 'woocommerce_shop_loop_header' );
 				var btn  = document.getElementById('categories-accordion-toggle');
 				var list = document.getElementById('categories-list');
 				var icon = document.getElementById('categories-accordion-icon');
+				if (!btn || !list) return;
+				btn.addEventListener('click', function() {
+					var open = list.classList.toggle('hidden');
+					btn.setAttribute('aria-expanded', open ? 'false' : 'true');
+					icon.style.transform = open ? '' : 'rotate(180deg)';
+				});
+			})();
+			</script>
+
+			<?php endif; ?>
+
+			<?php
+			$brands = get_terms( [
+				'taxonomy'   => 'product_brand',
+				'hide_empty' => true,
+				'orderby'    => 'name',
+				'order'      => 'ASC',
+			] );
+			if ( ! empty( $brands ) && ! is_wp_error( $brands ) ) :
+				$current_brand = get_queried_object();
+				$is_brand_page = is_tax( 'product_brand' );
+			?>
+			<div class="mt-6">
+				<!-- Mobile accordion -->
+				<button type="button" id="brands-accordion-toggle"
+					class="lg:hidden w-full flex items-center justify-between py-2 px-4 bg-gray-100 rounded text-enduro-grey-900 font-semibold text-lg border border-gray-200"
+					aria-expanded="false" aria-controls="brands-list">
+					<?php esc_html_e( 'Brendovi', 'silvester' ); ?>
+					<svg id="brands-accordion-icon" class="w-5 h-5 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+					</svg>
+				</button>
+
+				<h3 class="hidden lg:block text-2xl mb-2! text-enduro-grey-900 border-b border-gray-200 pb-2 mt-0!"><?php esc_html_e( 'Brendovi', 'silvester' ); ?></h3>
+
+				<ul id="brands-list" class="categories-nav hidden lg:block mt-2 lg:mt-0">
+					<?php foreach ( $brands as $brand ) :
+						$brand_link    = get_term_link( $brand );
+						$brand_active  = $is_brand_page && $current_brand && $current_brand->term_id === $brand->term_id;
+					?>
+					<li class="border-b border-gray-200">
+						<a href="<?php echo esc_url( $brand_link ); ?>" class="block py-2 px-3 text-enduro-grey-800 hover:text-enduro-red-100 hover:bg-gray-100 rounded transition <?php echo $brand_active ? 'text-enduro-red-100 bg-gray-100' : ''; ?>">
+							<?php echo esc_html( $brand->name ); ?>
+							<span class="text-enduro-grey-500 text-sm ml-2">(<?php echo esc_html( $brand->count ); ?>)</span>
+						</a>
+					</li>
+					<?php endforeach; ?>
+				</ul>
+			</div>
+
+			<script>
+			(function() {
+				var btn  = document.getElementById('brands-accordion-toggle');
+				var list = document.getElementById('brands-list');
+				var icon = document.getElementById('brands-accordion-icon');
 				if (!btn || !list) return;
 				btn.addEventListener('click', function() {
 					var open = list.classList.toggle('hidden');

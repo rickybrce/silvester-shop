@@ -1,5 +1,45 @@
 <?php
 
+// SKU below title on single product page
+add_action( 'woocommerce_single_product_summary', function() {
+    global $product;
+    $sku = $product->get_sku();
+    if ( $sku ) {
+        echo '<p class="product-sku-label">SKU: <span>' . esc_html( $sku ) . '</span></p>';
+    }
+}, 7 );
+
+// Nav walker — appends chevron toggle button to parent menu items
+class Silvester_Nav_Walker extends Walker_Nav_Menu {
+    public function start_el( &$output, $data_object, $depth = 0, $args = null, $current_object_id = 0 ) {
+        parent::start_el( $output, $data_object, $depth, $args, $current_object_id );
+        if ( in_array( 'menu-item-has-children', $data_object->classes ) ) {
+            // Inject chevron button right after the closing </a>
+            $output = substr( $output, 0, strrpos( $output, '</a>' ) )
+                . '</a><button class="submenu-toggle" aria-expanded="false" aria-label="Toggle submenu">'
+                . '<svg class="submenu-chevron" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+                . '</button>';
+        }
+    }
+}
+
+// Allow SVG uploads
+add_filter( 'upload_mimes', function( $mimes ) {
+    $mimes['svg']  = 'image/svg+xml';
+    $mimes['svgz'] = 'image/svg+xml';
+    return $mimes;
+} );
+add_filter( 'wp_check_filetype_and_ext', function( $data, $file, $filename, $mimes ) {
+    if ( ! $data['type'] ) {
+        $ext = strtolower( pathinfo( $filename, PATHINFO_EXTENSION ) );
+        if ( $ext === 'svg' || $ext === 'svgz' ) {
+            $data['type'] = 'image/svg+xml';
+            $data['ext']  = $ext;
+        }
+    }
+    return $data;
+}, 10, 4 );
+
 function custom_styles() {
     wp_enqueue_style( 'font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css', array(), '6.4.0' );
     wp_enqueue_style( 'custom-style-lightbox', get_template_directory_uri() . '/imagelightbox/dist/imagelightbox.min.css' );

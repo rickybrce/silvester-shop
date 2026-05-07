@@ -58,10 +58,13 @@ html, body {
 } 
 #menu-main-menu .menu-item:after {
     content: "";
-    @apply w-1 h-1 absolute right-[-3px] top-[8px] xl:top-[10px] bg-enduro-grey-600 rounded-full; 
-} 
+    @apply w-1 h-1 absolute right-[-3px] top-[8px] xl:top-[10px] bg-enduro-grey-600 rounded-full;
+}
+#menu-main-menu .sub-menu .menu-item:after {
+    display: none;
+}
 #menu-main-menu .menu-item:last-child:after{
-    @apply hidden; 
+    @apply hidden;
 } 
 #menu-main-menu .current-menu-item a {
     @apply text-enduro-red-100
@@ -104,6 +107,21 @@ html, body {
 }
 #menu-top-menu li a:hover {
     @apply text-enduro-red-100 
+}
+
+/* Page title with icon */
+h1.page-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+h1.page-title::before {
+    content: '\f105';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    font-size: 0.85em;
+    color: var(--color-enduro-red-100);
+    flex-shrink: 0;
 }
 
 .h1-intro span {
@@ -354,6 +372,7 @@ html, body {
     margin-bottom: 20px;
     @media (min-width: 1024px) {
         margin-bottom: 40px !important;
+        margin-top: 20px !important;
     }
 }
 .wp-block-separator {
@@ -667,6 +686,101 @@ ul.products li.product {
 .imagelightbox-arrow-left:before {
     margin-left: -10px !important;
 }
+/* ── Main nav submenus ────────────────────────────────────────────────────── */
+
+/* Parent li: flex so link + button sit side by side */
+#main-nav .menu-item-has-children {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+#main-nav .menu-item-has-children > a {
+    flex: 1;
+}
+
+/* Chevron toggle button */
+#main-nav .submenu-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: #d1d5db;
+    padding: 0;
+    flex-shrink: 0;
+}
+#main-nav .submenu-toggle:hover {
+    color: #de423d;
+}
+#main-nav .submenu-chevron {
+    transition: transform 0.2s ease;
+}
+
+/* Submenu hidden by default */
+#main-nav .sub-menu {
+    display: none;
+    list-style: none !important;
+    margin: 0;
+    padding: 0;
+}
+#main-nav .sub-menu li {
+    list-style: none !important;
+}
+#main-nav .sub-menu.open {
+    display: block;
+}
+
+/* Desktop: absolute dropdown */
+@media (min-width: 1024px) {
+    #main-nav .sub-menu {
+        position: absolute;
+        top: calc(100% + 8px);
+        left: 0;
+        min-width: 200px;
+        background: rgba(0, 0, 0, 0.92);
+        border-top: 2px solid #de423d;
+        border-radius: 0 0 4px 4px;
+        z-index: 200;
+        padding: 4px 0;
+        width: max-content;
+    }
+    #main-nav .sub-menu li {
+        list-style: none;
+    }
+    #main-nav .sub-menu li a {
+        display: block;
+        padding: 8px 16px;
+        color: #d1d5db;
+        font-size: 0.875rem;
+        transition: color 0.15s, background 0.15s;
+    }
+    #main-nav .sub-menu li a:hover {
+        color: #de423d;
+        background: rgba(255,255,255,0.05);
+    }
+}
+
+/* Mobile: accordion */
+@media (max-width: 1023px) {
+    #main-nav .sub-menu {
+        width: 100%;
+        padding: 0 0 4px 12px;
+    }
+    #main-nav .sub-menu li a {
+        display: block;
+        padding: 6px 12px;
+        color: #9ca3af;
+        font-size: 0.875rem;
+    }
+    #main-nav .sub-menu li a:hover {
+        color: #de423d;
+    }
+}
+
 .imagelightbox-arrow-right:before {
     margin-left: -2px !important;
 }
@@ -677,4 +791,56 @@ ul.products li.product {
 }
 .imagelightbox-wrapper {
     background: transparent !important;
+}
+
+/* ── Single product summary ───────────────────────────────────────────────── */
+
+.product-sku-label {
+    @apply text-xs text-enduro-grey-500 mb-4;
+}
+.product-sku-label span {
+    @apply font-medium text-enduro-grey-700;
+}
+
+.entry-summary .product_title {
+    @apply text-2xl lg:text-3xl font-semibold text-enduro-grey-900 mb-3;
+}
+
+.entry-summary .price,
+.entry-summary .price .woocommerce-Price-amount {
+    @apply text-enduro-red-100 text-2xl font-medium;
+}
+
+.entry-summary .price {
+    @apply block mb-5;
+}
+
+.entry-summary .woocommerce-product-details__short-description {
+    @apply text-enduro-grey-700 text-sm mb-5 leading-relaxed;
+}
+
+/* Quantity + button row */
+.entry-summary .cart {
+    @apply flex items-center gap-3 mb-6;
+}
+
+.entry-summary .quantity {
+    @apply flex items-center;
+}
+
+.entry-summary .qty {
+    @apply w-16 h-11 text-center border border-gray-300 rounded text-base focus:outline-none focus:border-enduro-red-100;
+}
+
+.entry-summary .single_add_to_cart_button {
+    @apply bg-gradient-to-b from-enduro-red-100 to-enduro-red-200 hover:from-enduro-red-200 hover:to-enduro-red-100 text-white font-medium px-6 h-11 rounded transition cursor-pointer text-sm border-0;
+}
+
+/* Product meta (category, tags) */
+.entry-summary .product_meta {
+    @apply text-sm text-enduro-grey-500 border-t border-gray-200 pt-4 mt-4;
+}
+
+.entry-summary .product_meta a {
+    @apply text-enduro-grey-700 hover:text-enduro-red-100 transition;
 }
