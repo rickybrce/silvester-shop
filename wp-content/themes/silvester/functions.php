@@ -1,5 +1,60 @@
 <?php
 
+// Shared function: render payment instructions with dynamic order number
+function silvester_render_payment_instructions( $order_id ) {
+    $order = wc_get_order( $order_id );
+    if ( ! $order || $order->get_payment_method() !== 'bacs' ) return;
+
+    $gateways = WC()->payment_gateways()->payment_gateways();
+    if ( ! isset( $gateways['bacs'] ) ) return;
+
+    $instructions = $gateways['bacs']->instructions;
+    if ( ! $instructions ) return;
+
+    $instructions = str_replace( '{order_number}', $order->get_order_number(), $instructions );
+
+    echo '<section class="silvester-payment-details" style="margin-top:1.5rem;margin-bottom:2rem;">';
+    echo '<h2 class="woocommerce-order-details__title">' . esc_html__( 'Detalji o plaćanju', 'silvester' ) . '</h2>';
+    echo '<div style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:.375rem;padding:1rem;font-size:.9rem;line-height:1.8;">';
+    echo wp_kses_post( wpautop( wptexturize( $instructions ) ) );
+    echo '</div>';
+    echo '</section>';
+}
+
+// Suppress WooCommerce's default BACS output via output buffering (fires before + after)
+add_action( 'woocommerce_thankyou_bacs', function() { ob_start(); }, 1 );
+add_action( 'woocommerce_thankyou_bacs', function() { ob_end_clean(); }, 999 );
+
+// Between order table and address blocks (thankyou + view-order)
+add_action( 'woocommerce_after_order_details', function( $order ) {
+    silvester_render_payment_instructions( $order->get_id() );
+}, 5 );
+
+// Disable redirect + "View cart" link after AJAX add-to-cart (popup handles it)
+add_filter( 'woocommerce_cart_redirect_after_add', '__return_false' );
+add_filter( 'wc_add_to_cart_message_html', '__return_empty_string' );
+
+// Cart popup AJAX handler
+add_action( 'wp_ajax_silvester_cart_popup', 'silvester_cart_popup_data' );
+add_action( 'wp_ajax_nopriv_silvester_cart_popup', 'silvester_cart_popup_data' );
+function silvester_cart_popup_data() {
+    $items = [];
+    foreach ( WC()->cart->get_cart() as $item ) {
+        $product   = $item['data'];
+        $thumbnail = get_the_post_thumbnail_url( $item['product_id'], 'thumbnail' ) ?: wc_placeholder_img_src();
+        $items[]   = [
+            'name'      => $product->get_name(),
+            'quantity'  => $item['quantity'],
+            'price'     => strip_tags( wc_price( $product->get_price() ) ),
+            'thumbnail' => $thumbnail,
+        ];
+    }
+    wp_send_json( [
+        'items'    => $items,
+        'subtotal' => strip_tags( WC()->cart->get_cart_subtotal() ),
+    ] );
+}
+
 // SKU below title on single product page
 add_action( 'woocommerce_single_product_summary', function() {
     global $product;

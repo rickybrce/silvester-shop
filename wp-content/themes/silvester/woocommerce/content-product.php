@@ -33,7 +33,7 @@ if ( ! is_a( $product, WC_Product::class ) || ! $product->is_visible() ) {
 				<div class="w-full h-[300px] bg-cover bg-center bg-no-repeat" style="background-image: url(<?php echo esc_url( get_the_post_thumbnail_url( get_the_ID(), 'large' ) ); ?>);"></div>
 			<?php else : ?>
 				<div class="w-full h-[300px] bg-enduro-grey-400 flex items-center justify-center">
-					<span class="text-enduro-grey-600"><?php echo esc_html__( 'No image', 'silvester' ); ?></span>
+					<span class="text-enduro-grey-600"><?php echo esc_html__( 'Bez slike', 'silvester' ); ?></span>
 				</div>
 			<?php endif; ?>
 		</a>
@@ -52,7 +52,12 @@ if ( ! is_a( $product, WC_Product::class ) || ! $product->is_visible() ) {
 					<?php echo esc_html__( 'Pogledaj više', 'silvester' ); ?>
 				</a>
 				<?php if ( $product->is_purchasable() && $product->is_in_stock() ) : ?>
-					<a href="<?php echo esc_url( $product->add_to_cart_url() ); ?>" class="inline-block bg-gradient-to-b from-enduro-red-100 to-enduro-red-200 hover:from-enduro-red-200 hover:to-enduro-red-100 text-white py-2 px-4 rounded text-sm font-medium transition">
+					<a href="<?php echo esc_url( $product->add_to_cart_url() ); ?>"
+						   data-product_id="<?php echo esc_attr( $product->get_id() ); ?>"
+						   data-product_sku="<?php echo esc_attr( $product->get_sku() ); ?>"
+						   data-quantity="1"
+						   rel="nofollow"
+						   class="add_to_cart_button ajax_add_to_cart inline-block bg-gradient-to-b from-enduro-red-100 to-enduro-red-200 hover:from-enduro-red-200 hover:to-enduro-red-100 text-white py-2 px-4 rounded text-sm font-medium transition">
 						<?php echo esc_html__( 'Kupi odmah', 'silvester' ); ?>
 					</a>
 				<?php endif; ?>

@@ -166,6 +166,119 @@
     });
     });
 </script>
+<!-- Cart popup -->
+<div id="cart-popup-overlay" class="fixed inset-0 bg-black/60 z-[200] hidden"></div>
+<div id="cart-popup" class="fixed top-0 right-0 h-full w-full max-w-sm bg-white z-[201] shadow-2xl translate-x-full transition-transform duration-300" style="display:flex;flex-direction:column;">
+
+    <div class="flex items-center justify-between px-5 py-4 border-b border-gray-200">
+        <h2 class="text-lg font-semibold text-enduro-grey-900">Košarica</h2>
+        <button id="cart-popup-close" class="text-gray-400 hover:text-enduro-grey-900 text-2xl leading-none">&times;</button>
+    </div>
+
+    <div id="cart-popup-items" class="flex-1 overflow-y-auto px-5 py-4 text-sm text-enduro-grey-800">
+        <p class="text-center text-gray-400 py-8">Košarica je prazna.</p>
+    </div>
+
+    <div class="px-5 py-4 border-t border-gray-200 space-y-2">
+        <div id="cart-popup-subtotal" class="flex justify-between font-semibold text-base mb-3 hidden">
+            <span>Ukupno:</span>
+            <span id="cart-popup-subtotal-value" class="text-enduro-red-100"></span>
+        </div>
+        <a href="<?php echo esc_url( wc_get_cart_url() ); ?>" class="block text-center w-full border border-enduro-red-100 text-enduro-red-100 hover:bg-enduro-red-100 hover:text-white py-2.5 rounded text-sm font-medium transition">Idi na košaricu</a>
+        <a href="<?php echo esc_url( wc_get_checkout_url() ); ?>" class="block text-center w-full bg-gradient-to-b from-enduro-red-100 to-enduro-red-200 hover:from-enduro-red-200 hover:to-enduro-red-100 text-white py-2.5 rounded text-sm font-medium transition">Prijeđi na blagajnu</a>
+    </div>
+</div>
+
+<script>
+(function() {
+    var overlay = document.getElementById('cart-popup-overlay');
+    var popup   = document.getElementById('cart-popup');
+    var closeBtn = document.getElementById('cart-popup-close');
+
+    function openPopup() {
+        overlay.classList.remove('hidden');
+        requestAnimationFrame(function() {
+            popup.classList.remove('translate-x-full');
+        });
+        document.body.style.overflow = 'hidden';
+    }
+    function closePopup() {
+        popup.classList.add('translate-x-full');
+        overlay.classList.add('hidden');
+        document.body.style.overflow = '';
+    }
+
+    closeBtn.addEventListener('click', closePopup);
+    overlay.addEventListener('click', closePopup);
+
+    function renderCart(data) {
+        var items   = document.getElementById('cart-popup-items');
+        var subtotalWrap = document.getElementById('cart-popup-subtotal');
+        var subtotalVal  = document.getElementById('cart-popup-subtotal-value');
+
+        if (!data || !data.items || data.items.length === 0) {
+            items.innerHTML = '<p class="text-center text-gray-400 py-8">Košarica je prazna.</p>';
+            subtotalWrap.classList.add('hidden');
+            return;
+        }
+
+        var html = '<ul class="space-y-4">';
+        data.items.forEach(function(item) {
+            html += '<li class="flex gap-3 items-start">';
+            if (item.thumbnail) {
+                html += '<img src="' + item.thumbnail + '" class="w-16 h-16 object-contain border border-gray-100 rounded flex-shrink-0">';
+            }
+            html += '<div class="flex-1 min-w-0">';
+            html += '<p class="font-medium text-enduro-grey-900 leading-tight">' + item.name + '</p>';
+            html += '<p class="text-gray-400 text-xs mt-0.5">' + item.quantity + ' &times; ' + item.price + '</p>';
+            html += '</div></li>';
+        });
+        html += '</ul>';
+        items.innerHTML = html;
+        subtotalVal.innerHTML = data.subtotal;
+        subtotalWrap.classList.remove('hidden');
+    }
+
+    function fetchCart() {
+        fetch('<?php echo esc_url( admin_url('admin-ajax.php') ); ?>?action=silvester_cart_popup', {
+            method: 'GET',
+            headers: { 'X-Requested-With': 'XMLHttpRequest' }
+        })
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+            renderCart(data);
+            openPopup();
+        });
+    }
+
+    // Disable WooCommerce cart redirect + suppress "Vidi košaricu" link
+    if (typeof wc_add_to_cart_params !== 'undefined') {
+        wc_add_to_cart_params.cart_redirect_after_add = 'no';
+        wc_add_to_cart_params.i18n_view_cart = '';
+    }
+
+    // Block any .wc-forward link from navigating
+    jQuery(document).on('click', '.wc-forward', function(e) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+    });
+
+    // WooCommerce fires this on AJAX add-to-cart
+    jQuery(document.body).on('added_to_cart', function(e, fragments, hash, $btn) {
+        if ($btn) $btn.removeClass('wc-forward');
+        // WooCommerce injects "Vidi košaricu" link AFTER this event — remove in next tick
+        setTimeout(function() {
+            jQuery('.added_to_cart.wc-forward').remove();
+        }, 0);
+        fetchCart();
+    });
+
+    // Also handle non-AJAX (page reload) — check for ?add-to-cart in URL on single product
+    if (window.location.search.indexOf('added-to-cart') !== -1 || document.querySelector('.woocommerce-message')) {
+        fetchCart();
+    }
+})();
+</script>
 </body>
 
 </html>

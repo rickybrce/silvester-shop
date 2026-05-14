@@ -61,6 +61,30 @@ do_action( 'woocommerce_shop_loop_header' );
 	<aside class="w-full lg:w-1/4 flex-shrink-0">
 		<div class="lg:sticky lg:top-30">
 
+			<!-- Product search -->
+			<form role="search" method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>" class="mb-5">
+				<div class="relative">
+					<input type="search" name="s"
+						value="<?php echo esc_attr( get_search_query() ); ?>"
+						placeholder="<?php esc_attr_e( 'Pretraži proizvode...', 'silvester' ); ?>"
+						class="w-full border border-gray-200 rounded py-2 pl-3 pr-10 text-sm text-enduro-grey-900 focus:outline-none focus:border-enduro-red-100 transition"
+					>
+					<input type="hidden" name="post_type" value="product">
+					<?php
+					// Preserve active category filter
+					if ( is_product_category() ) {
+						$cat = get_queried_object();
+						echo '<input type="hidden" name="product_cat" value="' . esc_attr( $cat->slug ) . '">';
+					}
+					?>
+					<button type="submit" class="absolute right-0 top-0 h-full px-3 text-enduro-grey-500 hover:text-enduro-red-100 transition" aria-label="Pretraži">
+						<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z"/>
+						</svg>
+					</button>
+				</div>
+			</form>
+
 			<?php
 			$product_categories = get_terms( [
 				'taxonomy'   => 'product_cat',

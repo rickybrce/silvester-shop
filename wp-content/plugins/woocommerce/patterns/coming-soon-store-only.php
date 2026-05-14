@@ -40,7 +40,7 @@ if ( wp_is_block_theme() ) {
 <!-- /wp:spacer -->
 
 <!-- wp:heading {"textAlign":"center","level":1,"fontFamily":"<?php echo esc_html( $cardo_font_family ); ?>"} -->
-<h1 class="wp-block-heading has-text-align-center has-<?php echo esc_html( $cardo_font_family ); ?>-font-family"><?php echo esc_html__( 'Great things are on the horizon', 'woocommerce' ); ?></h1>
+<h1 class="lg:pt-20 wp-block-heading has-text-align-center has-<?php echo esc_html( $cardo_font_family ); ?>-font-family"><?php echo esc_html__( 'Great things are on the horizon', 'woocommerce' ); ?></h1>
 <!-- /wp:heading -->
 
 <!-- wp:spacer {"height":"10px"} -->

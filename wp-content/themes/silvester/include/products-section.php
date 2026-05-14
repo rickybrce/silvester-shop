@@ -34,7 +34,7 @@ if ($products_query->have_posts()) : ?>
                                             <div class="w-full h-65 bg-cover bg-center bg-no-repeat" style="background-image: url(<?php echo esc_url(get_the_post_thumbnail_url(get_the_ID(), 'large')); ?>);"></div>
                                         <?php else : ?>
                                             <div class="w-full h-65 bg-enduro-grey-400 flex items-center justify-center">
-                                                <span class="text-enduro-grey-600"><?php echo esc_html__('No image', 'silvester'); ?></span>
+                                                <span class="text-enduro-grey-600"><?php echo esc_html__('Bez slike', 'silvester'); ?></span>
                                             </div>
                                         <?php endif; ?>
                                         <div class="p-4">
@@ -71,7 +71,7 @@ if ($products_query->have_posts()) : ?>
                                 <div class="w-full h-[300px] bg-cover bg-center bg-no-repeat" style="background-image: url(<?php echo esc_url(get_the_post_thumbnail_url(get_the_ID(), 'large')); ?>);"></div>
                             <?php else : ?>
                                 <div class="w-full h-[300px] bg-enduro-grey-400 flex items-center justify-center">
-                                    <span class="text-enduro-grey-600"><?php echo esc_html__('No image', 'silvester'); ?></span>
+                                    <span class="text-enduro-grey-600"><?php echo esc_html__('Bez slike', 'silvester'); ?></span>
                                 </div>
                             <?php endif; ?>
                             <div class="p-4">

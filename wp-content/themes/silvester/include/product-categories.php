@@ -40,7 +40,7 @@ if (!empty($product_categories) && !is_wp_error($product_categories)) : ?>
                                             <div class="w-full h-55 bg-cover bg-center bg-no-repeat transition-transform duration-300 group-hover:scale-105" style="background-image: url(<?php echo esc_url($image_url); ?>);"></div>
                                         <?php else : ?>
                                             <div class="w-full h-55 bg-enduro-grey-400 flex items-center justify-center">
-                                                <span class="text-enduro-grey-600"><?php echo esc_html__('No image', 'silvester'); ?></span>
+                                                <span class="text-enduro-grey-600"><?php echo esc_html__('Bez slike', 'silvester'); ?></span>
                                             </div>
                                         <?php endif; ?>
                                         <div class="p-4">
@@ -81,7 +81,7 @@ if (!empty($product_categories) && !is_wp_error($product_categories)) : ?>
                                 <div class="w-full h-[300px] bg-cover bg-center bg-no-repeat transition-transform duration-300 group-hover:scale-105" style="background-image: url(<?php echo esc_url($image_url); ?>);"></div>
                             <?php else : ?>
                                 <div class="w-full h-[300px] bg-enduro-grey-400 flex items-center justify-center">
-                                    <span class="text-enduro-grey-600"><?php echo esc_html__('No image', 'silvester'); ?></span>
+                                    <span class="text-enduro-grey-600"><?php echo esc_html__('Bez slike', 'silvester'); ?></span>
                                 </div>
                             <?php endif; ?>
                             <div class="p-4">
