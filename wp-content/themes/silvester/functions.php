@@ -12,6 +12,7 @@ function silvester_render_payment_instructions( $order_id ) {
     if ( ! $instructions ) return;
 
     $instructions = str_replace( '{order_number}', $order->get_order_number(), $instructions );
+    $instructions = str_replace( '{order_amount}', strip_tags( wc_price( $order->get_total() ) ), $instructions );
 
     echo '<section class="silvester-payment-details" style="margin-top:1.5rem;margin-bottom:2rem;">';
     echo '<h2 class="woocommerce-order-details__title">' . esc_html__( 'Detalji o plaćanju', 'silvester' ) . '</h2>';
@@ -24,6 +25,40 @@ function silvester_render_payment_instructions( $order_id ) {
 // Suppress WooCommerce's default BACS output via output buffering (fires before + after)
 add_action( 'woocommerce_thankyou_bacs', function() { ob_start(); }, 1 );
 add_action( 'woocommerce_thankyou_bacs', function() { ob_end_clean(); }, 999 );
+
+// Suppress WooCommerce's default BACS email instructions (we render our own below)
+add_action( 'woocommerce_email_before_order_table', function( $order, $sent_to_admin, $plain_text ) {
+    if ( $order->get_payment_method() === 'bacs' && ! $sent_to_admin ) {
+        $gateways = WC()->payment_gateways()->payment_gateways();
+        if ( isset( $gateways['bacs'] ) ) {
+            remove_action( 'woocommerce_email_before_order_table', [ $gateways['bacs'], 'email_instructions' ], 10 );
+        }
+    }
+}, 1, 3 );
+
+// Payment instructions in BACS pending/on-hold order email
+add_action( 'woocommerce_email_after_order_table', function( $order, $sent_to_admin, $plain_text, $email ) {
+    $allowed_emails = [ 'customer_on_hold_order', 'customer_processing_order', 'customer_pending_order' ];
+    if ( $order->get_payment_method() !== 'bacs' || $sent_to_admin ) return;
+    if ( ! in_array( $email->id, $allowed_emails, true ) ) return;
+
+    $gateways     = WC()->payment_gateways()->payment_gateways();
+    $instructions = $gateways['bacs']->instructions ?? '';
+    if ( ! $instructions ) return;
+
+    $instructions = str_replace( '{order_number}', $order->get_order_number(), $instructions );
+    $instructions = str_replace( '{order_amount}', strip_tags( wc_price( $order->get_total() ) ), $instructions );
+
+    if ( $plain_text ) {
+        echo "\n\n" . wp_strip_all_tags( $instructions ) . "\n";
+    } else {
+        echo '<table cellpadding="0" cellspacing="0" style="width:100%;margin-top:24px;border:1px solid #e5e7eb;border-radius:4px;background:#f9fafb;">';
+        echo '<tr><td style="padding:16px;font-size:14px;line-height:1.8;color:#374151;">';
+        echo '<strong style="display:block;font-size:15px;margin-bottom:8px;">Detalji o plaćanju</strong>';
+        echo wp_kses_post( wpautop( wptexturize( $instructions ) ) );
+        echo '</td></tr></table>';
+    }
+}, 10, 4 );
 
 // Between order table and address blocks (thankyou + view-order)
 add_action( 'woocommerce_after_order_details', function( $order ) {

@@ -5,7 +5,7 @@
         <div class="w-1/2 lg:w-1/5">
             <?php $footer_menu_1_title = get_field('footer_menu_1_title', 'option'); ?>
             <?php if ($footer_menu_1_title) : ?>
-                <h4 class="text-white font-semibold text-sm uppercase tracking-widest mb-4"><?php echo esc_html($footer_menu_1_title); ?></h4>
+                <h4 class="text-white font-semibold text-base uppercase tracking-widest mb-4"><?php echo esc_html($footer_menu_1_title); ?></h4>
             <?php endif; ?>
             <?php wp_nav_menu([
                 'theme_location' => 'footer-menu',
@@ -17,7 +17,7 @@
         <div class="w-1/2 lg:w-1/5">
             <?php $footer_menu_2_title = get_field('footer_menu_2_title', 'option'); ?>
             <?php if ($footer_menu_2_title) : ?>
-                <h4 class="text-white font-semibold text-sm uppercase tracking-widest mb-4"><?php echo esc_html($footer_menu_2_title); ?></h4>
+                <h4 class="text-white font-semibold text-base uppercase tracking-widest mb-4"><?php echo esc_html($footer_menu_2_title); ?></h4>
             <?php endif; ?>
             <?php wp_nav_menu([
                 'theme_location' => 'main-menu',
@@ -29,7 +29,7 @@
         <div class="w-1/2 lg:w-1/5">
             <?php $footer_legal_menu_title = get_field('footer_legal_menu_title', 'option'); ?>
             <?php if ($footer_legal_menu_title) : ?>
-                <h4 class="text-white font-semibold text-sm uppercase tracking-widest mb-4"><?php echo esc_html($footer_legal_menu_title); ?></h4>
+                <h4 class="text-white font-semibold text-base uppercase tracking-widest mb-4"><?php echo esc_html($footer_legal_menu_title); ?></h4>
             <?php endif; ?>
             <?php wp_nav_menu([
                 'theme_location' => 'legal-menu',
@@ -43,7 +43,7 @@
         <div class="w-1/2 lg:w-1/5">
             <?php $footer_contact_title = get_field('footer_contact_title', 'option'); ?>
             <?php if ($footer_contact_title) : ?>
-                <h4 class="text-white font-semibold text-sm uppercase tracking-widest mb-4"><?php echo esc_html($footer_contact_title); ?></h4>
+                <h4 class="text-white font-semibold text-base uppercase tracking-widest mb-4"><?php echo esc_html($footer_contact_title); ?></h4>
             <?php endif; ?>
             <ul class="text-sm space-y-3">
                 <?php $footer_address = get_field('footer_address', 'option'); ?>

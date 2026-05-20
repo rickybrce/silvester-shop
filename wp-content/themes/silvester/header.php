@@ -21,13 +21,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap" rel="stylesheet">
 </head>
 
-<body class="bg-white text-enduro-grey-900">
+<body class="bg-white text-enduro-grey-900"> 
     <header class="fixed top-0 left-0 w-full z-50 transition-transform duration-300" id="site-header">
         <div class="w-full pl-4 pr-2 lg:px-4 py-2 bg-[rgba(0,0,0,0.8)]">
             <div class="w-full">
                 <div class="max-w-full mx-auto">
                     <div class="flex">
-                        <a href="<?php echo home_url(); ?>" class="pr-8 flex items-center relative z-40"><img class="w-[70px] lg:w-[140px] shrink-0" src="<?php bloginfo('template_directory'); ?>/images/logo.png" width="200" height="283" />
+                        <a href="<?php echo home_url(); ?>" class="pr-8 flex items-center relative z-40"><img class="w-[50px] lg:w-[100px] shrink-0" src="<?php bloginfo('template_directory'); ?>/images/logo.png" width="200" height="283" />
                         </a>
                         <div class="w-full flex items-center justify-between">
                             <div class="w-full flex items-center justify-end lg:justify-between gap-4 lg:flex-row-reverse">

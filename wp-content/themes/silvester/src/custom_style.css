@@ -13,10 +13,14 @@
     /* Custom breakpoints */
     --breakpoint-xs: 420px;
     --breakpoint-xs3: 340px;
+
+    /* text-sm forced to 14px */
+    --text-sm: 14px;
 }
 
 html, body {
     font-family: 'Roboto', sans-serif;
+    --wp--preset--font-size--small: 14px !important;
 }
 
 #menu-main-menu {
@@ -845,7 +849,20 @@ ul.products li.product {
     @apply text-enduro-grey-700 hover:text-enduro-red-100 transition;
 }
 
+.wc-block-cart__totals-title,
+.wc-block-cart-items__header-total,
+.wc-block-cart-items__header-image { font-size: 1rem !important; }
+
 .woocommerce-bacs-bank-details { display: none !important; }
+
+.wc-block-components-totals-discount__coupon-list-item::before,
+.wc-block-components-chip::before { display: none !important; }
+
+.wc-block-components-chip {
+    padding-left: 12px !important;
+    font-size: 0.875rem !important;
+    height: 2rem !important;
+}
 
 @media (max-width: 767px) {
     .woocommerce-columns--addresses .woocommerce-column + .woocommerce-column {
