@@ -56,6 +56,75 @@ msgid "This exquisite compilation showcases a diverse array of photographs that 
 msgstr "Ova izvrsna kompilacija prikazuje raznoliku lepezu fotografija koje hvataju bit različitih razdoblja i kultura, odražavajući jedinstvene stilove i perspektive svakog umjetnika."
 
 #: theme.json
+msgctxt "Template part name"
+msgid "Header"
+msgstr "Zaglavlje"
+
+#: theme.json
+msgctxt "Template part name"
+msgid "Footer"
+msgstr "Podnožje"
+
+#: theme.json styles/02-noon.json styles/04-afternoon.json
+#: styles/05-twilight.json styles/06-morning.json styles/08-midnight.json
+#: styles/typography/typography-preset-1.json
+#: styles/typography/typography-preset-3.json
+#: styles/typography/typography-preset-4.json
+#: styles/typography/typography-preset-5.json
+#: styles/typography/typography-preset-7.json
+msgctxt "Font size name"
+msgid "Extra Large"
+msgstr "Ekstra veliko"
+
+#: theme.json styles/02-noon.json styles/04-afternoon.json
+#: styles/05-twilight.json styles/06-morning.json styles/08-midnight.json
+#: styles/typography/typography-preset-1.json
+#: styles/typography/typography-preset-3.json
+#: styles/typography/typography-preset-4.json
+#: styles/typography/typography-preset-5.json
+#: styles/typography/typography-preset-7.json
+msgctxt "Font size name"
+msgid "Large"
+msgstr "Veliko"
+
+#: theme.json styles/02-noon.json styles/04-afternoon.json
+#: styles/05-twilight.json styles/06-morning.json styles/08-midnight.json
+#: styles/typography/typography-preset-1.json
+#: styles/typography/typography-preset-3.json
+#: styles/typography/typography-preset-4.json
+#: styles/typography/typography-preset-5.json
+#: styles/typography/typography-preset-7.json
+msgctxt "Font size name"
+msgid "Medium"
+msgstr "Srednje"
+
+#: theme.json styles/01-evening.json styles/02-noon.json styles/03-dusk.json
+#: styles/04-afternoon.json styles/05-twilight.json styles/06-morning.json
+#: styles/07-sunrise.json styles/08-midnight.json styles/colors/01-evening.json
+#: styles/colors/02-noon.json styles/colors/03-dusk.json
+#: styles/colors/04-afternoon.json styles/colors/05-twilight.json
+#: styles/colors/06-morning.json styles/colors/07-sunrise.json
+#: styles/colors/08-midnight.json
+msgctxt "Color name"
+msgid "Contrast"
+msgstr "Kontrast"
+
+#: theme.json styles/01-evening.json styles/02-noon.json styles/03-dusk.json
+#: styles/04-afternoon.json styles/05-twilight.json styles/06-morning.json
+#: styles/07-sunrise.json styles/08-midnight.json styles/colors/01-evening.json
+#: styles/colors/02-noon.json styles/colors/03-dusk.json
+#: styles/colors/04-afternoon.json styles/colors/05-twilight.json
+#: styles/colors/06-morning.json styles/colors/07-sunrise.json
+#: styles/colors/08-midnight.json
+msgctxt "Color name"
+msgid "Base"
+msgstr "Osnovica"
+
+#: functions.php:109
+msgid "A collection of full page layouts."
+msgstr "Zbirka postave cijele stranice."
+
+#: theme.json
 msgctxt "Custom template name"
 msgid "Page No Title"
 msgstr "Stranica bez naslova"
@@ -64,6 +133,81 @@ msgstr "Stranica bez naslova"
 msgctxt "Template part name"
 msgid "Sidebar"
 msgstr "Bočna traka"
+
+#: theme.json styles/02-noon.json styles/04-afternoon.json
+#: styles/05-twilight.json styles/06-morning.json styles/08-midnight.json
+#: styles/typography/typography-preset-1.json
+#: styles/typography/typography-preset-3.json
+#: styles/typography/typography-preset-4.json
+#: styles/typography/typography-preset-5.json
+#: styles/typography/typography-preset-7.json
+msgctxt "Font size name"
+msgid "Extra Extra Large"
+msgstr "Ekstra ekstra veliko"
+
+#: theme.json styles/02-noon.json styles/04-afternoon.json
+#: styles/05-twilight.json styles/06-morning.json styles/08-midnight.json
+#: styles/typography/typography-preset-1.json
+#: styles/typography/typography-preset-3.json
+#: styles/typography/typography-preset-4.json
+#: styles/typography/typography-preset-5.json
+#: styles/typography/typography-preset-7.json
+msgctxt "Font size name"
+msgid "Small"
+msgstr "Malo"
+
+#: functions.php:80
+msgid "Checkmark"
+msgstr "Kvačica provjere"
+
+#: patterns/contact-info-locations.php:33 patterns/footer-social.php:22
+#: patterns/media-instagram-grid.php:24 patterns/page-cv-bio.php:47
+#: patterns/page-link-in-bio-heading-paragraph-links-image.php:36
+#: patterns/page-link-in-bio-with-tight-margins.php:48
+msgid "Instagram"
+msgstr "Instagram"
+
+#: patterns/footer-columns.php:37 patterns/footer.php:47
+msgid "About"
+msgstr "Informacije"
+
+#: patterns/contact-info-locations.php:34 patterns/footer-social.php:21
+msgid "Facebook"
+msgstr "Facebook"
+
+#: patterns/post-navigation.php
+msgctxt "Pattern title"
+msgid "Post navigation"
+msgstr "Navigacija objava"
+
+#: patterns/comments.php:18
+msgid "Comments"
+msgstr "Komentari"
+
+#: patterns/comments.php
+msgctxt "Pattern title"
+msgid "Comments"
+msgstr "Komentari"
+
+#: patterns/hidden-404.php
+msgctxt "Pattern title"
+msgid "404"
+msgstr "404"
+
+#: patterns/hidden-sidebar.php
+msgctxt "Pattern title"
+msgid "Sidebar"
+msgstr "Bočna traka"
+
+#: patterns/hidden-search.php
+msgctxt "Pattern title"
+msgid "Search"
+msgstr "Pretraži"
+
+#: patterns/template-query-loop.php
+msgctxt "Pattern title"
+msgid "List of posts, 1 column"
+msgstr "Popis objava, 1 stupac"
 
 #: theme.json
 msgctxt "Template part name"
@@ -77,23 +221,8 @@ msgstr "Stupci podnožja"
 
 #: theme.json
 msgctxt "Template part name"
-msgid "Footer"
-msgstr "Podnožje"
-
-#: theme.json
-msgctxt "Template part name"
 msgid "Header with large title"
 msgstr "Zaglavlje s velikim naslovom"
-
-#: theme.json
-msgctxt "Template part name"
-msgid "Vertical site header"
-msgstr "Okomito zaglavlje web stranice"
-
-#: theme.json
-msgctxt "Template part name"
-msgid "Header"
-msgstr "Zaglavlje"
 
 #: styles/02-noon.json styles/typography/typography-preset-1.json
 msgctxt "Font family name"
@@ -284,75 +413,20 @@ msgctxt "Style variation name"
 msgid "Morning"
 msgstr "Jutro"
 
-#: styles/05-twilight.json styles/colors/05-twilight.json
-msgctxt "Style variation name"
-msgid "Twilight"
-msgstr "Suton"
-
 #: styles/04-afternoon.json styles/colors/04-afternoon.json
 msgctxt "Style variation name"
 msgid "Afternoon"
 msgstr "Poslijepodne"
 
+#: styles/05-twilight.json styles/colors/05-twilight.json
+msgctxt "Style variation name"
+msgid "Twilight"
+msgstr "Suton"
+
 #: styles/03-dusk.json styles/colors/03-dusk.json
 msgctxt "Style variation name"
 msgid "Dusk"
 msgstr "Sumrak"
-
-#: theme.json styles/02-noon.json styles/04-afternoon.json
-#: styles/05-twilight.json styles/06-morning.json styles/08-midnight.json
-#: styles/typography/typography-preset-1.json
-#: styles/typography/typography-preset-3.json
-#: styles/typography/typography-preset-4.json
-#: styles/typography/typography-preset-5.json
-#: styles/typography/typography-preset-7.json
-msgctxt "Font size name"
-msgid "Extra Extra Large"
-msgstr "Ekstra ekstra veliko"
-
-#: theme.json styles/02-noon.json styles/04-afternoon.json
-#: styles/05-twilight.json styles/06-morning.json styles/08-midnight.json
-#: styles/typography/typography-preset-1.json
-#: styles/typography/typography-preset-3.json
-#: styles/typography/typography-preset-4.json
-#: styles/typography/typography-preset-5.json
-#: styles/typography/typography-preset-7.json
-msgctxt "Font size name"
-msgid "Extra Large"
-msgstr "Ekstra veliko"
-
-#: theme.json styles/02-noon.json styles/04-afternoon.json
-#: styles/05-twilight.json styles/06-morning.json styles/08-midnight.json
-#: styles/typography/typography-preset-1.json
-#: styles/typography/typography-preset-3.json
-#: styles/typography/typography-preset-4.json
-#: styles/typography/typography-preset-5.json
-#: styles/typography/typography-preset-7.json
-msgctxt "Font size name"
-msgid "Large"
-msgstr "Veliko"
-
-#: theme.json styles/02-noon.json styles/04-afternoon.json
-#: styles/05-twilight.json styles/06-morning.json styles/08-midnight.json
-#: styles/typography/typography-preset-1.json
-#: styles/typography/typography-preset-3.json
-#: styles/typography/typography-preset-4.json
-#: styles/typography/typography-preset-5.json
-#: styles/typography/typography-preset-7.json
-msgctxt "Font size name"
-msgid "Medium"
-msgstr "Srednje"
-
-#: theme.json styles/02-noon.json styles/04-afternoon.json
-#: styles/05-twilight.json styles/06-morning.json styles/08-midnight.json
-#: styles/typography/typography-preset-1.json
-#: styles/typography/typography-preset-3.json
-#: styles/typography/typography-preset-4.json
-#: styles/typography/typography-preset-5.json
-#: styles/typography/typography-preset-7.json
-msgctxt "Font size name"
-msgid "Small"
-msgstr "Malo"
 
 #: styles/02-noon.json styles/colors/02-noon.json
 msgctxt "Style variation name"
@@ -425,42 +499,10 @@ msgctxt "Color name"
 msgid "Accent 1"
 msgstr "Naglasak 1"
 
-#: theme.json styles/01-evening.json styles/02-noon.json styles/03-dusk.json
-#: styles/04-afternoon.json styles/05-twilight.json styles/06-morning.json
-#: styles/07-sunrise.json styles/08-midnight.json styles/colors/01-evening.json
-#: styles/colors/02-noon.json styles/colors/03-dusk.json
-#: styles/colors/04-afternoon.json styles/colors/05-twilight.json
-#: styles/colors/06-morning.json styles/colors/07-sunrise.json
-#: styles/colors/08-midnight.json
-msgctxt "Color name"
-msgid "Contrast"
-msgstr "Kontrast"
-
-#: theme.json styles/01-evening.json styles/02-noon.json styles/03-dusk.json
-#: styles/04-afternoon.json styles/05-twilight.json styles/06-morning.json
-#: styles/07-sunrise.json styles/08-midnight.json styles/colors/01-evening.json
-#: styles/colors/02-noon.json styles/colors/03-dusk.json
-#: styles/colors/04-afternoon.json styles/colors/05-twilight.json
-#: styles/colors/06-morning.json styles/colors/07-sunrise.json
-#: styles/colors/08-midnight.json
-msgctxt "Color name"
-msgid "Base"
-msgstr "Osnovica"
-
 #: styles/01-evening.json styles/colors/01-evening.json
 msgctxt "Style variation name"
 msgid "Evening"
 msgstr "Večer"
-
-#: patterns/vertical-header.php
-msgctxt "Pattern description"
-msgid "Vertical site header with site title and navigation."
-msgstr "Okomito zaglavlje s naslovom web-stranice i navigacijom"
-
-#: patterns/vertical-header.php
-msgctxt "Pattern title"
-msgid "Vertical site header"
-msgstr "Okomito zaglavlje web stranice"
 
 #: patterns/text-faqs.php:83
 msgctxt "Question in the FAQs pattern."
@@ -482,25 +524,96 @@ msgctxt "Question in the FAQs pattern."
 msgid "What is The Stories Book about?"
 msgstr "O čemu govori Knjiga priča?"
 
-#: patterns/text-faqs.php:21
-msgctxt "Heading of the FAQs pattern."
-msgid "Frequently Asked Questions"
-msgstr "Često postavljana pitanja"
+#: patterns/text-faqs.php
+msgctxt "Pattern title"
+msgid "FAQs"
+msgstr "ČPP"
 
 #: patterns/text-faqs.php
 msgctxt "Pattern description"
 msgid "A FAQs section with a FAQ heading and list of questions and answers."
 msgstr "Odjeljak ČPP s ČPP naslovom i popisom pitanja i odgovora."
 
-#: patterns/text-faqs.php
-msgctxt "Pattern title"
-msgid "FAQs"
-msgstr "ČPP"
-
 #: patterns/testimonials-large.php:47
 msgctxt "Alt text for testimonial image."
 msgid "Picture of a person typing on a typewriter."
 msgstr "Slika osobe koja tipka na pisaćem stroju."
+
+#: functions.php:116
+msgid "Post formats"
+msgstr "Formati objava"
+
+#: functions.php:108
+msgid "Pages"
+msgstr "Stranice"
+
+#: patterns/banner-intro-image.php:31
+msgctxt "Heading for banner pattern."
+msgid "New arrivals"
+msgstr "Novopridošli"
+
+#: patterns/banner-intro-image.php:22
+msgctxt "Alt text for intro picture."
+msgid "Picture of a flower"
+msgstr "Slika cvijeta"
+
+#: patterns/banner-intro-image.php
+msgctxt "Pattern description"
+msgid "A Intro pattern with Short heading, paragraph and image on the left."
+msgstr "Uvodni uzorak s kratkim naslovom, odlomkom i slikom na lijevoj strani."
+
+#: patterns/banner-intro-image.php
+msgctxt "Pattern title"
+msgid "Short heading and paragraph and image on the left"
+msgstr "Kratki naslov i odlomak te slika lijevo"
+
+#: patterns/banner-cover-big-heading.php:27 patterns/footer-columns.php:33
+#: patterns/footer-columns.php:35 patterns/footer-newsletter.php:20
+#: patterns/template-home-photo-blog.php:22
+msgid "Stories"
+msgstr "Priče"
+
+#: patterns/banner-cover-big-heading.php:20
+#: patterns/media-instagram-grid.php:36 patterns/page-coming-soon.php:19
+msgid "Photo of a field full of flowers, a blue sky and a tree."
+msgstr "Fotografija polja punog cvijeća, plavog neba i stabla."
+
+#: patterns/banner-cover-big-heading.php
+msgctxt "Pattern description"
+msgid "A full-width cover section with a large background image and an oversized heading."
+msgstr "Naslovnica pune širine s velikom pozadinskom slikom i jako velikim naslovom."
+
+#: patterns/banner-cover-big-heading.php
+msgctxt "Pattern title"
+msgid "Cover with big heading"
+msgstr "Omot s velikim naslovom"
+
+#: patterns/banner-about-book.php:34
+msgid "Image of a book"
+msgstr "Slika knjige"
+
+#: patterns/banner-about-book.php:22
+msgid "About the book"
+msgstr "O knjizi"
+
+#: patterns/banner-about-book.php
+msgctxt "Pattern description"
+msgid "Banner with book description and accompanying image for promotion."
+msgstr "Banner s opisom knjige i pratećom slikom za promociju."
+
+#: patterns/banner-about-book.php
+msgctxt "Pattern title"
+msgid "Banner with book description"
+msgstr "Banner s opisom knjige"
+
+#: functions.php:136
+msgctxt "Label for the block binding placeholder in the editor"
+msgid "Post format name"
+msgstr "Naziv formata objave"
+
+#: functions.php:117
+msgid "A collection of post format patterns."
+msgstr "Zbirka obrazaca formata objave."
 
 #: patterns/testimonials-large.php:24
 msgctxt "Testimonial heading."
@@ -526,6 +639,11 @@ msgstr "Što ljudi govore"
 msgctxt "Pattern description"
 msgid "A section with three columns and two rows, each containing a testimonial and citation."
 msgstr "Odjeljak s tri stupca i dva retka, od kojih svaki sadrži preporuku i citat."
+
+#: patterns/banner-about-book.php:26
+msgctxt "Pattern placeholder text."
+msgid "This exquisite compilation showcases a diverse array of photographs that capture the essence of different eras and cultures, reflecting the unique styles and perspectives of each artist. Fleckenstein’s evocative imagery, Strand’s groundbreaking modernist approach, and Kōno’s meticulous documentation of Japanese life come together in a harmonious blend that celebrates the art of photography. Each image in “The Stories Book” is accompanied by insightful commentary, providing historical context and revealing the stories behind the photographs. This collection is not only a visual feast but also a tribute to the power of photography to preserve and narrate the multifaceted experiences of humanity."
+msgstr "Ova izvrsna kompilacija prikazuje raznoliku lepezu fotografija koje hvataju bit različitih razdoblja i kultura, odražavajući jedinstvene stilove i perspektive svakog umjetnika. Fleckensteinove evokativne slike, Strandov revolucionarni modernistički pristup i Kōnova pedantna dokumentacija japanskog života spajaju se u skladnu mješavinu koja slavi umjetnost fotografije. Svaka slika u \"Knjizi priča\" popraćena je pronicljivim komentarima, pružajući povijesni kontekst i otkrivajući priče iza fotografija. Ova kolekcija nije samo vizualna gozba, već i počast moći fotografije da sačuva i pripovijeda višestruka iskustva čovječanstva."
 
 #: patterns/testimonials-6-col.php
 msgctxt "Pattern title"
@@ -577,11 +695,6 @@ msgstr "2 stupca s avatarom"
 msgctxt "Pattern title"
 msgid "Right-aligned single post"
 msgstr "Samostalna objava poravnata udesno"
-
-#: patterns/template-single-text-blog.php
-msgctxt "Pattern title"
-msgid "Text blog single post"
-msgstr "Tekstualni blog samostalna objava"
 
 #: patterns/template-single-photo-blog.php:79
 msgid "Next Photo"
@@ -664,16 +777,6 @@ msgctxt "Pattern description"
 msgid "A list of posts, 1 column, with featured image and post date."
 msgstr "Popis objava, 1 stupac, s istaknutom slikom i datumom objave."
 
-#: patterns/template-query-loop.php
-msgctxt "Pattern title"
-msgid "List of posts, 1 column"
-msgstr "Popis objava, 1 stupac"
-
-#: patterns/template-page-vertical-header-blog.php
-msgctxt "Pattern title"
-msgid "Right-aligned page"
-msgstr "Udesno poravnata stranica"
-
 #: patterns/template-query-loop-photo-blog.php
 msgctxt "Pattern description"
 msgid "A list of posts, 3 columns, with only featured images."
@@ -716,11 +819,6 @@ msgctxt "Pattern title"
 msgid "News blog with sidebar"
 msgstr "Blog vijesti s bočnom trakom"
 
-#: patterns/template-home-text-blog.php
-msgctxt "Pattern title"
-msgid "Text blog home"
-msgstr "Tekstualni blog početna"
-
 #: patterns/template-home-posts-grid-news-blog.php:114
 msgid "Architecture"
 msgstr "Arhitektura"
@@ -740,11 +838,6 @@ msgctxt "Pattern title"
 msgid "News blog home"
 msgstr "Vijesti blog početna"
 
-#: patterns/template-archive-text-blog.php
-msgctxt "Pattern title"
-msgid "Text blog archive"
-msgstr "Tekstualni blog arhiva"
-
 #: patterns/template-archive-photo-blog.php
 msgctxt "Pattern title"
 msgid "Photo blog archive"
@@ -754,11 +847,6 @@ msgstr "Foto blog arhiva"
 msgctxt "Pattern title"
 msgid "News blog archive"
 msgstr "Vijesti blog arhiva"
-
-#: patterns/template-404-vertical-header-blog.php
-msgctxt "Pattern title"
-msgid "Right-aligned 404"
-msgstr "Udesno poravnati 404"
 
 #: patterns/services-team-photos.php:50
 msgid "Man in hat, standing in front of a building."
@@ -946,11 +1034,6 @@ msgid "Pricing"
 msgstr "Cjenik"
 
 #: patterns/pricing-2-col.php
-msgctxt "Pattern description"
-msgid "Pricing section with two columns, pricing plan, description, and call-to-action buttons."
-msgstr "Odjeljak s cijenama s dva stupca, planom cijena, opisom i dugmadi za poziv na akciju."
-
-#: patterns/pricing-2-col.php
 msgctxt "Pattern title"
 msgid "Pricing, 2 columns"
 msgstr "Cijene, 2 stupca"
@@ -975,11 +1058,6 @@ msgstr "Navigacija objava"
 msgctxt "Pattern description"
 msgid "Next and previous post links."
 msgstr "Poveznice na sljedeću i prethodnu objavu."
-
-#: patterns/post-navigation.php
-msgctxt "Pattern title"
-msgid "Post navigation"
-msgstr "Navigacija objava"
 
 #: patterns/page-shop-home.php
 msgctxt "Pattern description"
@@ -1054,10 +1132,6 @@ msgstr "Poveznica u biografiji s profilom, poveznicama i širokim rubovima"
 #: patterns/page-link-in-bio-heading-paragraph-links-image.php:57
 msgid "Photo of a woman worker."
 msgstr "Fotografija žene radnice."
-
-#: patterns/page-link-in-bio-heading-paragraph-links-image.php:30
-msgid "Lewis W. Hine studied sociology before moving to New York in 1901 to work at the Ethical Culture School, where he took up photography to enhance his teaching practices"
-msgstr "Lewis W. Hine studirao je sociologiju prije nego što se 1901. preselio u New York kako bi radio u Školi etičke kulture, gdje se počeo baviti fotografijom kako bi poboljšao svoju nastavnu praksu"
 
 #: patterns/page-link-in-bio-heading-paragraph-links-image.php:26
 msgid "Lewis Hine"
@@ -1266,30 +1340,14 @@ msgctxt "Message explaining that there are no results returned from a search."
 msgid "Sorry, but nothing was found. Please try a search with different keywords."
 msgstr "Nažalost, ništa nije pronađeno. Pokušajte pretraživati ​​s drugim ključnim riječima."
 
-#: patterns/hidden-sidebar.php:37
-#: patterns/template-home-posts-grid-news-blog.php:34
-#: patterns/template-home-with-sidebar-news-blog.php:61
-msgid "Add text or blocks that will display when a query returns no results."
-msgstr "Dodaj tekst ili blokove koji će se prikazati kada upit ne vrati rezultate."
-
 #: patterns/hidden-sidebar.php:14
 msgid "Other Posts"
 msgstr "Druge objave"
-
-#: patterns/hidden-sidebar.php
-msgctxt "Pattern title"
-msgid "Sidebar"
-msgstr "Bočna traka"
 
 #: patterns/cta-heading-search.php:21 patterns/hidden-search.php:14
 msgctxt "Button text. Verb."
 msgid "Search"
 msgstr "Pretraga"
-
-#: patterns/hidden-search.php
-msgctxt "Pattern title"
-msgid "Search"
-msgstr "Pretraži"
 
 #: patterns/hidden-blog-heading.php
 msgctxt "Pattern description"
@@ -1316,25 +1374,20 @@ msgctxt "image description"
 msgid "Small totara tree on ridge above Long Point"
 msgstr "Malo stablo totara na grebenu iznad Long Pointa"
 
-#: patterns/hidden-404.php
-msgctxt "Pattern title"
-msgid "404"
-msgstr "404"
-
 #: patterns/hero-podcast.php:65
 msgctxt "Button text"
 msgid "RSS"
 msgstr "RSS"
 
-#: patterns/hero-podcast.php:61
-msgctxt "Button text"
-msgid "Pocket Casts"
-msgstr "Pocket Casts"
-
 #: patterns/hero-podcast.php:57
 msgctxt "Button text"
 msgid "Spotify"
 msgstr "Spotify"
+
+#: patterns/hero-podcast.php:61
+msgctxt "Button text"
+msgid "Pocket Casts"
+msgstr "Pocket Casts"
 
 #: patterns/hero-podcast.php:53
 msgctxt "Button text"
@@ -1350,24 +1403,19 @@ msgstr "YouTube"
 msgid "Subscribe on your favorite platform"
 msgstr "Pretplati se na svoju omiljenu platformu"
 
+#: patterns/hero-podcast.php:32
+msgid "The Stories Podcast"
+msgstr "Podcast priča"
+
 #: patterns/hero-podcast.php:36
 msgctxt "Podcast description"
 msgid "Storytelling, expert analysis, and vivid descriptions. The Stories Podcast brings history to life, making it accessible and engaging for a global audience."
 msgstr "Priča, stručna analiza i živopisni opisi. Podcast priča oživljava povijest, čineći je dostupnom i privlačnom za globalnu publiku."
 
-#: patterns/hero-podcast.php:32
-msgid "The Stories Podcast"
-msgstr "Podcast priča"
-
 #: patterns/hero-podcast.php:22
 msgctxt "Alt text for hero image."
 msgid "Picture of a person"
 msgstr "Slika osobe"
-
-#: patterns/hero-podcast.php
-msgctxt "Pattern title"
-msgid "Hero podcast"
-msgstr "Glavni podcast"
 
 #: patterns/hero-overlapped-book-cover-with-links.php:113
 msgid "Book Image"
@@ -1407,11 +1455,6 @@ msgstr "Ispričaj svoju priču"
 msgctxt "Alt text for cover image."
 msgid "Picture of a flower"
 msgstr "Slika cvijeta"
-
-#: patterns/hero-full-width-image.php
-msgctxt "Pattern description"
-msgid "A hero with a full width image, heading, short paragraph and button."
-msgstr "Heroj sa slikom pune širine, naslovom, kratkim odlomkom i dugmetom."
 
 #: patterns/hero-full-width-image.php
 msgctxt "Pattern title"
@@ -1505,11 +1548,6 @@ msgstr "Zaglavlje sa stupcima"
 msgctxt "Pattern description"
 msgid "Site header with centered site title and navigation."
 msgstr "Zaglavlje s centriranim naslovom web-stranice i navigacijom."
-
-#: patterns/header-centered.php
-msgctxt "Pattern title"
-msgid "Centered site header"
-msgstr "Centrirano zaglavlje web-stranice"
 
 #: patterns/grid-with-categories.php:64
 msgid "Sunflowers"
@@ -1652,10 +1690,6 @@ msgstr "Autori"
 #: patterns/footer-columns.php:38 patterns/footer.php:49
 msgid "FAQs"
 msgstr "ČPP"
-
-#: patterns/footer-columns.php:37 patterns/footer.php:47
-msgid "About"
-msgstr "Informacije"
 
 #: patterns/footer-columns.php:36 patterns/footer.php:45
 #: patterns/hidden-blog-heading.php:15 patterns/template-home-text-blog.php:20
@@ -1968,22 +2002,17 @@ msgid "Tell your story"
 msgstr "Ispričaj svoju priču"
 
 #: patterns/cta-centered-heading.php
-msgctxt "Pattern description"
-msgid "A hero with a centered heading, paragraph and button."
-msgstr "Heroj s centriranim naslovom, odlomkom i dugmetom."
-
-#: patterns/cta-centered-heading.php
 msgctxt "Pattern title"
 msgid "Centered heading"
 msgstr "Centrirani naslov"
 
-#: patterns/cta-book-locations.php:131
-msgid "United Kingdom"
-msgstr "Ujedinjeno Kraljevstvo"
-
 #: patterns/cta-book-locations.php:119
 msgid "United States"
 msgstr "Sjedinjene Države"
+
+#: patterns/cta-book-locations.php:131
+msgid "United Kingdom"
+msgstr "Ujedinjeno Kraljevstvo"
 
 #: patterns/cta-book-locations.php:107
 msgid "Switzerland"
@@ -2157,17 +2186,6 @@ msgstr "E-pošta"
 msgid "TikTok"
 msgstr "TikTok"
 
-#: patterns/contact-info-locations.php:34 patterns/footer-social.php:21
-msgid "Facebook"
-msgstr "Facebook"
-
-#: patterns/contact-info-locations.php:33 patterns/footer-social.php:22
-#: patterns/media-instagram-grid.php:24 patterns/page-cv-bio.php:47
-#: patterns/page-link-in-bio-heading-paragraph-links-image.php:36
-#: patterns/page-link-in-bio-with-tight-margins.php:48
-msgid "Instagram"
-msgstr "Instagram"
-
 #: patterns/contact-info-locations.php:32 patterns/footer-social.php:23
 #: patterns/page-link-in-bio-heading-paragraph-links-image.php:40
 #: patterns/page-link-in-bio-with-tight-margins.php:52
@@ -2209,19 +2227,10 @@ msgctxt "Pattern title"
 msgid "Centered link and social links"
 msgstr "Centrirana poveznica i društvene poveznice"
 
-#: patterns/comments.php:18
-msgid "Comments"
-msgstr "Komentari"
-
 #: patterns/comments.php
 msgctxt "Pattern description"
 msgid "Comments area with comments list, pagination, and comment form."
 msgstr "Područje komentara s popisom komentara, označavanjem stranica i obrascem za komentare."
-
-#: patterns/comments.php
-msgctxt "Pattern title"
-msgid "Comments"
-msgstr "Komentari"
 
 #: patterns/binding-format.php
 msgctxt "Pattern description"
@@ -2289,10 +2298,6 @@ msgctxt "Placeholder heading in four languages."
 msgid "“Stories, <span lang=\"es\">historias</span>, <span lang=\"uk\">iсторії</span>, <span lang=\"el\">iστορίες</span>”"
 msgstr "“Priče, <span lang=\"es\">historias</span>, <span lang=\"uk\">istoríí̈</span>, <span lang=\"el\">iστορίες</span>”"
 
-#: patterns/banner-poster.php:15
-msgid "Picture of a historical building in ruins."
-msgstr "Slika ruševine povijesne građevine."
-
 #: patterns/banner-poster.php
 msgctxt "Pattern description"
 msgid "A section that can be used as a banner or a landing page to announce an event."
@@ -2331,94 +2336,95 @@ msgctxt "Sample description for banner with flower."
 msgid "Like flowers that bloom in unexpected places, every story unfolds with beauty and resilience, revealing hidden wonders."
 msgstr "Poput cvijeća koje cvjeta na neočekivanim mjestima, svaka se priča razvija ljepotom i otpornošću, otkrivajući skrivena čuda."
 
-#: patterns/banner-intro-image.php:31
-msgctxt "Heading for banner pattern."
-msgid "New arrivals"
-msgstr "Novopridošli"
+#: patterns/page-link-in-bio-heading-paragraph-links-image.php:30
+msgid "Lewis W. Hine studied sociology before moving to New York in 1901 to work at the Ethical Culture School, where he took up photography to enhance his teaching practices"
+msgstr "Lewis W. Hine studirao je sociologiju prije nego što se 1901. preselio u New York kako bi radio u Školi etičke kulture, gdje se počeo baviti fotografijom kako bi poboljšao svoju nastavnu praksu"
 
-#: patterns/banner-intro-image.php:22
-msgctxt "Alt text for intro picture."
-msgid "Picture of a flower"
-msgstr "Slika cvijeta"
+#: patterns/hidden-sidebar.php:37
+#: patterns/template-home-posts-grid-news-blog.php:34
+#: patterns/template-home-with-sidebar-news-blog.php:61
+msgid "Add text or blocks that will display when a query returns no results."
+msgstr "Dodaj tekst ili blokove koji će se prikazati kada upit ne vrati rezultate."
 
-#: patterns/banner-intro-image.php
-msgctxt "Pattern description"
-msgid "A Intro pattern with Short heading, paragraph and image on the left."
-msgstr "Uvodni uzorak s kratkim naslovom, odlomkom i slikom na lijevoj strani."
+#: patterns/banner-poster.php:15
+msgid "Picture of a historical building in ruins."
+msgstr "Slika ruševine povijesne građevine."
 
-#: patterns/banner-intro-image.php
+#: patterns/hero-podcast.php
 msgctxt "Pattern title"
-msgid "Short heading and paragraph and image on the left"
-msgstr "Kratki naslov i odlomak te slika lijevo"
+msgid "Hero podcast"
+msgstr "Glavni podcast"
 
-#: patterns/banner-cover-big-heading.php:27 patterns/footer-columns.php:33
-#: patterns/footer-columns.php:35 patterns/footer-newsletter.php:20
-#: patterns/template-home-photo-blog.php:22
-msgid "Stories"
-msgstr "Priče"
-
-#: patterns/banner-cover-big-heading.php:20
-#: patterns/media-instagram-grid.php:36 patterns/page-coming-soon.php:19
-msgid "Photo of a field full of flowers, a blue sky and a tree."
-msgstr "Fotografija polja punog cvijeća, plavog neba i stabla."
-
-#: patterns/banner-cover-big-heading.php
+#: patterns/vertical-header.php
 msgctxt "Pattern description"
-msgid "A full-width cover section with a large background image and an oversized heading."
-msgstr "Naslovnica pune širine s velikom pozadinskom slikom i jako velikim naslovom."
+msgid "Vertical site header with site title and navigation."
+msgstr "Okomito zaglavlje s naslovom web-stranice i navigacijom"
 
-#: patterns/banner-cover-big-heading.php
-msgctxt "Pattern title"
-msgid "Cover with big heading"
-msgstr "Omot s velikim naslovom"
-
-#: patterns/banner-about-book.php:34
-msgid "Image of a book"
-msgstr "Slika knjige"
-
-#: patterns/banner-about-book.php:26
-msgctxt "Pattern placeholder text."
-msgid "This exquisite compilation showcases a diverse array of photographs that capture the essence of different eras and cultures, reflecting the unique styles and perspectives of each artist. Fleckenstein’s evocative imagery, Strand’s groundbreaking modernist approach, and Kōno’s meticulous documentation of Japanese life come together in a harmonious blend that celebrates the art of photography. Each image in “The Stories Book” is accompanied by insightful commentary, providing historical context and revealing the stories behind the photographs. This collection is not only a visual feast but also a tribute to the power of photography to preserve and narrate the multifaceted experiences of humanity."
-msgstr "Ova izvrsna kompilacija prikazuje raznoliku lepezu fotografija koje hvataju bit različitih razdoblja i kultura, odražavajući jedinstvene stilove i perspektive svakog umjetnika. Fleckensteinove evokativne slike, Strandov revolucionarni modernistički pristup i Kōnova pedantna dokumentacija japanskog života spajaju se u skladnu mješavinu koja slavi umjetnost fotografije. Svaka slika u \"Knjizi priča\" popraćena je pronicljivim komentarima, pružajući povijesni kontekst i otkrivajući priče iza fotografija. Ova kolekcija nije samo vizualna gozba, već i počast moći fotografije da sačuva i pripovijeda višestruka iskustva čovječanstva."
-
-#: patterns/banner-about-book.php:22
-msgid "About the book"
-msgstr "O knjizi"
-
-#: patterns/banner-about-book.php
+#: patterns/cta-centered-heading.php
 msgctxt "Pattern description"
-msgid "Banner with book description and accompanying image for promotion."
-msgstr "Banner s opisom knjige i pratećom slikom za promociju."
+msgid "A hero with a centered heading, paragraph and button."
+msgstr "Heroj s centriranim naslovom, odlomkom i dugmetom."
 
-#: patterns/banner-about-book.php
+#: patterns/hero-full-width-image.php
+msgctxt "Pattern description"
+msgid "A hero with a full width image, heading, short paragraph and button."
+msgstr "Heroj sa slikom pune širine, naslovom, kratkim odlomkom i dugmetom."
+
+#: patterns/pricing-2-col.php
+msgctxt "Pattern description"
+msgid "Pricing section with two columns, pricing plan, description, and call-to-action buttons."
+msgstr "Odjeljak s cijenama s dva stupca, planom cijena, opisom i dugmadi za poziv na akciju."
+
+#: patterns/text-faqs.php:21
+msgctxt "Heading of the FAQs pattern."
+msgid "Frequently Asked Questions"
+msgstr "Često postavljana pitanja"
+
+#: theme.json
+msgctxt "Template part name"
+msgid "Vertical site header"
+msgstr "Okomito zaglavlje web stranice"
+
+#: patterns/vertical-header.php
 msgctxt "Pattern title"
-msgid "Banner with book description"
-msgstr "Banner s opisom knjige"
+msgid "Vertical site header"
+msgstr "Okomito zaglavlje web stranice"
 
-#: functions.php:142
-msgctxt "Label for the block binding placeholder in the editor"
-msgid "Post format name"
-msgstr "Naziv formata objave"
+#: patterns/template-single-text-blog.php
+msgctxt "Pattern title"
+msgid "Text blog single post"
+msgstr "Tekstualni blog samostalna objava"
 
-#: functions.php:122
-msgid "A collection of post format patterns."
-msgstr "Zbirka obrazaca formata objave."
+#: patterns/template-page-vertical-header-blog.php
+msgctxt "Pattern title"
+msgid "Right-aligned page"
+msgstr "Udesno poravnata stranica"
 
-#: functions.php:121
-msgid "Post formats"
-msgstr "Formati objava"
+#: patterns/template-home-text-blog.php
+msgctxt "Pattern title"
+msgid "Text blog home"
+msgstr "Tekstualni blog početna"
 
-#: functions.php:114
-msgid "A collection of full page layouts."
-msgstr "Zbirka postave cijele stranice."
+#: patterns/template-archive-text-blog.php
+msgctxt "Pattern title"
+msgid "Text blog archive"
+msgstr "Tekstualni blog arhiva"
 
-#: functions.php:113
-msgid "Pages"
-msgstr "Stranice"
+#: patterns/template-404-vertical-header-blog.php
+msgctxt "Pattern title"
+msgid "Right-aligned 404"
+msgstr "Udesno poravnati 404"
 
-#: functions.php:84
-msgid "Checkmark"
-msgstr "Kvačica provjere"
+#: patterns/header-centered.php
+msgctxt "Pattern title"
+msgid "Centered site header"
+msgstr "Centrirano zaglavlje web-stranice"
+
+#. Author of the theme
+#: style.css
+#, gp-priority: low
+msgid "the WordPress team"
+msgstr "WordPress tim"
 
 #. Author URI of the theme
 #: style.css patterns/footer-centered.php:34 patterns/footer-columns.php:74
@@ -2427,12 +2433,6 @@ msgstr "Kvačica provjere"
 #, gp-priority: low
 msgid "https://wordpress.org"
 msgstr "https://wordpress.org"
-
-#. Author of the theme
-#: style.css
-#, gp-priority: low
-msgid "the WordPress team"
-msgstr "WordPress tim"
 
 #. Theme URI of the theme
 #: style.css

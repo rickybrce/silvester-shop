@@ -53,15 +53,10 @@ msgctxt "Template part name"
 msgid "Comments Template Part"
 msgstr "Dio predloška za komentare"
 
-#: theme.json
-msgctxt "Template part name"
-msgid "Post Meta"
-msgstr "Meta podaci objave"
-
-#: theme.json
-msgctxt "Template part name"
-msgid "Footer"
-msgstr "Podnožje"
+#. Translators: WordPress link.
+#: patterns/footer-default.php:20
+msgid "Proudly powered by %s"
+msgstr "Ponosno pokreće %s"
 
 #: theme.json
 msgctxt "Template part name"
@@ -69,14 +64,20 @@ msgid "Header"
 msgstr "Zaglavlje"
 
 #: theme.json
-msgctxt "Font family name"
-msgid "Source Serif Pro"
-msgstr "Source Serif Pro"
+msgctxt "Custom template name"
+msgid "Blank"
+msgstr "Prazno"
 
 #: theme.json
-msgctxt "Font family name"
-msgid "System Font"
-msgstr "Sistemski font"
+msgctxt "Template part name"
+msgid "Footer"
+msgstr "Podnožje"
+
+#: styles/block-out.json styles/canary.json styles/pilgrimage.json
+#: styles/sherbet.json
+msgctxt "Duotone name"
+msgid "Default filter"
+msgstr "Izvorni filter"
 
 #: theme.json
 msgctxt "Font family name"
@@ -93,6 +94,54 @@ msgctxt "Font family name"
 msgid "DM Sans"
 msgstr "DM Sans"
 
+#: patterns/hidden-404.php:22 patterns/hidden-no-results.php:14
+msgid "Search"
+msgstr "Pretraga"
+
+#: patterns/hidden-404.php:22 patterns/hidden-no-results.php:14
+msgctxt "label"
+msgid "Search"
+msgstr "Pretraga"
+
+#: styles/aubergine.json styles/block-out.json styles/canary.json
+#: styles/electric.json styles/grapes.json styles/marigold.json
+#: styles/pilgrimage.json styles/pitch.json styles/sherbet.json
+#: styles/whisper.json theme.json
+msgctxt "Color name"
+msgid "Tertiary"
+msgstr "Tercijarni"
+
+#: styles/aubergine.json styles/block-out.json styles/canary.json
+#: styles/electric.json styles/grapes.json styles/marigold.json
+#: styles/pilgrimage.json styles/pitch.json styles/sherbet.json
+#: styles/whisper.json theme.json
+msgctxt "Color name"
+msgid "Secondary"
+msgstr "Sekundarni"
+
+#: styles/aubergine.json styles/block-out.json styles/canary.json
+#: styles/electric.json styles/grapes.json styles/marigold.json
+#: styles/pilgrimage.json styles/pitch.json styles/sherbet.json
+#: styles/whisper.json theme.json
+msgctxt "Color name"
+msgid "Primary"
+msgstr "Primarni"
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Source Serif Pro"
+msgstr "Source Serif Pro"
+
+#: theme.json
+msgctxt "Font family name"
+msgid "System Font"
+msgstr "Sistemski font"
+
+#: theme.json
+msgctxt "Template part name"
+msgid "Post Meta"
+msgstr "Meta podaci objave"
+
 #: theme.json
 msgctxt "Custom template name"
 msgid "404"
@@ -102,11 +151,6 @@ msgstr "404"
 msgctxt "Custom template name"
 msgid "Blog (Alternative)"
 msgstr "Blog (Alternativno)"
-
-#: theme.json
-msgctxt "Custom template name"
-msgid "Blank"
-msgstr "Prazno"
 
 #: styles/whisper.json
 msgctxt "Style variation name"
@@ -268,40 +312,10 @@ msgctxt "Style variation name"
 msgid "Canary"
 msgstr "Kanari"
 
-#: styles/block-out.json styles/canary.json styles/pilgrimage.json
-#: styles/sherbet.json
-msgctxt "Duotone name"
-msgid "Default filter"
-msgstr "Izvorni filter"
-
 #: styles/block-out.json
 msgctxt "Style variation name"
 msgid "Block out"
 msgstr "Blokiranje"
-
-#: styles/aubergine.json styles/block-out.json styles/canary.json
-#: styles/electric.json styles/grapes.json styles/marigold.json
-#: styles/pilgrimage.json styles/pitch.json styles/sherbet.json
-#: styles/whisper.json theme.json
-msgctxt "Color name"
-msgid "Tertiary"
-msgstr "Tercijarni"
-
-#: styles/aubergine.json styles/block-out.json styles/canary.json
-#: styles/electric.json styles/grapes.json styles/marigold.json
-#: styles/pilgrimage.json styles/pitch.json styles/sherbet.json
-#: styles/whisper.json theme.json
-msgctxt "Color name"
-msgid "Secondary"
-msgstr "Sekundarni"
-
-#: styles/aubergine.json styles/block-out.json styles/canary.json
-#: styles/electric.json styles/grapes.json styles/marigold.json
-#: styles/pilgrimage.json styles/pitch.json styles/sherbet.json
-#: styles/whisper.json theme.json
-msgctxt "Color name"
-msgid "Primary"
-msgstr "Primarni"
 
 #: styles/aubergine.json styles/block-out.json styles/canary.json
 #: styles/electric.json styles/grapes.json styles/marigold.json
@@ -390,18 +404,9 @@ msgid "Hidden Comments"
 msgstr "Skriveni komentari"
 
 #: patterns/hidden-404.php:22 patterns/hidden-no-results.php:14
-msgid "Search"
-msgstr "Pretraga"
-
-#: patterns/hidden-404.php:22 patterns/hidden-no-results.php:14
 msgctxt "placeholder for search field"
 msgid "Search..."
 msgstr "Pretraga…"
-
-#: patterns/hidden-404.php:22 patterns/hidden-no-results.php:14
-msgctxt "label"
-msgid "Search"
-msgstr "Pretraga"
 
 #: patterns/hidden-404.php:19
 msgctxt "Message to convey that a webpage could not be found"
@@ -417,11 +422,6 @@ msgstr "404"
 msgctxt "Pattern title"
 msgid "Hidden 404"
 msgstr "Skriveni 404"
-
-#. Translators: WordPress link.
-#: patterns/footer-default.php:20
-msgid "Proudly powered by %s"
-msgstr "Ponosno pokreće %s"
 
 #: patterns/footer-default.php
 msgctxt "Pattern title"
@@ -443,17 +443,17 @@ msgctxt "Pattern title"
 msgid "Call to action"
 msgstr "Poziv na akciju"
 
-#. Author URI of the theme
-#: style.css patterns/footer-default.php:21
-#, gp-priority: low
-msgid "https://wordpress.org"
-msgstr "https://wordpress.org"
-
 #. Author of the theme
 #: style.css
 #, gp-priority: low
 msgid "the WordPress team"
 msgstr "WordPress tim"
+
+#. Author URI of the theme
+#: style.css patterns/footer-default.php:21
+#, gp-priority: low
+msgid "https://wordpress.org"
+msgstr "https://wordpress.org"
 
 #. Theme URI of the theme
 #: style.css
