@@ -23,11 +23,11 @@
 
 <body class="bg-white text-enduro-grey-900"> 
     <header class="fixed top-0 left-0 w-full z-50 transition-transform duration-300" id="site-header">
-        <div class="w-full pl-4 pr-2 lg:px-4 py-2 bg-[rgba(0,0,0,0.8)]">
+        <div class="w-full pl-4 pr-2 lg:px-4 py-2 bg-black">
             <div class="w-full">
                 <div class="max-w-full mx-auto">
                     <div class="flex">
-                        <a href="<?php echo home_url(); ?>" class="pr-8 flex items-center relative z-40"><img class="w-[50px] lg:w-[100px] shrink-0" src="<?php bloginfo('template_directory'); ?>/images/logo.png" width="200" height="283" />
+                        <a href="<?php echo home_url(); ?>" class="pr-8 flex items-center relative z-40"><img class="w-[80px] lg:w-[140px] shrink-0" src="<?php bloginfo('template_directory'); ?>/images/logo.jpeg" width="200" height="283" />
                         </a>
                         <div class="w-full flex items-center justify-between">
                             <div class="w-full flex items-center justify-end lg:justify-between gap-4 lg:flex-row-reverse">
@@ -66,7 +66,7 @@
                                 <!-- Cart icon + Login/Logout -->
                                 <!-- Mobile menu panel (overlay on mobile, normal on desktop) -->
                                 <div id="mobile-menu-panel" class="mobile-menu-panel hidden lg:!flex lg:flex-1" aria-hidden="true">
-                                    <a href="<?php echo home_url(); ?>" class="mobile-menu-logo lg:hidden absolute top-2 left-4 z-50"><img class="w-[70px] shrink-0" src="<?php bloginfo('template_directory'); ?>/images/logo.png" width="200" height="283" alt="<?php echo esc_attr(get_bloginfo('name')); ?>" /></a>
+                                    <a href="<?php echo home_url(); ?>" class="mobile-menu-logo lg:hidden absolute top-2 left-4 z-50"><img class="w-[70px] shrink-0" src="<?php bloginfo('template_directory'); ?>/images/logo.jpeg" width="200" height="283" alt="<?php echo esc_attr(get_bloginfo('name')); ?>" /></a>
                                     <a href="<?php echo esc_url(function_exists('wc_get_cart_url') ? wc_get_cart_url() : home_url('/cart')); ?>" class="mobile-menu-cart lg:hidden absolute top-4.5 right-16 z-50 inline-flex items-center gap-2 text-sm text-white hover:text-enduro-red-100 transition">
                                         <span class="relative inline-block">
                                             <i class="fa-solid fa-cart-shopping text-xl"></i>

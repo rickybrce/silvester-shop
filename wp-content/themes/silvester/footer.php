@@ -1,4 +1,4 @@
-<div class="w-full mt-0 border-t border-black pt-10 pb-6 bg-[rgba(0,0,0,0.85)] text-gray-300">
+<div class="w-full mt-0 border-t border-black pt-10 pb-6 bg-black text-gray-300">
     <div class="w-full max-w-7xl mx-auto flex flex-wrap gap-y-8 px-5 lg:px-4">
 
         <!-- Menu 1 -->
@@ -72,7 +72,7 @@
 
         <!-- Logo + text -->
         <div class="w-full sm:w-1/2 lg:w-1/5 flex flex-col items-center lg:items-end">
-            <a href="<?php echo home_url(); ?>"><img class="w-20 mb-4 lg:w-36" src="<?php bloginfo('template_directory'); ?>/images/logo.png" width="168" height="205" /></a>
+            <a href="<?php echo home_url(); ?>"><img class="w-20 mb-4 lg:w-36" src="<?php bloginfo('template_directory'); ?>/images/logo.jpeg" width="168" height="205" /></a>
             <div class="text-center lg:text-right text-sm"><?php the_field('footer_text', 'option'); ?></div>
         </div>
 
@@ -80,13 +80,183 @@
 </div>
 
 
-<div class="w-full py-10 bg-black text-gray-400">
+<div class="w-full py-10 bg-[rgba(0,0,0,0.85)] text-gray-400">
     <div class="w-full max-w-7xl mx-auto text-xs text-center">
     Copyright <?php echo date("Y"); ?> Croatia Enduro | Design by <a target="_blank" href="https://sapa-design.com" class="text-gray-300 hover:text-enduro-red-100">SAPA DESIGN</a>
     </div>
 </div>
 
 <?php wp_footer(); ?>
+
+<!-- GDPR Cookie Consent -->
+<div id="gdpr-banner" style="display:none" role="dialog" aria-label="Postavke kolačića">
+  <style>
+    #gdpr-banner {
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 9999;
+      background: rgba(17,17,17,0.97); color: #d1d5db;
+      font-family: 'Roboto', sans-serif; font-size: 14px; line-height: 1.6;
+      box-shadow: 0 -4px 24px rgba(0,0,0,0.4);
+    }
+    .gdpr-inner {
+      max-width: 1280px; margin: 0 auto; padding: 20px 24px;
+    }
+    .gdpr-top { display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start; justify-content: space-between; }
+    .gdpr-text { flex: 1; min-width: 240px; }
+    .gdpr-text strong { color: #fff; font-size: 15px; display: block; margin-bottom: 4px; }
+    .gdpr-text a { color: #de423d; text-decoration: underline; }
+    .gdpr-actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; flex-shrink: 0; }
+    .gdpr-btn {
+      padding: 8px 18px; border-radius: 4px; border: none; font-size: 14px;
+      font-family: inherit; cursor: pointer; white-space: nowrap; font-weight: 500;
+    }
+    .gdpr-btn-all {
+      background: linear-gradient(to bottom, #de423d, #8d1f1a); color: #fff;
+    }
+    .gdpr-btn-all:hover { background: linear-gradient(to bottom, #8d1f1a, #de423d); }
+    .gdpr-btn-selected { background: transparent; color: #d1d5db; border: 1px solid #4b5563; }
+    .gdpr-btn-selected:hover { border-color: #de423d; color: #fff; }
+    .gdpr-btn-settings { background: transparent; color: #d1d5db; border: 1px solid #4b5563; }
+    .gdpr-btn-settings:hover { border-color: #de423d; color: #fff; }
+    .gdpr-categories {
+      display: none; border-top: 1px solid #374151; margin-top: 16px; padding-top: 16px;
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px;
+    }
+    .gdpr-categories.hidden { display: none !important; }
+    .gdpr-cat {
+      background: #1f2937; border-radius: 6px; padding: 12px 14px;
+      display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;
+    }
+    .gdpr-cat-info strong { color: #fff; font-size: 13px; display: block; margin-bottom: 2px; }
+    .gdpr-cat-info span { font-size: 12px; color: #9ca3af; }
+    /* Toggle switch */
+    .gdpr-toggle { position: relative; flex-shrink: 0; width: 40px; height: 22px; margin-top: 2px; }
+    .gdpr-toggle input { opacity: 0; width: 0; height: 0; }
+    .gdpr-toggle-slider {
+      position: absolute; inset: 0; border-radius: 22px;
+      background: #4b5563; cursor: pointer; transition: background .2s;
+    }
+    .gdpr-toggle-slider::before {
+      content: ''; position: absolute; width: 16px; height: 16px; border-radius: 50%;
+      background: #fff; left: 3px; top: 3px; transition: transform .2s;
+    }
+    .gdpr-toggle input:checked + .gdpr-toggle-slider { background: #de423d; }
+    .gdpr-toggle input:checked + .gdpr-toggle-slider::before { transform: translateX(18px); }
+    .gdpr-toggle input:disabled + .gdpr-toggle-slider { background: #de423d; cursor: not-allowed; opacity: 0.7; }
+    @media (max-width: 640px) {
+      .gdpr-actions { width: 100%; }
+      .gdpr-btn { flex: 1; text-align: center; }
+    }
+  </style>
+
+  <div class="gdpr-inner">
+    <div class="gdpr-top">
+      <div class="gdpr-text">
+        <strong>Koristimo kolačiće</strong>
+        Koristimo kolačiće kako bismo poboljšali vaše iskustvo na stranici. Možete prihvatiti sve ili prilagoditi postavke.
+        <a href="<?php echo esc_url( get_permalink( get_page_by_path('kolacici') ) ); ?>">Politika kolačića</a>
+      </div>
+      <div class="gdpr-actions">
+        <button class="gdpr-btn gdpr-btn-settings" id="gdpr-toggle-settings">Postavke</button>
+        <button class="gdpr-btn gdpr-btn-selected" id="gdpr-accept-selected" style="display:none">Prihvati odabrano</button>
+        <button class="gdpr-btn gdpr-btn-all" id="gdpr-accept-all">Prihvati sve</button>
+      </div>
+    </div>
+
+    <div class="gdpr-categories hidden" id="gdpr-categories">
+      <div class="gdpr-cat">
+        <div class="gdpr-cat-info">
+          <strong>Nužni</strong>
+          <span>Neophodni za rad stranice</span>
+        </div>
+        <label class="gdpr-toggle">
+          <input type="checkbox" checked disabled data-cat="necessary">
+          <span class="gdpr-toggle-slider"></span>
+        </label>
+      </div>
+      <div class="gdpr-cat">
+        <div class="gdpr-cat-info">
+          <strong>Analitički</strong>
+          <span>Statistika posjeta (Google Analytics)</span>
+        </div>
+        <label class="gdpr-toggle">
+          <input type="checkbox" data-cat="analytics">
+          <span class="gdpr-toggle-slider"></span>
+        </label>
+      </div>
+      <div class="gdpr-cat">
+        <div class="gdpr-cat-info">
+          <strong>Marketinški</strong>
+          <span>Personalizirani oglasi</span>
+        </div>
+        <label class="gdpr-toggle">
+          <input type="checkbox" data-cat="marketing">
+          <span class="gdpr-toggle-slider"></span>
+        </label>
+      </div>
+      <div class="gdpr-cat">
+        <div class="gdpr-cat-info">
+          <strong>Funkcionalni</strong>
+          <span>Pamćenje postavki i košarice</span>
+        </div>
+        <label class="gdpr-toggle">
+          <input type="checkbox" checked data-cat="functional">
+          <span class="gdpr-toggle-slider"></span>
+        </label>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  var CONSENT_KEY = 'silvester_gdpr_consent';
+  var banner      = document.getElementById('gdpr-banner');
+  var categories  = document.getElementById('gdpr-categories');
+
+  function getCookie(name) {
+    var match = document.cookie.match(new RegExp('(?:^|; )' + name + '=([^;]*)'));
+    return match ? decodeURIComponent(match[1]) : null;
+  }
+
+  // Show banner if no consent cookie
+  if ( ! getCookie(CONSENT_KEY) ) {
+    banner.style.display = 'block';
+  }
+
+  function saveConsent(data) {
+    var expires = new Date();
+    expires.setFullYear(expires.getFullYear() + 1); // 1 year
+    document.cookie = CONSENT_KEY + '=' + encodeURIComponent(JSON.stringify({ ts: Date.now(), cats: data }))
+      + '; expires=' + expires.toUTCString() + '; path=/; SameSite=Lax';
+    banner.style.display = 'none';
+  }
+
+  function getSelected() {
+    var cats = { necessary: true };
+    banner.querySelectorAll('[data-cat]:not([disabled])').forEach(function(cb) {
+      cats[cb.dataset.cat] = cb.checked;
+    });
+    return cats;
+  }
+
+  document.getElementById('gdpr-accept-all').addEventListener('click', function() {
+    saveConsent({ necessary: true, analytics: true, marketing: true, functional: true });
+  });
+
+  document.getElementById('gdpr-accept-selected').addEventListener('click', function() {
+    saveConsent(getSelected());
+  });
+
+  var settingsBtn  = document.getElementById('gdpr-toggle-settings');
+  var selectedBtn  = document.getElementById('gdpr-accept-selected');
+
+  settingsBtn.addEventListener('click', function() {
+    var isOpen = !categories.classList.toggle('hidden');
+    settingsBtn.style.display  = isOpen ? 'none'  : '';
+    selectedBtn.style.display  = isOpen ? ''      : 'none';
+  });
+})();
+</script>
 <script>
 (function() {
     var header   = document.getElementById('site-header');

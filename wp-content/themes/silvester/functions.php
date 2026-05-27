@@ -65,6 +65,73 @@ add_action( 'woocommerce_after_order_details', function( $order ) {
     silvester_render_payment_instructions( $order->get_id() );
 }, 5 );
 
+// Blocks checkout: register required terms checkbox
+add_action( 'woocommerce_init', function() {
+    if ( ! function_exists( 'woocommerce_register_additional_checkout_field' ) ) return;
+    woocommerce_register_additional_checkout_field( [
+        'id'                => 'silvester/terms',
+        'label'             => 'Prihvaćam Opće uvjete poslovanja i Politiku privatnosti *',
+        'location'          => 'order',
+        'type'              => 'checkbox',
+        'required'          => true,
+        'sanitize_callback' => fn( $val ) => (bool) $val,
+        'validate_callback' => function( $val ) {
+            if ( ! $val ) {
+                return new \WP_Error( 'silvester_terms', __( 'Morate prihvatiti Opće uvjete poslovanja i Politiku privatnosti.', 'silvester' ) );
+            }
+        },
+    ] );
+} );
+
+// Hide the default WooCommerce blocks terms text (replaced by checkbox above)
+add_action( 'wp_head', function() {
+    if ( ! is_checkout() ) return;
+    echo '<style>.wc-block-checkout__terms { display:none !important; }</style>';
+} );
+
+// Classic checkout: replace terms text with required checkbox
+add_action( 'woocommerce_checkout_before_order_review', function() {
+    $terms_url   = esc_url( get_permalink( get_page_by_path( 'uvjeti-poslovanja' ) ?: get_page_by_path( 'opci-uvjeti-poslovanja' ) ) );
+    $privacy_url = esc_url( get_privacy_policy_url() );
+    echo '<div class="silvester-terms-checkbox" style="margin-bottom:16px;padding:12px;background:#f9fafb;border:1px solid #e5e7eb;border-radius:4px;">';
+    echo '<label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;font-size:0.875rem;line-height:1.5;">';
+    echo '<input type="checkbox" name="silvester_terms" id="silvester_terms" value="1" style="margin-top:3px;flex-shrink:0;width:16px;height:16px;accent-color:#de423d;" required>';
+    echo '<span>';
+    echo 'Prihvaćam ';
+    if ( $terms_url ) {
+        echo '<a href="' . $terms_url . '" target="_blank" style="color:#de423d;">Opće uvjete poslovanja</a>';
+    } else {
+        echo 'Opće uvjete poslovanja';
+    }
+    echo ' i ';
+    if ( $privacy_url ) {
+        echo '<a href="' . $privacy_url . '" target="_blank" style="color:#de423d;">Politiku privatnosti</a>';
+    } else {
+        echo 'Politiku privatnosti';
+    }
+    echo '. <span style="color:#de423d;">*</span>';
+    echo '</span></label>';
+    echo '</div>';
+} );
+
+// Validate checkbox before order is placed
+add_action( 'woocommerce_checkout_process', function() {
+    if ( empty( $_POST['silvester_terms'] ) ) {
+        wc_add_notice( __( 'Morate prihvatiti Opće uvjete poslovanja i Politiku privatnosti.', 'silvester' ), 'error' );
+    }
+} );
+
+// Hide WooCommerce's default terms text
+add_filter( 'woocommerce_checkout_show_terms', '__return_false' );
+
+// Override WooCommerce registration & checkout privacy policy text with Croatian
+add_filter( 'pre_option_woocommerce_registration_privacy_policy_text', function() {
+    return 'Vaši osobni podaci koristit će se za podršku vašem iskustvu na ovoj web stranici, za upravljanje pristupom vašem računu i u druge svrhe opisane u našim [privacy_policy].';
+} );
+add_filter( 'pre_option_woocommerce_checkout_privacy_policy_text', function() {
+    return 'Vaši osobni podaci koristit će se za obradu vaše narudžbe, podršku vašem iskustvu na ovoj web stranici i u druge svrhe opisane u našim [privacy_policy].';
+} );
+
 // Disable redirect + "View cart" link after AJAX add-to-cart (popup handles it)
 add_filter( 'woocommerce_cart_redirect_after_add', '__return_false' );
 add_filter( 'wc_add_to_cart_message_html', '__return_empty_string' );
