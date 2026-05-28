@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Silvester Customer Discount
  * Description: Percentage discount per registered customer, applied automatically to entire order.
- * Version: 1.0.0
+ * Version: 2.0.0
  * Author: Silvester Shop
  * Text Domain: silvester-discount
  */
@@ -235,21 +235,121 @@ add_filter( 'manage_users_custom_column', function( $val, $col, $user_id ) {
     return $d > 0 ? '<strong style="color:#de423d">' . $d . '%</strong>' : '—';
 }, 10, 3 );
 
-// ── Cart: apply discount as negative fee ──────────────────────────────────────
+// ── Virtual coupon (fiscalization-compatible) ─────────────────────────────────
+// Uses WC coupon system so get_discount_total() is populated for fiscal systems.
 
-add_action( 'woocommerce_cart_calculate_fees', function( $cart ) {
-    if ( is_admin() && ! defined( 'DOING_AJAX' ) ) return;
-    if ( ! is_user_logged_in() ) return;
+define( 'SCD_COUPON_CODE', 'scd-popust-kupca' );
 
-    $discount = (float) get_user_meta( get_current_user_id(), 'scd_discount_percent', true );
-    if ( $discount <= 0 ) return;
+// Define the coupon dynamically — no DB post needed.
+add_filter( 'woocommerce_get_shop_coupon_data', function( $data, $code ) {
+    if ( strtolower( trim( $code ) ) !== SCD_COUPON_CODE ) return $data;
+    if ( ! is_user_logged_in() ) return $data;
+    $d = (float) get_user_meta( get_current_user_id(), 'scd_discount_percent', true );
+    if ( $d <= 0 ) return $data;
+    return [
+        'discount_type'              => 'percent',
+        'amount'                     => $d,
+        'individual_use'             => false,
+        'product_ids'                => [],
+        'exclude_product_ids'        => [],
+        'usage_limit'                => 0,
+        'usage_limit_per_user'       => 0,
+        'limit_usage_to_x_items'     => null,
+        'usage_count'                => 0,
+        'date_expires'               => null,
+        'free_shipping'              => false,
+        'product_categories'         => [],
+        'exclude_product_categories' => [],
+        'exclude_sale_items'         => false,
+        'minimum_amount'             => '',
+        'maximum_amount'             => '',
+        'customer_email'             => [],
+    ];
+}, 10, 2 );
 
-    $subtotal     = $cart->get_subtotal();
-    $discount_amt = -1 * ( $subtotal * $discount / 100 );
+// Auto-apply coupon when cart loads from session or items are added.
+function scd_sync_coupon() {
+    if ( ! is_user_logged_in() || ! WC()->cart ) return;
+    $d    = (float) get_user_meta( get_current_user_id(), 'scd_discount_percent', true );
+    $code = SCD_COUPON_CODE;
+    if ( $d > 0 && ! WC()->cart->has_discount( $code ) ) {
+        WC()->cart->apply_coupon( $code );
+    } elseif ( $d <= 0 && WC()->cart->has_discount( $code ) ) {
+        WC()->cart->remove_coupon( $code );
+    }
+}
+add_action( 'woocommerce_cart_loaded_from_session', 'scd_sync_coupon' );
+add_action( 'woocommerce_add_to_cart', 'scd_sync_coupon' );
 
-    $label = sprintf( __( 'Popust (%s%%)', 'silvester-discount' ), $discount );
-    $cart->add_fee( $label, $discount_amt, true ); // true = taxable
+// Re-apply if user manually removes it from cart page.
+add_action( 'woocommerce_removed_coupon', function( $code ) {
+    if ( $code !== SCD_COUPON_CODE ) return;
+    if ( ! is_user_logged_in() || ! WC()->cart ) return;
+    $d = (float) get_user_meta( get_current_user_id(), 'scd_discount_percent', true );
+    if ( $d > 0 ) WC()->cart->apply_coupon( $code );
 } );
+
+// Human-readable label in cart totals.
+add_filter( 'woocommerce_cart_totals_coupon_label', function( $label, $coupon ) {
+    if ( $coupon->get_code() === SCD_COUPON_CODE ) {
+        $d = (float) get_user_meta( get_current_user_id(), 'scd_discount_percent', true );
+        return sprintf( __( 'Popust (%s%%)', 'silvester-discount' ), $d );
+    }
+    return $label;
+}, 10, 2 );
+
+// Store discount % in order coupon item so label survives after user meta changes.
+add_action( 'woocommerce_checkout_order_created', function( $order ) {
+    foreach ( $order->get_items( 'coupon' ) as $item ) {
+        if ( strtolower( $item->get_code() ) === SCD_COUPON_CODE ) {
+            $d = (float) get_user_meta( $order->get_customer_id(), 'scd_discount_percent', true );
+            $item->add_meta_data( '_scd_percent', $d, true );
+            $item->save();
+        }
+    }
+} );
+
+// Human-readable label in order totals (thank-you, view-order, emails).
+add_filter( 'woocommerce_order_item_get_name', function( $name, $item ) {
+    if ( $item->get_type() !== 'coupon' ) return $name;
+    if ( strtolower( $item->get_code() ) !== SCD_COUPON_CODE ) return $name;
+    $d = $item->get_meta( '_scd_percent' );
+    if ( $d ) return sprintf( __( 'Popust (%s%%)', 'silvester-discount' ), $d );
+    return __( 'Popust kupca', 'silvester-discount' );
+}, 10, 2 );
+
+// ── WC Blocks: override coupon label via JS filter ────────────────────────────
+// WC Blocks cart.js hardcodes label=code from Store API — PHP filter never fires.
+
+add_action( 'wp_enqueue_scripts', function() {
+    if ( ! is_user_logged_in() ) return;
+    if ( ! is_cart() && ! is_checkout() ) return;
+
+    $d = (float) get_user_meta( get_current_user_id(), 'scd_discount_percent', true );
+    if ( $d <= 0 ) return;
+
+    wp_register_script( 'silvester-scd-label', false, [], false, true );
+    wp_enqueue_script( 'silvester-scd-label' );
+    wp_add_inline_script( 'silvester-scd-label', sprintf(
+        '(function(){
+            var code=%s,label=%s;
+            function init(){
+                if(window.wc&&window.wc.blocksCheckout&&window.wc.blocksCheckout.registerCheckoutFilters){
+                    window.wc.blocksCheckout.registerCheckoutFilters("silvester-scd",{
+                        coupons:function(coupons){
+                            return coupons.map(function(c){
+                                return c.code===code?Object.assign({},c,{label:label}):c;
+                            });
+                        }
+                    });
+                }else{setTimeout(init,50);}
+            }
+            init();
+        })();',
+        wp_json_encode( SCD_COUPON_CODE ),
+        wp_json_encode( sprintf( __( 'Popust (%s%%)', 'silvester-discount' ), $d ) )
+    ) );
+}, 99 );
 
 // ── Cart popup: pass discount info to AJAX handler ────────────────────────────
 
@@ -272,17 +372,3 @@ add_action( 'woocommerce_single_product_summary', function() {
     printf( esc_html__( 'Vaš popust: %s%%', 'silvester-discount' ), esc_html( $discount ) );
     echo '</p>';
 }, 8 );
-
-// ── Order received / view order: show discount note ───────────────────────────
-
-add_action( 'woocommerce_after_order_details', function( $order ) {
-    $fees = $order->get_fees();
-    foreach ( $fees as $fee ) {
-        if ( $fee->get_amount() < 0 ) {
-            echo '<p style="color:#de423d;font-weight:600;margin-bottom:8px;">';
-            echo esc_html( $fee->get_name() ) . ': ' . wp_kses_post( wc_price( $fee->get_amount() ) );
-            echo '</p>';
-            break;
-        }
-    }
-}, 4 );

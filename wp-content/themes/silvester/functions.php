@@ -200,7 +200,7 @@ add_filter( 'wp_check_filetype_and_ext', function( $data, $file, $filename, $mim
 function custom_styles() {
     wp_enqueue_style( 'font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css', array(), '6.4.0' );
     wp_enqueue_style( 'custom-style-lightbox', get_template_directory_uri() . '/imagelightbox/dist/imagelightbox.min.css' );
-	wp_enqueue_style( 'custom-style', get_template_directory_uri() . '/dist/custom_style.css' );
+	wp_enqueue_style( 'custom-style', get_template_directory_uri() . '/dist/custom_style.css', array(), '2.1' );
     wp_enqueue_script( 'script', get_template_directory_uri() . '/imagelightbox/dist/imagelightbox.min.js', array( 'jquery' ), 1.1, true );
 }
 add_action( 'wp_enqueue_scripts', 'custom_styles' );
