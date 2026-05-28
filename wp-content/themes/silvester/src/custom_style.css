@@ -729,14 +729,28 @@ ul.products li.product {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 28px;
-    height: 28px;
+    width: 20px;
+    height: 20px;
     background: transparent;
     border: none;
     cursor: pointer;
     color: #d1d5db;
     padding: 0;
     flex-shrink: 0;
+}
+
+@media (min-width: 1024px) {
+    #menu-main-menu .menu-item-has-children {
+        padding-right: 34px;
+    }
+    #main-nav .submenu-toggle {
+        position: absolute;
+        right: 6px;
+        top: 0;
+        height: 100%;
+        width: 22px;
+        padding: 0;
+    }
 }
 #main-nav .submenu-toggle:hover {
     color: #de423d;
@@ -761,13 +775,17 @@ ul.products li.product {
 
 /* Desktop: absolute dropdown */
 @media (min-width: 1024px) {
+    #main-nav .sub-menu a::after,
+    #main-nav .sub-menu .current-menu-item a::after {
+        display: none !important;
+    }
     #main-nav .sub-menu {
         position: absolute;
-        top: calc(100% + 8px);
+        top: calc(100% + 35px);
         left: 0;
         min-width: 200px;
         background: rgba(0, 0, 0, 0.92);
-        border-top: 2px solid #de423d;
+        border-top: none;
         border-radius: 0 0 4px 4px;
         z-index: 200;
         padding: 4px 0;
@@ -778,6 +796,7 @@ ul.products li.product {
     }
     #main-nav .sub-menu li a {
         display: block;
+        height: auto;
         padding: 8px 16px;
         color: #d1d5db;
         font-size: 0.875rem;
@@ -793,13 +812,14 @@ ul.products li.product {
 @media (max-width: 1023px) {
     #main-nav .sub-menu {
         width: 100%;
-        padding: 0 0 4px 12px;
+        padding: 0 0 4px 0;
     }
     #main-nav .sub-menu li a {
         display: block;
         padding: 6px 12px;
         color: #9ca3af;
         font-size: 0.875rem;
+        text-align: left;
     }
     #main-nav .sub-menu li a:hover {
         color: #de423d;
@@ -1064,4 +1084,60 @@ ins:has(.woocommerce-Price-amount) {
 }
 .wc-block-grid__product-add-to-cart .wp-block-button__link:hover {
     background: linear-gradient(to bottom, var(--color-enduro-red-200), var(--color-enduro-red-100));
+}
+
+/* Simple product attribute selects — flex row with qty + button */
+form.cart {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 12px;
+}
+.silvester-attr-row {
+    flex: 0 0 100%;
+    width: 100%;
+}
+.silvester-attr-row label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-enduro-grey-900);
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+.silvester-attr-row select {
+    width: 100%;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.375rem;
+    padding: 9px 32px 9px 12px;
+    font-size: 0.875rem;
+    color: var(--color-enduro-grey-900);
+    background-color: #fff;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2'%3E%3Cpath d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    appearance: none;
+    -webkit-appearance: none;
+    outline: none;
+    transition: border-color 0.15s;
+    cursor: pointer;
+    display: block;
+}
+.silvester-attr-row select:focus {
+    border-color: var(--color-enduro-red-100);
+}
+form.cart .quantity {
+    flex-shrink: 0;
+}
+form.cart .single_add_to_cart_button {
+    flex-shrink: 0;
+    align-self: flex-end;
+}
+
+/* Disabled add-to-cart button when attribute not yet selected */
+form.cart [name="add-to-cart"]:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    pointer-events: none;
 }

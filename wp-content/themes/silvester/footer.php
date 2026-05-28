@@ -80,9 +80,9 @@
 </div>
 
 
-<div class="w-full py-10 bg-[rgba(0,0,0,0.85)] text-gray-400">
+<div class="w-full py-10 bg-[rgba(0,0,0,0.85)] text-gray-400"> 
     <div class="w-full max-w-7xl mx-auto text-xs text-center">
-    Copyright <?php echo date("Y"); ?> Croatia Enduro | Design by <a target="_blank" href="https://sapa-design.com" class="text-gray-300 hover:text-enduro-red-100">SAPA DESIGN</a>
+    Copyright <?php echo date("Y"); ?> S.P. MOTO | Design by <a target="_blank" href="https://sapa-design.com" class="text-gray-300 hover:text-enduro-red-100">SAPA DESIGN</a>
     </div>
 </div>
 

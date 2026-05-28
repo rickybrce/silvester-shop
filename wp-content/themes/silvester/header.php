@@ -84,7 +84,7 @@
                                         'theme_location' => 'main-menu',
                                         'container'      => 'nav',
                                         'container_id'   => 'main-nav',
-                                        'container_class' => 'main-nav text-sm py-2 w-full lg:w-auto lg:flex lg:items-center lg:relative lg:!block px-4 pt-16 lg:pt-0 lg:px-0',
+                                        'container_class' => 'main-nav text-sm py-2 w-full lg:w-auto lg:flex lg:items-center lg:relative lg:!block px-4 pt-6 lg:pt-0 lg:px-0',
                                         'menu_id'        => 'menu-main-menu',
                                         'menu_class'     => 'mobile-menu-list flex flex-col lg:flex-row gap-4 lg:gap-0 lg:items-center lg:w-full',
                                         'walker'         => new Silvester_Nav_Walker(),

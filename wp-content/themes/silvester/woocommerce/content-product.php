@@ -51,7 +51,7 @@ if ( ! is_a( $product, WC_Product::class ) || ! $product->is_visible() ) {
 				<a href="<?php echo esc_url( get_permalink() ); ?>" class="inline-block border border-enduro-red-100 text-enduro-red-100 hover:bg-enduro-red-100 hover:text-white py-2 px-4 rounded text-sm font-medium transition">
 					<?php echo esc_html__( 'Pogledaj više', 'silvester' ); ?>
 				</a>
-				<?php if ( $product->is_purchasable() && $product->is_in_stock() ) : ?>
+				<?php if ( $product->is_purchasable() && $product->is_in_stock() && ! silvester_has_selectable_attrs( $product ) ) : ?>
 					<a href="<?php echo esc_url( $product->add_to_cart_url() ); ?>"
 						   data-product_id="<?php echo esc_attr( $product->get_id() ); ?>"
 						   data-product_sku="<?php echo esc_attr( $product->get_sku() ); ?>"

@@ -1,5 +1,148 @@
 <?php
 
+add_filter( 'woocommerce_product_tabs', function( $tabs ) {
+    unset( $tabs['additional_information'] );
+    return $tabs;
+} );
+
+// Returns true if a simple product has at least one attribute with options.
+function silvester_has_selectable_attrs( $product ) {
+    if ( ! $product || $product->get_type() !== 'simple' ) return false;
+    foreach ( $product->get_attributes() as $attr ) {
+        $opts = $attr->is_taxonomy()
+            ? wc_get_product_terms( $product->get_id(), $attr->get_name(), [ 'fields' => 'all' ] )
+            : $attr->get_options();
+        if ( ! empty( $opts ) ) return true;
+    }
+    return false;
+}
+
+// ── Simple product attribute selects ─────────────────────────────────────────
+
+// 1. Render select boxes inside the add-to-cart form on single product page.
+add_action( 'woocommerce_before_add_to_cart_button', function() {
+    global $product;
+    if ( ! $product || $product->get_type() !== 'simple' ) return;
+
+    $attributes = $product->get_attributes();
+    if ( empty( $attributes ) ) return;
+
+    foreach ( $attributes as $attr_name => $attr ) {
+        $options = [];
+
+        if ( $attr->is_taxonomy() ) {
+            $terms = wc_get_product_terms( $product->get_id(), $attr->get_name(), [ 'fields' => 'all' ] );
+            foreach ( $terms as $term ) {
+                $options[ $term->slug ] = $term->name;
+            }
+        } else {
+            foreach ( $attr->get_options() as $opt ) {
+                $options[ sanitize_title( $opt ) ] = $opt;
+            }
+        }
+
+        if ( empty( $options ) ) continue;
+
+        $field = 'silvester_attr_' . sanitize_title( $attr_name );
+        $label = wc_attribute_label( $attr->get_name() );
+        echo '<div class="silvester-attr-row">';
+        echo '<label for="' . esc_attr( $field ) . '" class="block text-sm font-medium mb-1">' . esc_html( $label ) . '</label>';
+        echo '<select name="' . esc_attr( $field ) . '" id="' . esc_attr( $field ) . '" class="border border-gray-300 rounded px-3 py-2 text-sm w-full">';
+        echo '<option value="">' . esc_html__( 'Odaberi...', 'silvester' ) . '</option>';
+        foreach ( $options as $val => $name ) {
+            echo '<option value="' . esc_attr( $val ) . '">' . esc_html( $name ) . '</option>';
+        }
+        echo '</select>';
+        echo '</div>';
+    }
+}, 10 );
+
+// 1b. Disable buy button until all selects are chosen.
+add_action( 'woocommerce_after_add_to_cart_button', function() {
+    global $product;
+    if ( ! $product || $product->get_type() !== 'simple' ) return;
+
+    $has_attrs = false;
+    foreach ( $product->get_attributes() as $attr ) {
+        $opts = $attr->is_taxonomy()
+            ? wc_get_product_terms( $product->get_id(), $attr->get_name(), [ 'fields' => 'all' ] )
+            : $attr->get_options();
+        if ( ! empty( $opts ) ) { $has_attrs = true; break; }
+    }
+    if ( ! $has_attrs ) return;
+    ?>
+    <script>
+    (function() {
+        var form    = document.querySelector('form.cart');
+        if (!form) return;
+        var selects = form.querySelectorAll('.silvester-attr-row select');
+        if (!selects.length) return;
+        var btn     = form.querySelector('[name="add-to-cart"]');
+        if (!btn) return;
+
+        function check() {
+            var allPicked = Array.prototype.every.call(selects, function(s) { return s.value !== ''; });
+            btn.disabled = !allPicked;
+        }
+
+        selects.forEach(function(s) { s.addEventListener('change', check); });
+        check();
+    })();
+    </script>
+    <?php
+}, 10 );
+
+// 2. Capture posted values and store in cart item data.
+add_filter( 'woocommerce_add_cart_item_data', function( $data, $product_id ) {
+    $product = wc_get_product( $product_id );
+    if ( ! $product || $product->get_type() !== 'simple' ) return $data;
+
+    $selected = [];
+    foreach ( $product->get_attributes() as $attr_name => $attr ) {
+        $field = 'silvester_attr_' . sanitize_title( $attr_name );
+        if ( empty( $_POST[ $field ] ) ) continue;
+
+        $raw   = sanitize_text_field( wp_unslash( $_POST[ $field ] ) );
+        $label = wc_attribute_label( $attr->get_name() );
+
+        if ( $attr->is_taxonomy() ) {
+            $term  = get_term_by( 'slug', $raw, $attr->get_name() );
+            $value = $term ? $term->name : $raw;
+        } else {
+            $value = $raw;
+        }
+
+        $selected[ $label ] = $value;
+    }
+
+    if ( ! empty( $selected ) ) {
+        $data['silvester_attrs'] = $selected;
+        $data['silvester_attrs_key'] = md5( $product_id . serialize( $selected ) );
+    }
+
+    return $data;
+}, 10, 2 );
+
+// 3. Display selected attributes in cart item row.
+add_filter( 'woocommerce_get_item_data', function( $item_data, $cart_item ) {
+    if ( empty( $cart_item['silvester_attrs'] ) ) return $item_data;
+
+    foreach ( $cart_item['silvester_attrs'] as $label => $value ) {
+        $item_data[] = [ 'name' => $label, 'value' => $value ];
+    }
+
+    return $item_data;
+}, 10, 2 );
+
+// 4. Save to order line item meta on checkout.
+add_action( 'woocommerce_checkout_create_order_line_item', function( $item, $cart_item_key, $values ) {
+    if ( empty( $values['silvester_attrs'] ) ) return;
+
+    foreach ( $values['silvester_attrs'] as $label => $value ) {
+        $item->add_meta_data( $label, $value );
+    }
+}, 10, 3 );
+
 // Shared function: render payment instructions with dynamic order number
 function silvester_render_payment_instructions( $order_id ) {
     $order = wc_get_order( $order_id );

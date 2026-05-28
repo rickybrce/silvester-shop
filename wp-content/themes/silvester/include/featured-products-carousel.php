@@ -59,7 +59,7 @@ if ($featured_query->have_posts()) : ?>
             <!-- Carousel Container -->
             <div class="relative">
                 <div class="carousel-container overflow-hidden">
-                    <div class="carousel-track flex gap-4 transition-transform duration-300 ease-in-out items-stretch" id="featured-carousel-track">
+                    <div class="carousel-track flex gap-4 transition-transform duration-500 ease-in-out items-stretch" id="featured-carousel-track">
                         <?php while ($featured_query->have_posts()) : $featured_query->the_post();
                             global $product;
                             if (!$product) continue;
@@ -86,7 +86,7 @@ if ($featured_query->have_posts()) : ?>
                                             <a href="<?php echo esc_url(get_permalink()); ?>" class="inline-block border border-enduro-red-100 text-enduro-red-100 hover:bg-enduro-red-100 hover:text-white py-2 px-4 rounded text-sm font-medium transition">
                                                 <?php echo esc_html__('Pogledaj više', 'silvester'); ?>
                                             </a>
-                                            <?php if ($product->is_purchasable() && $product->is_in_stock()) : ?>
+                                            <?php if ($product->is_purchasable() && $product->is_in_stock() && !silvester_has_selectable_attrs($product)) : ?>
                                                 <a href="<?php echo esc_url($product->add_to_cart_url()); ?>"
                                                    data-product_id="<?php echo esc_attr($product->get_id()); ?>"
                                                    data-product_sku="<?php echo esc_attr($product->get_sku()); ?>"
@@ -105,12 +105,12 @@ if ($featured_query->have_posts()) : ?>
                 </div>
                 
                 <!-- Navigation Arrows -->
-                <button class="carousel-nav carousel-prev absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 lg:-translate-x-12 bg-enduro-red-100 hover:bg-enduro-red-200 text-white rounded-full w-10 h-10 lg:w-12 lg:h-12 flex items-center justify-center transition z-10" onclick="scrollCarousel('prev')" aria-label="Previous">
+                <button class="carousel-nav carousel-prev absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 lg:-translate-x-12 bg-enduro-red-100 hover:bg-enduro-red-200 text-white rounded-full w-10 h-10 lg:w-12 lg:h-12 flex items-center justify-center transition z-10" onclick="featuredScrollCarousel('prev')" aria-label="Previous">
                     <svg class="w-5 h-5 lg:w-6 lg:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
                     </svg>
                 </button>
-                <button class="carousel-nav carousel-next absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 lg:translate-x-12 bg-enduro-red-100 hover:bg-enduro-red-200 text-white rounded-full w-10 h-10 lg:w-12 lg:h-12 flex items-center justify-center transition z-10" onclick="scrollCarousel('next')" aria-label="Next">
+                <button class="carousel-nav carousel-next absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 lg:translate-x-12 bg-enduro-red-100 hover:bg-enduro-red-200 text-white rounded-full w-10 h-10 lg:w-12 lg:h-12 flex items-center justify-center transition z-10" onclick="featuredScrollCarousel('next')" aria-label="Next">
                     <svg class="w-5 h-5 lg:w-6 lg:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                     </svg>
@@ -118,45 +118,55 @@ if ($featured_query->have_posts()) : ?>
             </div>
         </div>
     </div>
-    
+
     <script>
-    let currentSlide = 0;
-    const track = document.getElementById('featured-carousel-track');
-    const slides = track ? track.querySelectorAll('.carousel-slide') : [];
-    const slidesToShow = window.innerWidth >= 1280 ? 4 : window.innerWidth >= 1024 ? 3 : window.innerWidth >= 640 ? 2 : 1;
-    const totalSlides = slides.length;
-    
-    function updateSlidesToShow() {
-        if (window.innerWidth >= 1280) return 4;
-        if (window.innerWidth >= 1024) return 3;
-        if (window.innerWidth >= 640) return 2;
-        return 1;
-    }
-    
-    function scrollCarousel(direction) {
-        const slidesToShow = updateSlidesToShow();
-        const slideWidth = slides[0] ? slides[0].offsetWidth + 16 : 0; // 16px for gap
-        
-        if (direction === 'next') {
-            currentSlide = Math.min(currentSlide + 1, totalSlides - slidesToShow);
-        } else {
-            currentSlide = Math.max(currentSlide - 1, 0);
+    (function() {
+        var currentSlide = 0;
+        var track   = document.getElementById('featured-carousel-track');
+        var wrapper = track ? track.closest('.relative') : null;
+        var slides  = track ? track.querySelectorAll('.carousel-slide') : [];
+        var total   = slides.length;
+        var timer   = null;
+
+        function visible() {
+            if (window.innerWidth >= 1280) return 4;
+            if (window.innerWidth >= 1024) return 3;
+            if (window.innerWidth >= 640)  return 2;
+            return 1;
         }
-        
-        if (track) {
-            track.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
+
+        function goTo(idx) {
+            var n   = visible();
+            var max = Math.max(0, total - n);
+            currentSlide = idx < 0 ? max : (idx > max ? 0 : idx);
+            var w = slides[0] ? slides[0].offsetWidth + 16 : 0;
+            if (track) track.style.transform = 'translateX(-' + (currentSlide * w) + 'px)';
         }
-    }
-    
-    // Handle window resize
-    window.addEventListener('resize', function() {
-        const slidesToShow = updateSlidesToShow();
-        currentSlide = Math.min(currentSlide, Math.max(0, totalSlides - slidesToShow));
-        const slideWidth = slides[0] ? slides[0].offsetWidth + 16 : 0;
-        if (track) {
-            track.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
+
+        function startAutoplay() {
+            stopAutoplay();
+            timer = setInterval(function() { goTo(currentSlide + 1); }, 2000);
         }
-    });
+
+        function stopAutoplay() {
+            if (timer) { clearInterval(timer); timer = null; }
+        }
+
+        window.featuredScrollCarousel = function(dir) {
+            stopAutoplay();
+            goTo(currentSlide + (dir === 'next' ? 1 : -1));
+            startAutoplay();
+        };
+
+        if (wrapper) {
+            wrapper.addEventListener('mouseenter', stopAutoplay);
+            wrapper.addEventListener('mouseleave', startAutoplay); 
+        }
+
+        window.addEventListener('resize', function() { goTo(currentSlide); });
+
+        startAutoplay();
+    })();
     </script>
     
     <?php wp_reset_postdata(); ?>
