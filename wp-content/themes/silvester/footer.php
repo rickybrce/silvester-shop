@@ -89,7 +89,7 @@
 <?php wp_footer(); ?>
 
 <!-- GDPR Cookie Consent -->
-<div id="gdpr-banner" style="display:none" role="dialog" aria-label="Postavke kolačića">
+<div id="gdpr-banner" style="display:none" role="dialog" aria-label="Postavke kolačića"> 
   <style>
     #gdpr-banner {
       position: fixed; bottom: 0; left: 0; right: 0; z-index: 9999;
