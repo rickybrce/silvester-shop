@@ -270,13 +270,13 @@
                 if (y > 100) {
                     if (y > lastY) {
                         // scrolling down — hide
-                        header.style.transform = 'translateY(-100%)';
+                        header.style.top = '-100%';
                     } else {
                         // scrolling up — show
-                        header.style.transform = 'translateY(0)';
+                        header.style.top = '0';
                     }
                 } else {
-                    header.style.transform = 'translateY(0)';
+                    header.style.top = '0';
                 }
                 lastY   = y;
                 ticking = false;
