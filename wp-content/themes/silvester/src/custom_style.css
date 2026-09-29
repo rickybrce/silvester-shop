@@ -54,7 +54,7 @@ html, body {
     @apply text-enduro-red-100
 }
 
-#menu-main-menu .current-menu-item a:after, #menu-main-menu a:hover:after {
+#menu-main-menu .current-menu-item a:after, #menu-main-menu .current-product_cat-ancestor > a:after, #menu-main-menu a:hover:after {
     @apply opacity-100; 
 } 
 #menu-main-menu .menu-item {
@@ -70,10 +70,10 @@ html, body {
 #menu-main-menu .menu-item:last-child:after{
     @apply hidden;
 } 
-#menu-main-menu .current-menu-item a {
+#menu-main-menu .current-menu-item a, #menu-main-menu .current-product_cat-ancestor > a {
     @apply text-enduro-red-100
 }
-#menu-main-menu .current-menu-item a:after {
+#menu-main-menu .current-menu-item a:after, #menu-main-menu .current-product_cat-ancestor > a:after {
     @apply w-full; 
 }
 
@@ -291,7 +291,7 @@ h1.page-title::before {
         height: auto;
         justify-content: start;
     }
-    #menu-main-menu .current-menu-item a {
+    #menu-main-menu .current-menu-item a, #menu-main-menu .current-product_cat-ancestor > a {
         @apply text-enduro-red-100;
     }
     .mobile-menu-panel #menu-main-menu a:after {

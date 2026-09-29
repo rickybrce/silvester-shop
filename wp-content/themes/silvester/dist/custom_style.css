@@ -7,27 +7,15 @@
       "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
-    --color-red-50: oklch(97.1% 0.013 17.38);
-    --color-red-100: oklch(93.6% 0.032 17.717);
-    --color-red-200: oklch(88.5% 0.062 18.334);
-    --color-red-600: oklch(57.7% 0.245 27.325);
-    --color-red-800: oklch(44.4% 0.177 26.899);
-    --color-blue-600: oklch(54.6% 0.245 262.881);
-    --color-blue-800: oklch(42.4% 0.199 265.638);
     --color-gray-50: oklch(98.5% 0.002 247.839);
     --color-gray-100: oklch(96.7% 0.003 264.542);
     --color-gray-200: oklch(92.8% 0.006 264.531);
     --color-gray-300: oklch(87.2% 0.01 258.338);
     --color-gray-400: oklch(70.7% 0.022 261.325);
-    --color-gray-500: oklch(55.1% 0.027 264.364);
-    --color-gray-600: oklch(44.6% 0.03 256.802);
-    --color-gray-700: oklch(37.3% 0.034 259.733);
-    --color-gray-900: oklch(21% 0.034 264.665);
     --color-black: #000;
     --color-white: #fff;
     --spacing: 0.25rem;
     --container-sm: 24rem;
-    --container-md: 28rem;
     --container-2xl: 42rem;
     --container-4xl: 56rem;
     --container-7xl: 80rem;
@@ -53,24 +41,15 @@
     --text-6xl--line-height: 1;
     --text-7xl: 4.5rem;
     --text-7xl--line-height: 1;
-    --font-weight-light: 300;
-    --font-weight-normal: 400;
     --font-weight-medium: 500;
     --font-weight-semibold: 600;
     --font-weight-bold: 700;
     --tracking-widest: 0.1em;
     --leading-tight: 1.25;
-    --leading-snug: 1.375;
     --leading-relaxed: 1.625;
-    --radius-sm: 0.25rem;
     --radius-md: 0.375rem;
-    --radius-lg: 0.5rem;
-    --radius-xl: 0.75rem;
-    --radius-2xl: 1rem;
     --ease-in: cubic-bezier(0.4, 0, 1, 1);
-    --ease-out: cubic-bezier(0, 0, 0.2, 1);
     --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
-    --animate-spin: spin 1s linear infinite;
     --default-transition-duration: 150ms;
     --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     --default-font-family: var(--font-sans);
@@ -1657,7 +1636,7 @@ html, body {
 #menu-main-menu a:hover {
   color: var(--color-enduro-red-100);
 }
-#menu-main-menu .current-menu-item a:after, #menu-main-menu a:hover:after {
+#menu-main-menu .current-menu-item a:after, #menu-main-menu .current-product_cat-ancestor > a:after, #menu-main-menu a:hover:after {
   opacity: 100%;
 }
 #menu-main-menu .menu-item {
@@ -1682,10 +1661,10 @@ html, body {
 #menu-main-menu .menu-item:last-child:after {
   display: none;
 }
-#menu-main-menu .current-menu-item a {
+#menu-main-menu .current-menu-item a, #menu-main-menu .current-product_cat-ancestor > a {
   color: var(--color-enduro-red-100);
 }
-#menu-main-menu .current-menu-item a:after {
+#menu-main-menu .current-menu-item a:after, #menu-main-menu .current-product_cat-ancestor > a:after {
   width: 100%;
 }
 #menu-top-menu {
@@ -2157,7 +2136,7 @@ h1.page-title::before {
     height: auto;
     justify-content: start;
   }
-  #menu-main-menu .current-menu-item a {
+  #menu-main-menu .current-menu-item a, #menu-main-menu .current-product_cat-ancestor > a {
     color: var(--color-enduro-red-100);
   }
   .mobile-menu-panel #menu-main-menu a:after {
@@ -3428,11 +3407,6 @@ form.cart [name="add-to-cart"]:disabled {
   syntax: "*";
   inherits: false;
   initial-value: 1;
-}
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
 }
 @layer properties {
   @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {
