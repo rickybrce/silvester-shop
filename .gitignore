@@ -1,1 +1,16 @@
+# Ignore everything except the silvester theme and custom plugins
+/*
+!/.gitignore
+!/wp-content/
+/wp-content/*
+!/wp-content/themes/
+/wp-content/themes/*
+!/wp-content/themes/silvester/
+!/wp-content/plugins/
+/wp-content/plugins/*
+!/wp-content/plugins/silvester-customer-discount/
+!/wp-content/plugins/woo-fiskal/
+
+# Inside theme and plugins
 node_modules
+.DS_Store

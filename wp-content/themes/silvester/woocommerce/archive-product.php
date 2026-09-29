@@ -86,6 +86,14 @@ do_action( 'woocommerce_shop_loop_header' );
 			</form>
 
 			<?php
+			// Leatt category or any of its subcategories: show only the Leatt branch, hide brands
+			$is_leatt_section = false;
+			$leatt            = get_term_by( 'slug', 'leatt', 'product_cat' );
+			if ( $leatt && is_product_category() ) {
+				$current_cat      = get_queried_object();
+				$is_leatt_section = $current_cat->term_id === $leatt->term_id || term_is_ancestor_of( $leatt, $current_cat, 'product_cat' );
+			}
+
 			$product_categories = get_terms( [
 				'taxonomy'   => 'product_cat',
 				'hide_empty' => true,
@@ -96,6 +104,10 @@ do_action( 'woocommerce_shop_loop_header' );
 			// Pin "motocikli" first
 			if ( ! empty( $product_categories ) && ! is_wp_error( $product_categories ) ) {
 				usort( $product_categories, fn( $a, $b ) => $a->slug === 'motocikli' ? -1 : ( $b->slug === 'motocikli' ? 1 : 0 ) );
+
+				if ( $is_leatt_section ) {
+					$product_categories = array_values( array_filter( $product_categories, fn( $c ) => $c->term_id === $leatt->term_id ) );
+				}
 			}
 			if ( ! empty( $product_categories ) && ! is_wp_error( $product_categories ) ) :
 			?>
@@ -181,7 +193,7 @@ do_action( 'woocommerce_shop_loop_header' );
 			<?php endif; ?>
 
 			<?php
-			$brands = get_terms( [
+			$brands = $is_leatt_section ? [] : get_terms( [
 				'taxonomy'   => 'product_brand',
 				'hide_empty' => true,
 				'orderby'    => 'name',

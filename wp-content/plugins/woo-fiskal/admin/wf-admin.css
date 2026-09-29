@@ -1,0 +1,164 @@
+/* THIS IS YOUR PLUGIN ADMIN CSS FILE
+* 
+* IT'S LOADED ONCE YOU OPEN YOUR PLUGIN ADMIN PAGE
+*/
+
+/*add icon to sub-menu item SETTINGS*/
+li.toplevel_page_woo-fiskal > ul.wp-submenu li:nth-child(2) a::before{
+    font-family: dashicons;
+    display: inline-block;
+    content: "\f107";
+    margin-right: 0.5em;
+    opacity: 0.5;
+    font-size: 15px;
+    top: 2px;
+    position: relative;
+}
+
+/*add icon to sub-menu item GENERAL*/
+li.toplevel_page_woo-fiskal > ul.wp-submenu li:nth-child(3) a::before{
+    font-family: dashicons;
+    display: inline-block;
+    content: "\f223";
+    margin-right: 0.5em;
+    opacity: 0.5;
+    font-size: 15px;
+    top: 2px;
+    position: relative;
+}
+/* set color to white for active submenu item*/
+li.toplevel_page_woo-fiskal > ul.wp-submenu li.current a::before{
+    color:#fff;
+    opacity: 1;
+    font-weight: normal !important;
+}
+
+.wf-heading{
+    display: block;
+    width: 100%;  
+    padding: 20px 0px;  
+}
+
+.wf-heading img{
+    display: block;
+    width: auto;  
+    height: 50px;  
+}
+
+.wf-content{
+    display: table;
+    width: 100%;
+    padding: 0px 20px 20px 0px;
+    box-sizing: border-box;
+}
+
+.wf-content label{
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+span.checkbox-label{
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.wf-content input[type="text"]{
+    display: block;
+    min-width: 300px;
+    width: 60%;
+    margin-top: 5px;
+    border: 0;
+}
+
+.wf-button{
+    display: inline-block;
+    margin-top: 5px;
+    border: 2px #ba8fb7 solid;
+    padding: 8px 15px;
+    text-decoration: none;
+    background: #B276A7;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.wf-button:hover{
+    color: #3f2a46 !important;
+}
+
+.wf-line{
+    margin: 20px 0px;
+    background: #ccc;
+    height: 1px;
+    border-top: 0;
+    border-bottom: 0;
+}
+
+.wf-version{
+    display: table;
+    box-sizing: border-box;
+    width: 100%;
+    font-size: 10px;
+    opacity: 0.7;
+    text-align: right;
+    padding: 25px;
+}
+
+#wf-r1-fields{
+    display: none;
+}
+
+#wf-r1-fields input{
+    width: 400px;
+    max-width: 400px;
+    display: inline;
+}
+#wf-r1-fields span{
+    display: inline;
+}
+
+/* WOOFISKAL UI */
+
+.btn-right{
+    float: right;
+}
+
+.input-error{
+    border: 1px #db4a4a solid !important;
+}
+
+.text-error{
+    color: #db4a4a !important;
+    font-weight: bold;
+}
+
+.no-woo-error{
+    color: #db4a4a !important;
+    font-weight: bold;
+    margin: 20px 0px;
+    display: block;
+    width: 100%;
+}
+
+.dashicons.spin {
+    animation: dashicons-spin 1s infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes dashicons-spin {
+    0% {
+        transform: rotate( 0deg );
+    }
+    100% {
+        transform: rotate( 360deg );
+    }
+}
+
+/* WOOCOMMERCE UI*/
+.order-status.status-completed-fiskal{
+    background: #B276A7;
+    color: #fff;
+}
