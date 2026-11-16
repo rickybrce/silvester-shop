@@ -10,6 +10,7 @@
 /wp-content/plugins/*
 !/wp-content/plugins/silvester-customer-discount/
 !/wp-content/plugins/woo-fiskal/
+!/wp-content/plugins/silvester-bazne-cijene/
 
 # Inside theme and plugins
 node_modules
